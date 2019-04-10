@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 /**
  * Assets Class
- * @author Luis Felipe Alvarez Sanchez and Genaro
+ * @author Luis Felipe Alvarez Sanchez
  * 4 Feb 2019
  */
 public class Assets {

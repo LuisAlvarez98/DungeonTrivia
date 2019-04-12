@@ -14,7 +14,7 @@ public class Assets {
      * loads the assets
      */
     public static void init(){
-         bg = ImageLoader.loadImage("/images/bg.png");
+         bg = ImageLoader.loadImage("/images/bg_doors.png");
     }
     
 }

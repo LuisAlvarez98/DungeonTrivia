@@ -1,6 +1,7 @@
 package dungeontrivia;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.io.BufferedReader;
@@ -74,11 +75,12 @@ public class Game implements Runnable {
         Assets.init();
         readTxt();
         //Create objectcs
-        for(int i = 0; i < numeroPreguntas; i++){
+        for (int i = 0; i < numeroPreguntas; i++) {
             System.out.println(preguntas.get(i).getPregunta());
         }
         display.getJframe().addKeyListener(keyManager);
     }
+
     /**
      * Load questions now work!
      */
@@ -108,12 +110,12 @@ public class Game implements Runnable {
                 // read next line
                 counter++;
                 line = reader.readLine();
-                if(counter > 3){
-                
+                if (counter > 3) {
+
                     preguntas.get(numeroPreguntas).setRespuestas(respuestas);
                     respuestas = new ArrayList<String>();
                     numeroPreguntas++;
-                     Pregunta p = new Pregunta();
+                    Pregunta p = new Pregunta();
                     preguntas.add(p);
                     counter = 0;
                 }
@@ -177,7 +179,13 @@ public class Game implements Runnable {
         } else {
             g = bs.getDrawGraphics();
             g.drawImage(Assets.bg, 0, 0, width, height, null);
+            Font myFont = new Font("Courier New", 1, 22);
+            
+            g.setFont(myFont);
+            g.setColor(Color.WHITE);
+            g.drawString(preguntas.get(0).getPregunta(), getWidth() /2 - 250, 30);
             //render stuff
+            
             bs.show();
             g.dispose();
         }

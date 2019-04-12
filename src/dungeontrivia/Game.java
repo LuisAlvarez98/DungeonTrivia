@@ -176,7 +176,7 @@ public class Game implements Runnable {
             display.getCanvas().createBufferStrategy(3);
         } else {
             g = bs.getDrawGraphics();
-            // g.drawImage(Assets.background, 0, 0, width, height, null);
+            g.drawImage(Assets.bg, 0, 0, width, height, null);
             //render stuff
             bs.show();
             g.dispose();

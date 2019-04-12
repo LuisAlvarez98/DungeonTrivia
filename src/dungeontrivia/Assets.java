@@ -9,12 +9,12 @@ import java.awt.image.BufferedImage;
  */
 public class Assets {
     public static SoundClip sound;
-    public static BufferedImage image;
+    public static BufferedImage bg;
     /**
      * loads the assets
      */
     public static void init(){
-            
+         bg = ImageLoader.loadImage("/images/bg.png");
     }
     
 }

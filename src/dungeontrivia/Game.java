@@ -34,6 +34,16 @@ public class Game implements Runnable {
     private ArrayList<Pregunta> preguntas = new ArrayList<Pregunta>();
     private int numeroPreguntas = 0;
 
+    private int firstRandomIndex;
+    private int secondRandomIndex;
+    private int thirdRandomIndex;
+    
+    private String timer = "0:00";
+    private int timerStart = 20;
+    private int counter = 0;
+    
+    private ArrayList<Player> players = new ArrayList<Player>();
+
     /**
      * Game Constructor
      *
@@ -74,10 +84,19 @@ public class Game implements Runnable {
         display = new Display(title, getWidth(), getHeight());
         Assets.init();
         readTxt();
-        //Create objectcs
-        for (int i = 0; i < numeroPreguntas; i++) {
-            System.out.println(preguntas.get(i).getPregunta());
+        
+        firstRandomIndex = (int)(Math.random() * 3);
+        secondRandomIndex = (int)(Math.random() * 2);
+        if(firstRandomIndex == 0 && secondRandomIndex == 0){
+            secondRandomIndex = 1;
+        }else if(firstRandomIndex == 1 && secondRandomIndex == 1){
+            secondRandomIndex = 2;
         }
+        thirdRandomIndex = 3 - (firstRandomIndex + secondRandomIndex);
+        //Create objectcs
+        Player player = new Player(getWidth()/2-90, 620, 1, 100, 120, this, 1);
+        players.add(player);
+        
         display.getJframe().addKeyListener(keyManager);
     }
 
@@ -160,13 +179,32 @@ public class Game implements Runnable {
     public KeyManager getKeyManager() {
         return keyManager;
     }
-
+    
+    private void updateTimer(int time){
+        
+       if(time < 10){
+           timer = "0:0" + time;
+       }else{
+           timer = "0:" + time;
+       } 
+    }
     /**
      * tick method
      */
     private void tick() {
         //tick
         keyManager.tick();
+        
+        if(counter < 50){
+            counter++;
+        }else{
+            if(timerStart != 0){
+                timerStart--;
+                updateTimer(timerStart);
+            }
+            counter = 0;
+        }
+        
     }
 
     /**
@@ -183,8 +221,16 @@ public class Game implements Runnable {
             
             g.setFont(myFont);
             g.setColor(Color.WHITE);
-            g.drawString(preguntas.get(0).getPregunta(), getWidth() /2 - 250, 30);
+            g.drawString(preguntas.get(0).getPregunta(), getWidth() /2 - 250, 100);
+            g.drawString(timer, 950, 100);
             //render stuff
+            for(int i = 0; i < players.size(); i++){
+               players.get(i).render(g);
+            }
+            
+            g.drawString(preguntas.get(0).getRespuestas().get(firstRandomIndex), getWidth() /2 - 350, 250);
+            g.drawString(preguntas.get(0).getRespuestas().get(secondRandomIndex), getWidth() /2 - 60, 250);
+            g.drawString(preguntas.get(0).getRespuestas().get(thirdRandomIndex), getWidth() /2 + 230, 250);
             
             bs.show();
             g.dispose();

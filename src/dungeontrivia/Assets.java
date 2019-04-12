@@ -10,11 +10,13 @@ import java.awt.image.BufferedImage;
 public class Assets {
     public static SoundClip sound;
     public static BufferedImage bg;
+    public static BufferedImage player;
     /**
      * loads the assets
      */
     public static void init(){
          bg = ImageLoader.loadImage("/images/bg_doors.png");
+         player = ImageLoader.loadImage("/images/Jugador.png");
     }
     
 }

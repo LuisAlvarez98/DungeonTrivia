@@ -135,13 +135,7 @@ public class Player extends Item {
             setX(-5);
         }
     }
-    /**
-     * Creates rectangle for the player
-     * @return 
-     */
-   public Rectangle getPerimetro() {
-        return new Rectangle(getX(), getY(), getWidth(), getHeight() - 185);
-    }
+  
     /**
      * render method
      *
@@ -150,6 +144,6 @@ public class Player extends Item {
     @Override
     public void render(Graphics g) {
         //draws the player
-       // g.drawImage(Assets.hank, getX(), getY(), getWidth(), getHeight(), null);
+        g.drawImage(Assets.player, getX(), getY(), getWidth(), getHeight(), null);
     }
 }

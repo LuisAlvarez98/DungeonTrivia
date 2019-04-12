@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Dungeon Trivia
@@ -37,12 +38,14 @@ public class Game implements Runnable {
     private int firstRandomIndex;
     private int secondRandomIndex;
     private int thirdRandomIndex;
-    
+
     private String timer = "0:00";
     private int timerStart = 20;
     private int counter = 0;
-    
-    private ArrayList<Player> players = new ArrayList<Player>();
+    private boolean timerOff = false; 
+
+    //  private ArrayList<Player> players = new ArrayList<Player>();
+    private Player player;
 
     /**
      * Game Constructor
@@ -83,20 +86,21 @@ public class Game implements Runnable {
     public void init() {
         display = new Display(title, getWidth(), getHeight());
         Assets.init();
+        Assets.sound.setLooping(true);
+        Assets.sound.play();
         readTxt();
-        
-        firstRandomIndex = (int)(Math.random() * 3);
-        secondRandomIndex = (int)(Math.random() * 2);
-        if(firstRandomIndex == 0 && secondRandomIndex == 0){
+
+        firstRandomIndex = (int) (Math.random() * 3);
+        secondRandomIndex = (int) (Math.random() * 2);
+        if (firstRandomIndex == 0 && secondRandomIndex == 0) {
             secondRandomIndex = 1;
-        }else if(firstRandomIndex == 1 && secondRandomIndex == 1){
+        } else if (firstRandomIndex == 1 && secondRandomIndex == 1) {
             secondRandomIndex = 2;
         }
         thirdRandomIndex = 3 - (firstRandomIndex + secondRandomIndex);
         //Create objectcs
-        Player player = new Player(getWidth()/2-90, 620, 1, 100, 120, this, 1);
-        players.add(player);
-        
+        player = new Player(getWidth() / 2 - 90, 620, 1, 100, 120, this, 1);
+
         display.getJframe().addKeyListener(keyManager);
     }
 
@@ -179,32 +183,48 @@ public class Game implements Runnable {
     public KeyManager getKeyManager() {
         return keyManager;
     }
-    
-    private void updateTimer(int time){
-        
-       if(time < 10){
-           timer = "0:0" + time;
-       }else{
-           timer = "0:" + time;
-       } 
+
+    private void updateTimer(int time) {
+
+        if (time < 10) {
+            timer = "0:0" + time;
+        } else {
+            timer = "0:" + time;
+        }
     }
+
     /**
      * tick method
      */
     private void tick() {
         //tick
         keyManager.tick();
-        
-        if(counter < 50){
+        if(!timerOff){
+            player.tick();
+        }
+        if (counter < 50) {
             counter++;
-        }else{
-            if(timerStart != 0){
+        } else {
+            if (timerStart != 0) {
                 timerStart--;
                 updateTimer(timerStart);
+            } else {
+                timerOff = true;
+                switch(player.getMove()){
+                    case 'l':
+                        System.out.println("l");
+                        break;
+                    case 'r':
+                         System.out.println("r");
+                        break;
+                    case 'u':
+                         System.out.println("u");
+                        break;
+                }
             }
             counter = 0;
         }
-        
+
     }
 
     /**
@@ -218,20 +238,18 @@ public class Game implements Runnable {
             g = bs.getDrawGraphics();
             g.drawImage(Assets.bg, 0, 0, width, height, null);
             Font myFont = new Font("Courier New", 1, 22);
-            
+
             g.setFont(myFont);
             g.setColor(Color.WHITE);
-            g.drawString(preguntas.get(0).getPregunta(), getWidth() /2 - 250, 100);
             g.drawString(timer, 950, 100);
             //render stuff
-            for(int i = 0; i < players.size(); i++){
-               players.get(i).render(g);
-            }
+            player.render(g);
             
-            g.drawString(preguntas.get(0).getRespuestas().get(firstRandomIndex), getWidth() /2 - 350, 250);
-            g.drawString(preguntas.get(0).getRespuestas().get(secondRandomIndex), getWidth() /2 - 60, 250);
-            g.drawString(preguntas.get(0).getRespuestas().get(thirdRandomIndex), getWidth() /2 + 230, 250);
-            
+            g.drawString(preguntas.get(0).getPregunta(), getWidth() / 2 - 250, 100);
+            g.drawString(preguntas.get(0).getRespuestas().get(firstRandomIndex), getWidth() / 2 - 350, 250);
+            g.drawString(preguntas.get(0).getRespuestas().get(secondRandomIndex), getWidth() / 2 - 60, 250);
+            g.drawString(preguntas.get(0).getRespuestas().get(thirdRandomIndex), getWidth() / 2 + 230, 250);
+
             bs.show();
             g.dispose();
         }

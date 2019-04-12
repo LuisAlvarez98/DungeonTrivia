@@ -82,6 +82,7 @@ public class KeyManager implements KeyListener {
      * to enable or disable moves on every tick
      */
     public void tick() {
+        up = keys[KeyEvent.VK_UP];
         left = keys[KeyEvent.VK_LEFT];
         right = keys[KeyEvent.VK_RIGHT];
         space = keys[KeyEvent.VK_SPACE];

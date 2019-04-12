@@ -17,6 +17,7 @@ public class Player extends Item {
     private int height;
     private Game game;
     private int lives;
+    private char move;
 
     /**
      * Player constructor
@@ -49,6 +50,14 @@ public class Player extends Item {
      */
     public void setLives(int lives) {
         this.lives = lives;
+    }
+
+    public void setMove(char move) {
+        this.move = move;
+    }
+
+    public char getMove() {
+        return move;
     }
 
     /**
@@ -119,13 +128,18 @@ public class Player extends Item {
      */
     @Override
     public void tick() {
-        // vertical left up
         if (game.getKeyManager().left) {
-            setX(getX() - 10);
+            System.out.println("left");
+           setMove('l');
         }
         // vertical left down
         if (game.getKeyManager().right) {
-            setX(getX() + 10);
+           System.out.println("righ");
+            setMove('r');
+        }
+        if(game.getKeyManager().up){
+            System.out.println("up");
+             setMove('u');
         }
        
         // reset x position and y position if colision

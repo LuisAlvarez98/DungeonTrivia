@@ -17,6 +17,7 @@ public class Assets {
     public static void init(){
          bg = ImageLoader.loadImage("/images/bg_doors.png");
          player = ImageLoader.loadImage("/images/Jugador.png");
+         sound = new SoundClip("/sounds/soundtrack.wav");
     }
     
 }

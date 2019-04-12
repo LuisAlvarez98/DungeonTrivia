@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -26,8 +27,11 @@ public class Game implements Runnable {
     private int height; //the height of the game
     private Thread thread; //the thread of the game
     private boolean running; //boolean saying if it is running
-    
+
     private KeyManager keyManager; //key manager
+
+    private ArrayList<Pregunta> preguntas = new ArrayList<Pregunta>();
+    private int numeroPreguntas = 0;
 
     /**
      * Game Constructor
@@ -43,6 +47,7 @@ public class Game implements Runnable {
         running = false;
         keyManager = new KeyManager();
     }
+
     /**
      * getHeight method
      *
@@ -60,14 +65,64 @@ public class Game implements Runnable {
     public int getWidth() {
         return width;
     }
+
     /**
      * inits the game with the display and player
      */
     public void init() {
         display = new Display(title, getWidth(), getHeight());
         Assets.init();
+        readTxt();
         //Create objectcs
+        for(int i = 0; i < numeroPreguntas; i++){
+            System.out.println(preguntas.get(i).getPregunta());
+        }
         display.getJframe().addKeyListener(keyManager);
+    }
+    /**
+     * Load questions now work!
+     */
+    public void readTxt() {
+
+        // The name of the file to open.
+        String fileName = "questions.txt";
+        ArrayList<String> respuestas = new ArrayList<String>();
+        Pregunta pregunta = new Pregunta();
+        preguntas.add(pregunta);
+
+        BufferedReader reader;
+        try {
+            reader = new BufferedReader(new FileReader(
+                    fileName));
+            String line = reader.readLine();
+            int counter = 0;
+            while (line != null) {
+                if (counter == 0) {
+                    System.out.println("Pregunta");
+                    preguntas.get(numeroPreguntas).setPregunta(line);
+                } else {
+                    respuestas.add(line);
+                    System.out.println("respuesta");
+                }
+                //System.out.println(line);
+                // read next line
+                counter++;
+                line = reader.readLine();
+                if(counter > 3){
+                
+                    preguntas.get(numeroPreguntas).setRespuestas(respuestas);
+                    respuestas = new ArrayList<String>();
+                    numeroPreguntas++;
+                     Pregunta p = new Pregunta();
+                    preguntas.add(p);
+                    counter = 0;
+                }
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
@@ -121,7 +176,7 @@ public class Game implements Runnable {
             display.getCanvas().createBufferStrategy(3);
         } else {
             g = bs.getDrawGraphics();
-           // g.drawImage(Assets.background, 0, 0, width, height, null);
+            // g.drawImage(Assets.background, 0, 0, width, height, null);
             //render stuff
             bs.show();
             g.dispose();

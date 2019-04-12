@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 /**
  *
- * @author antoniomejorado
+ * @author Luis Felipe Alvarez
  */
 public class SoundClip {
 

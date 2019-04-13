@@ -283,6 +283,14 @@ public class Game implements Runnable {
                 finalDePregunta = false;
                 timerStart = 10;
                 updateTimer(timerStart);
+                firstRandomIndex = (int) (Math.random() * 3);
+                secondRandomIndex = (int) (Math.random() * 2);
+                if (firstRandomIndex == 0 && secondRandomIndex == 0) {
+                    secondRandomIndex = 1;
+                } else if (firstRandomIndex == 1 && secondRandomIndex == 1) {
+                    secondRandomIndex = 2;
+                }
+                thirdRandomIndex = 3 - (firstRandomIndex + secondRandomIndex);
                 //obtener siguiente pregunta
                 if(counter3 < numeroPreguntas-1){
                     counter3++;

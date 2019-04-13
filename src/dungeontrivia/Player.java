@@ -129,16 +129,16 @@ public class Player extends Item {
     @Override
     public void tick() {
         if (game.getKeyManager().left) {
-            System.out.println("left");
+            //System.out.println("left");
            setMove('l');
         }
         // vertical left down
         if (game.getKeyManager().right) {
-           System.out.println("righ");
+           //System.out.println("righ");
             setMove('r');
         }
         if(game.getKeyManager().up){
-            System.out.println("up");
+            //System.out.println("up");
              setMove('u');
         }
        

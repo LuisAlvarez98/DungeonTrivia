@@ -40,8 +40,9 @@ public class Player extends Item {
         this.height = height;
         this.game = game;
         this.lives = lives;
-        this.playerAnim = new Animation(Assets.p4Left, 100);
         this.playerNum = playerNum;
+        this.playerAnim = new Animation(Assets.p1Left,100);
+        this.rect = new Rectangle(x,y, width, height);
     }
 
     /**

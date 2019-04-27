@@ -39,6 +39,7 @@ public class Player extends Item {
         this.game = game;
         this.lives = lives;
         this.playerAnim = new Animation(Assets.p1Left,100);
+        this.rect = new Rectangle(x,y, width, height);
     }
     /**
      * decreases the player lives by one

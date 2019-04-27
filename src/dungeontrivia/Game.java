@@ -3,6 +3,7 @@ package dungeontrivia;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferStrategy;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -46,7 +47,7 @@ public class Game implements Runnable {
     private boolean timerOff = false;
     //Players
     private ArrayList<Player> players = new ArrayList<Player>();
-    private int numPlayers = 4;
+    private int numPlayers = 1;
     //EndPlayers
     private String answer;
     private String posZero;
@@ -56,9 +57,13 @@ public class Game implements Runnable {
     private boolean finalDePregunta;
     private int counter3 = 0;
     
-    //Animations
-    private Animation playerOne;
-
+    private int direction;
+    private Rectangle rectanguloUno;
+    private Rectangle rectanguloDos;
+    private Rectangle rectanguloTres;
+    private Rectangle rectangulo;
+    
+    private Player player;
     /**
      * Game Constructor
      *
@@ -112,10 +117,14 @@ public class Game implements Runnable {
         thirdRandomIndex = 3 - (firstRandomIndex + secondRandomIndex);
         //Create objectcs
         for (int i = 0; i < numPlayers; i++) {
-            Player player = new Player(200 + 200 * i, 620, 1, 100, 120, this, 1);
-            players.add(player);
+            players.add(new Player(200 + 200 * i, 620, 1, 100, 120, this, 1));
         }
-
+        
+        //Player player = new Player(200, 620, 1, 10, 10, this, 1);
+        rectanguloUno = new Rectangle(200, 620, 10, 10);
+        rectanguloDos = new Rectangle(400, 620, 10, 10);
+        rectanguloTres = new Rectangle(600, 620, 10, 10);
+        
         display.getJframe().addKeyListener(keyManager);
     }
 
@@ -255,25 +264,52 @@ public class Game implements Runnable {
                 updateTimer(timerStart);
             } else {
                 //timerOff = true;
+                
                 finalDePregunta = true;
                 for (int i = 0; i < players.size(); i++) {
                     switch (players.get(i).getMove()) {
                         case 'l':
+                            System.out.println("hola");
+                            rectangulo = getRectangulo('l');
+                            System.out.println(rectangulo);
+                            if(rectangulo.getX() - players.get(i).getX() > 0) {
+                                direction = 1;
+                            } else {
+                                direction = -1;
+                            }
+                            //getRectangulo('l').intersects(players.get(i).getRect())
                             if (!posZero.equals(answer)) {
                                 players.get(i).decreasePlayerLive();
                             }
                             break;
                         case 'u':
+                            rectangulo = getRectangulo('u');
+                            if(rectangulo.getX() - players.get(i).getX() > 0) {
+                                direction = 1;
+                            } else {
+                                direction = -1;
+                            }
                             if (!posOne.equals(answer)) {
                                 players.get(i).decreasePlayerLive();
                             }
                             break;
                         case 'r':
+                            rectangulo = getRectangulo('r');
+                            if(rectangulo.getX() - players.get(i).getX() > 0) {
+                                direction = 1;
+                            } else {
+                                direction = -1;
+                            }
                             if (!posTwo.equals(answer)) {
                                 players.get(i).decreasePlayerLive();
                             }
                             break;
                     }
+                    System.out.println(players.get(i).getRect());
+                    while(!rectangulo.intersects(players.get(i).getRect())) {
+                        players.get(i).setX(players.get(i).getX() + direction);
+                    } 
+                    
                 }
 
             }
@@ -308,7 +344,17 @@ public class Game implements Runnable {
         }
 
     }
-
+    
+    public Rectangle getRectangulo(char c) {
+        if(c == 'l') {
+            return rectanguloUno;
+        } else if (c == 'u') {
+            return rectanguloDos;
+        } else {
+            return rectanguloTres;
+        }
+    }
+    
     /**
      * render method where all the magic happens
      */
@@ -328,7 +374,9 @@ public class Game implements Runnable {
             for (int i = 0; i < players.size(); i++) {
                 players.get(i).render(g);
             }
-
+            
+            //player.render(g);
+            
             g.drawString(preguntas.get(counter3).getPregunta(), getWidth() / 2 - 250, 100);
             g.drawString(posZero, getWidth() / 2 - 350, 250);
             g.drawString(posOne, getWidth() / 2 - 60, 250);

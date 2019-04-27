@@ -43,11 +43,11 @@ public class Game implements Runnable {
     private int timerStart = 10;
     private int counter = 0;
     private int counter2 = 0;
-    private boolean timerOff = false; 
-
-    //  private ArrayList<Player> players = new ArrayList<Player>();
-    private Player player;
-    
+    private boolean timerOff = false;
+    //Players
+    private ArrayList<Player> players = new ArrayList<Player>();
+    private int numPlayers = 4;
+    //EndPlayers
     private String answer;
     private String posZero;
     private String posOne;
@@ -55,6 +55,7 @@ public class Game implements Runnable {
     private String resultado = "";
     private boolean finalDePregunta;
     private int counter3 = 0;
+
     /**
      * Game Constructor
      *
@@ -107,7 +108,10 @@ public class Game implements Runnable {
         }
         thirdRandomIndex = 3 - (firstRandomIndex + secondRandomIndex);
         //Create objectcs
-        player = new Player(getWidth() / 2 - 90, 620, 1, 100, 120, this, 1);
+        for (int i = 0; i < numPlayers; i++) {
+            Player player = new Player(200 + 200 * i, 620, 1, 100, 120, this, 1);
+            players.add(player);
+        }
 
         display.getJframe().addKeyListener(keyManager);
     }
@@ -206,39 +210,40 @@ public class Game implements Runnable {
      */
     private void tick() {
         //tick
-        
+
         answer = preguntas.get(counter3).getRespuestas().get(0);
         //System.out.println(answer);
-        if(firstRandomIndex == 0 && secondRandomIndex == 1){
+        if (firstRandomIndex == 0 && secondRandomIndex == 1) {
             posZero = preguntas.get(counter3).getRespuestas().get(0);
             posOne = preguntas.get(counter3).getRespuestas().get(1);
             posTwo = preguntas.get(counter3).getRespuestas().get(2);
-        }else if (firstRandomIndex == 0 && secondRandomIndex == 2){
+        } else if (firstRandomIndex == 0 && secondRandomIndex == 2) {
             posZero = preguntas.get(counter3).getRespuestas().get(0);
             posOne = preguntas.get(counter3).getRespuestas().get(2);
             posTwo = preguntas.get(counter3).getRespuestas().get(1);
-        }else if (firstRandomIndex == 1 && secondRandomIndex == 0){
+        } else if (firstRandomIndex == 1 && secondRandomIndex == 0) {
             posZero = preguntas.get(counter3).getRespuestas().get(1);
             posOne = preguntas.get(counter3).getRespuestas().get(0);
             posTwo = preguntas.get(counter3).getRespuestas().get(2);
-        }else if (firstRandomIndex == 1 && secondRandomIndex == 2){
+        } else if (firstRandomIndex == 1 && secondRandomIndex == 2) {
             posZero = preguntas.get(counter3).getRespuestas().get(1);
             posOne = preguntas.get(counter3).getRespuestas().get(2);
             posTwo = preguntas.get(counter3).getRespuestas().get(0);
-        }else if (firstRandomIndex == 2 && secondRandomIndex == 0){
+        } else if (firstRandomIndex == 2 && secondRandomIndex == 0) {
             posZero = preguntas.get(counter3).getRespuestas().get(2);
             posOne = preguntas.get(counter3).getRespuestas().get(0);
             posTwo = preguntas.get(counter3).getRespuestas().get(1);
-        }else {
+        } else {
             posZero = preguntas.get(counter3).getRespuestas().get(2);
             posOne = preguntas.get(counter3).getRespuestas().get(1);
             posTwo = preguntas.get(counter3).getRespuestas().get(0);
         }
-            
+
         keyManager.tick();
         //if(!timerOff){
-            player.tick();
-        //}
+        for (int i = 0; i < players.size(); i++) {
+            players.get(i).tick();
+        }
         if (counter < 50) {
             counter++;
         } else {
@@ -248,38 +253,35 @@ public class Game implements Runnable {
             } else {
                 //timerOff = true;
                 finalDePregunta = true;
-                switch(player.getMove()){
-                    case 'l':
-                        
-                        if(posZero.equals(answer)){
-                          resultado = "Correcto";
-                        }else{
-                            resultado = "Incorrecto";
-                        }
-                        break;
-                    case 'u':
-                        if(posOne.equals(answer)){
-                          resultado = "Correcto";
-                        }else{
-                            resultado = "Incorrecto";
-                        }                        break;
-                    case 'r':
-                        if(posTwo.equals(answer)){
-                          resultado = "Correcto";
-                        }else{
-                            resultado = "Incorrecto";
-                        }
-                        break;
+                for (int i = 0; i < players.size(); i++) {
+                    switch (players.get(i).getMove()) {
+                        case 'l':
+                            if (!posZero.equals(answer)) {
+                                players.get(i).decreasePlayerLive();
+                            }
+                            break;
+                        case 'u':
+                            if (!posOne.equals(answer)) {
+                                players.get(i).decreasePlayerLive();
+                            }
+                            break;
+                        case 'r':
+                            if (!posTwo.equals(answer)) {
+                                players.get(i).decreasePlayerLive();
+                            }
+                            break;
+                    }
                 }
+
             }
             counter = 0;
         }
-        
-        if(finalDePregunta){
-            
-            if(counter2 < 250){
+
+        if (finalDePregunta) {
+
+            if (counter2 < 250) {
                 counter2++;
-            }else{
+            } else {
                 finalDePregunta = false;
                 timerStart = 10;
                 updateTimer(timerStart);
@@ -292,9 +294,9 @@ public class Game implements Runnable {
                 }
                 thirdRandomIndex = 3 - (firstRandomIndex + secondRandomIndex);
                 //obtener siguiente pregunta
-                if(counter3 < numeroPreguntas-1){
+                if (counter3 < numeroPreguntas - 1) {
                     counter3++;
-                }else{
+                } else {
                     //fin de juego
                     counter3 = 0;
                 }
@@ -320,20 +322,21 @@ public class Game implements Runnable {
             g.setColor(Color.WHITE);
             g.drawString(timer, 950, 100);
             //render stuff
-            player.render(g);
-            
-            
+            for (int i = 0; i < players.size(); i++) {
+                players.get(i).render(g);
+            }
+
             g.drawString(preguntas.get(counter3).getPregunta(), getWidth() / 2 - 250, 100);
             g.drawString(posZero, getWidth() / 2 - 350, 250);
             g.drawString(posOne, getWidth() / 2 - 60, 250);
             g.drawString(posTwo, getWidth() / 2 + 230, 250);
-            
-            if(finalDePregunta){
-                if(resultado == "Correcto"){
+
+            if (finalDePregunta) {
+                if (resultado == "Correcto") {
                     g.setColor(Color.green);
-                }else{
+                } else {
                     g.setColor(Color.red);
-                }       
+                }
                 g.drawString(resultado, 200, 200);
             }
             bs.show();

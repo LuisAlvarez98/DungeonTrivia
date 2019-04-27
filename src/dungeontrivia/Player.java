@@ -18,6 +18,7 @@ public class Player extends Item {
     private Game game;
     private int lives;
     private char move;
+    private Animation playerAnim;
 
     /**
      * Player constructor
@@ -37,6 +38,7 @@ public class Player extends Item {
         this.height = height;
         this.game = game;
         this.lives = lives;
+        this.playerAnim = new Animation(Assets.p1Left,100);
     }
     /**
      * decreases the player lives by one
@@ -148,6 +150,7 @@ public class Player extends Item {
         } else if (getX() <= -5) {
             setX(-5);
         }
+        this.playerAnim.tick();
     }
   
     /**
@@ -158,6 +161,6 @@ public class Player extends Item {
     @Override
     public void render(Graphics g) {
         //draws the player
-        g.drawImage(Assets.player, getX(), getY(), getWidth(), getHeight(), null);
+        g.drawImage(Assets.p1Back, getX(), getY(), getWidth(),getHeight(), null);
     }
 }

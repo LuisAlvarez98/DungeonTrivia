@@ -55,6 +55,9 @@ public class Game implements Runnable {
     private String resultado = "";
     private boolean finalDePregunta;
     private int counter3 = 0;
+    
+    //Animations
+    private Animation playerOne;
 
     /**
      * Game Constructor

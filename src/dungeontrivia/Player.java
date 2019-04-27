@@ -20,6 +20,8 @@ public class Player extends Item {
     private char move;
     private Animation playerAnim;
 
+    private int playerNum;
+
     /**
      * Player constructor
      *
@@ -31,24 +33,28 @@ public class Player extends Item {
      * @param game
      * @param bullet
      */
-    public Player(int x, int y, int direction, int width, int height, Game game,int lives) {
+    public Player(int x, int y, int direction, int width, int height, Game game, int lives, int playerNum) {
         super(x, y);
         this.direction = direction;
         this.width = width;
         this.height = height;
         this.game = game;
         this.lives = lives;
-        this.playerAnim = new Animation(Assets.p1Left,100);
+        this.playerAnim = new Animation(Assets.p4Left, 100);
+        this.playerNum = playerNum;
     }
+
     /**
      * decreases the player lives by one
      */
     public void decreasePlayerLive() {
         this.lives--;
     }
+
     /**
      * setLives method
-     * @param lives 
+     *
+     * @param lives
      */
     public void setLives(int lives) {
         this.lives = lives;
@@ -70,7 +76,7 @@ public class Player extends Item {
     public int getLives() {
         return this.lives;
     }
-    
+
     /**
      * getDirection method
      *
@@ -132,18 +138,18 @@ public class Player extends Item {
     public void tick() {
         if (game.getKeyManager().left) {
             //System.out.println("left");
-           setMove('l');
+            setMove('l');
         }
         // vertical left down
         if (game.getKeyManager().right) {
-           //System.out.println("righ");
+            //System.out.println("righ");
             setMove('r');
         }
-        if(game.getKeyManager().up){
+        if (game.getKeyManager().up) {
             //System.out.println("up");
-             setMove('u');
+            setMove('u');
         }
-       
+
         // reset x position and y position if colision
         if (getX() + 200 >= game.getWidth()) {
             setX(game.getWidth() - 200);
@@ -152,7 +158,7 @@ public class Player extends Item {
         }
         this.playerAnim.tick();
     }
-  
+
     /**
      * render method
      *
@@ -161,6 +167,24 @@ public class Player extends Item {
     @Override
     public void render(Graphics g) {
         //draws the player
-        g.drawImage(Assets.p1Back, getX(), getY(), getWidth(),getHeight(), null);
+        switch (playerNum) {
+            case 1:
+                g.drawImage(Assets.p1Front, getX(), getY(), getWidth(), getHeight(), null);
+
+                break;
+            case 2:
+                g.drawImage(Assets.p2Front, getX(), getY(), getWidth(), getHeight(), null);
+
+                break;
+
+            case 3:
+                g.drawImage(Assets.p3Front, getX(), getY(), getWidth(), getHeight(), null);
+
+                break;
+            case 4:
+                g.drawImage(Assets.p4Front, getX(), getY(), getWidth(), getHeight(), null);
+
+                break;
+        }
     }
 }

@@ -112,7 +112,7 @@ public class Game implements Runnable {
         thirdRandomIndex = 3 - (firstRandomIndex + secondRandomIndex);
         //Create objectcs
         for (int i = 0; i < numPlayers; i++) {
-            Player player = new Player(200 + 200 * i, 620, 1, 100, 120, this, 1);
+            Player player = new Player(200 + 200 * i, 620, 1, 100, 120, this, 1, i + 1);
             players.add(player);
         }
 

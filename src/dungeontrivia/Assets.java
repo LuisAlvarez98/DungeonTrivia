@@ -15,7 +15,7 @@ public class Assets {
      * loads the assets
      */
     public static void init(){
-         bg = ImageLoader.loadImage("/images/bg_doors.png");
+         bg = ImageLoader.loadImage("/images/bg_scroll.png");
          player = ImageLoader.loadImage("/images/Jugador.png");
          sound = new SoundClip("/sounds/soundtrack.wav");
     }

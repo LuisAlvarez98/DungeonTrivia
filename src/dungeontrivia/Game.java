@@ -35,7 +35,6 @@ public class Game implements Runnable {
 
     private ArrayList<Pregunta> preguntas = new ArrayList<Pregunta>();
     private int numeroPreguntas = 0;
-
     private int firstRandomIndex;
     private int secondRandomIndex;
     private int thirdRandomIndex;
@@ -368,7 +367,6 @@ public class Game implements Runnable {
             g = bs.getDrawGraphics();
             g.drawImage(Assets.bg, 0, 0, width, height, null);
             Font myFont = new Font("Courier New", 1, 22);
-
             g.setFont(myFont);
             g.setColor(Color.WHITE);
             g.drawString(timer, 950, 100);

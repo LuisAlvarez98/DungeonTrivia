@@ -139,6 +139,7 @@ public class Player extends Item {
     public void tick() {
         if (game.getKeyManager().left) {
             //System.out.println("left");
+            
             setMove('l');
         }
         // vertical left down

@@ -322,8 +322,12 @@ public class Game implements Runnable {
             check = true; 
             for(int i = 0; i < players.size(); i++){
             if(!getRectangulo(players.get(i).getMove()).intersects(players.get(i).getRect())) {
-                
+                players.get(i).setMoving(true);
+                players.get(i).setIdle(false);
                 players.get(i).setX(players.get(i).getX() + players.get(i).getDirection() * speed);
+            }else{
+                players.get(i).setMoving(false);
+                players.get(i).setIdle(true);
             }
             
             check &= getRectangulo(players.get(i).getMove()).intersects(players.get(i).getRect());

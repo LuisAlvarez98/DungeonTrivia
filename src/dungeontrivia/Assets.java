@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 public class Assets {
 
     public static SoundClip sound;
-    public static BufferedImage bg;
+    public static BufferedImage bg, heart;
     public static BufferedImage player, sprites;
 
     //Player 1
@@ -43,7 +43,7 @@ public class Assets {
     public static void init() {
         bg = ImageLoader.loadImage("/images/bg_end.jpg");
         sound = new SoundClip("/sounds/soundtrack.wav");
-
+        heart = ImageLoader.loadImage("/images/heart.png");
         sprites = ImageLoader.loadImage("/images/players.png");
         SpreadSheet spritesheet = new SpreadSheet(sprites);
 

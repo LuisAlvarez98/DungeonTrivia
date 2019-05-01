@@ -24,6 +24,7 @@ public class Player extends Item {
     private int playerNum;
     private boolean idle;
     private boolean moving;
+    private ArrayList<Heart> hearts;
     /**
      * Player constructor
      *
@@ -47,6 +48,11 @@ public class Player extends Item {
         idle = true;
         moving = false;
         this.rect = new Rectangle(x,y, width, height);
+        hearts = new ArrayList<Heart>();
+    }
+
+    public ArrayList<Heart> getHearts() {
+        return hearts;
     }
 
     /**
@@ -238,17 +244,11 @@ public class Player extends Item {
     @Override
     public void render(Graphics g) {
         //draws the player
-<<<<<<< HEAD
-        switch (playerNum) {
-            case 1:
-                g.drawImage(playerAnim.getCurrentFrame(), getX(), getY(), getWidth(), getHeight(), null);
-=======
+
         if(idle){
             switch (playerNum) {
                 case 1:
                     g.drawImage(Assets.p1Front, getX(), getY(), getWidth(), getHeight(), null);
->>>>>>> d4246a8bf100f417e3760718cc067c4bbbd4b5ea
-
                     break;
                 case 2:
                     g.drawImage(Assets.p2Front, getX(), getY(), getWidth(), getHeight(), null);
@@ -261,7 +261,6 @@ public class Player extends Item {
                     break;
                 case 4:
                     g.drawImage(Assets.p4Front, getX(), getY(), getWidth(), getHeight(), null);
-
                     break;
             }
         }

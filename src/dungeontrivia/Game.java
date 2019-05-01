@@ -51,7 +51,7 @@ public class Game implements Runnable {
     //Players
     private ArrayList<Player> players = new ArrayList<Player>();
 
-    private int numPlayers = 1;
+    private int numPlayers = 4;
     //EndPlayers
     private String answer;
     private String posZero;
@@ -475,7 +475,7 @@ public class Game implements Runnable {
                 //player.render(g);
                 myFont = new Font("Courier New", 1, 14);
                 g.setFont(myFont);
-                g.setColor(Color.WHITE);
+                g.setColor(Color.BLACK);
                 //Draw score
                 g.drawString("Scores", 10, 10);
                 for (int i = 0; i < players.size(); i++) {

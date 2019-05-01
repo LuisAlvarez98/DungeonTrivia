@@ -51,7 +51,7 @@ public class Game implements Runnable {
     //Players
     private ArrayList<Player> players = new ArrayList<Player>();
 
-    private int numPlayers = 4;
+    private int numPlayers = 1;
     //EndPlayers
     private String answer;
     private String posZero;

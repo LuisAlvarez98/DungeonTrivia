@@ -61,7 +61,7 @@ public class Player extends Item {
     public int getScore() {
         return score;
     }
-
+    
     public ArrayList<Heart> getHearts() {
         return hearts;
     }
@@ -159,6 +159,15 @@ public class Player extends Item {
      */
     public void setHeight(int height) {
         this.height = height;
+    }
+    
+    public void setX(int x) {
+        this.x = x;
+        this.rect.setLocation(x, getY());
+        for(int i = 0; i < hearts.size(); i++){
+            hearts.get(i).setX( x + 10 + i*20);
+            System.out.println(hearts.get(i).getX());
+        }
     }
     
     public void setAnimations(){

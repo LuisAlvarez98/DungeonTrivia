@@ -1,6 +1,7 @@
 package dungeontrivia;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 /**
  *  Heart class
  * @author Luis Felipe Alvarez Sanchez A01194173
@@ -21,6 +22,7 @@ public class Heart extends Item{
         super(x, y);
         this.width = width;
         this.height = height;
+        this.rect = new Rectangle(x,y, width, height);
     }
     /**
      * getHeight method

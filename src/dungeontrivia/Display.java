@@ -2,6 +2,7 @@ package dungeontrivia;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
@@ -54,7 +55,6 @@ public class Display {
      */
     public void createDisplay(){
         jframe = new JFrame(title);
-        
         jframe.setSize(width, height);
         jframe.setDefaultCloseOperation(EXIT_ON_CLOSE);
         jframe.setResizable(false);

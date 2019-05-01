@@ -25,6 +25,7 @@ public class Player extends Item {
     private boolean idle;
     private boolean moving;
     private ArrayList<Heart> hearts;
+   private boolean enabled;
     
     int score;
     /**
@@ -52,6 +53,7 @@ public class Player extends Item {
         this.rect = new Rectangle(x,y, width, height);
         hearts = new ArrayList<Heart>();
         score = 0;
+        enabled = true;
     }
 
     public void setScore(int score) {
@@ -125,7 +127,10 @@ public class Player extends Item {
     public int getHeight() {
         return height;
     }
-
+    
+    public boolean getEnabled(){
+        return enabled;
+    }
     /**
      * setDirection method
      *
@@ -142,7 +147,10 @@ public class Player extends Item {
     public void setIdle(boolean idle){
         this.idle = idle;
     }
-
+    
+    public void setEnabled(boolean enabled){
+        this.enabled = enabled;
+    }
     /**
      * setWidth method
      *
@@ -166,7 +174,6 @@ public class Player extends Item {
         this.rect.setLocation(x, getY());
         for(int i = 0; i < hearts.size(); i++){
             hearts.get(i).setX( x + 10 + i*20);
-            System.out.println(hearts.get(i).getX());
         }
     }
     
@@ -197,53 +204,56 @@ public class Player extends Item {
     @Override
     public void tick() {
         
-        switch(playerNum){
-            case 1:
-                if (game.getKeyManager().left) {
-                    setMove('l');
-                }
-                if (game.getKeyManager().right) {
-                    setMove('r');
-                }
-                if (game.getKeyManager().up) {
-                    setMove('u');
-                }
-            break;
-            case 2:
-                if (game.getKeyManager().j) {
-                    setMove('l');
-                }
-                if (game.getKeyManager().l) {
-                    setMove('r');
-                }
-                if (game.getKeyManager().k) {
-                    setMove('u');
-                }
-            break;
-            case 3:
-                if (game.getKeyManager().q) {
-                    setMove('l');
-                }
-                if (game.getKeyManager().e) {
-                    setMove('r');
-                }
-                if (game.getKeyManager().w) {
-                    setMove('u');
-                }
-            break;
-            case 4:
-                if (game.getKeyManager().z) {
-                    setMove('l');
-                }
-                if (game.getKeyManager().c) {
-                    setMove('r');
-                }
-                if (game.getKeyManager().x) {
-                    setMove('u');
-                }
-            break;
-        }
-        
+        System.out.println(enabled);
+        if(enabled){
+           
+            switch(playerNum){
+                case 1:
+                    if (game.getKeyManager().left) {
+                        setMove('l');
+                    }
+                    if (game.getKeyManager().right) {
+                        setMove('r');
+                    }
+                    if (game.getKeyManager().up) {
+                        setMove('u');
+                    }
+                break;
+                case 2:
+                    if (game.getKeyManager().j) {
+                        setMove('l');
+                    }
+                    if (game.getKeyManager().l) {
+                        setMove('r');
+                    }
+                    if (game.getKeyManager().k) {
+                        setMove('u');
+                    }
+                break;
+                case 3:
+                    if (game.getKeyManager().q) {
+                        setMove('l');
+                    }
+                    if (game.getKeyManager().e) {
+                        setMove('r');
+                    }
+                    if (game.getKeyManager().w) {
+                        setMove('u');
+                    }
+                break;
+                case 4:
+                    if (game.getKeyManager().z) {
+                        setMove('l');
+                    }
+                    if (game.getKeyManager().c) {
+                        setMove('r');
+                    }
+                    if (game.getKeyManager().x) {
+                        setMove('u');
+                    }
+                break;
+            }
+        } 
 
         // reset x position and y position if colision
         if (getX() + 200 >= game.getWidth()) {

@@ -28,12 +28,17 @@ public class MainMenuPanel {
         highScore = new Rectangle(width / 2 - 110, 465, 215, 100);
         exitButton = new Rectangle(width / 2 - 110, 615, 215, 100);
         instructionButton = new Rectangle(width / 2 + 450, 600, 75, 150);
+        Font fnt1 = new Font("arial", Font.BOLD, 12);
+        g.setFont(fnt1);
+        g.setColor(Color.white);
+        g2d.drawString("How to play?", width / 2 + 460, 585);
         Font fnt0 = new Font("arial", Font.BOLD, 50);
         g.setFont(fnt0);
-        g.setColor(Color.white);
-        g2d.draw(playButton);
-        g2d.draw(highScore);
-        g2d.draw(exitButton);
-        g2d.draw(instructionButton);
+        Color c=new Color(1f,0f,0f,.5f );
+        g.setColor(c);
+        //g2d.draw(playButton);
+        //g2d.draw(highScore);
+        //g2d.draw(exitButton);
+        //g2d.draw(instructionButton);
     }
 }

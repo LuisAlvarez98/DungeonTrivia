@@ -16,7 +16,7 @@ import java.awt.Rectangle;
  * @author luisf
  */
 public class InstructionsPanel {
-    
+
     private Rectangle backButton = new Rectangle();
 
     public void render(Graphics g, int width, int height) {
@@ -24,8 +24,9 @@ public class InstructionsPanel {
         backButton = new Rectangle(50, 50, 60, 70);
         Font fnt0 = new Font("arial", Font.BOLD, 50);
         g.setFont(fnt0);
-        g.setColor(Color.white);
-        g2d.draw(backButton);
-     
+        Color c = new Color(1f, 0f, 0f, .5f);
+        g.setColor(c);
+        //g2d.draw(backButton);
+
     }
 }

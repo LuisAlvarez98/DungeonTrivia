@@ -18,10 +18,12 @@ public class Player extends Item {
     private Game game;
     private int lives;
     private char move;
-    private Animation playerAnim;
+    private Animation leftAnim;
+    private Animation rightAnim;
 
     private int playerNum;
-
+    private boolean idle;
+    private boolean moving;
     /**
      * Player constructor
      *
@@ -41,7 +43,9 @@ public class Player extends Item {
         this.game = game;
         this.lives = lives;
         this.playerNum = playerNum;
-        this.playerAnim = new Animation(Assets.p1Left,100);
+        setAnimations();
+        idle = true;
+        moving = false;
         this.rect = new Rectangle(x,y, width, height);
     }
 
@@ -113,6 +117,14 @@ public class Player extends Item {
     public void setDirection(int direction) {
         this.direction = direction;
     }
+    
+    public void setMoving(boolean moving){
+        this.moving = moving;
+    }
+    
+    public void setIdle(boolean idle){
+        this.idle = idle;
+    }
 
     /**
      * setWidth method
@@ -131,26 +143,81 @@ public class Player extends Item {
     public void setHeight(int height) {
         this.height = height;
     }
-
+    
+    public void setAnimations(){
+        
+        switch(playerNum){
+            case 1:
+                this.leftAnim = new Animation(Assets.p1Left, 100);
+                this.rightAnim = new Animation(Assets.p1Right,100);
+            break;
+            case 2:
+                this.leftAnim = new Animation(Assets.p2Left, 100);
+                this.rightAnim = new Animation(Assets.p2Right,100);
+            break;
+            case 3:
+                this.leftAnim = new Animation(Assets.p3Left, 100);
+                this.rightAnim = new Animation(Assets.p3Right,100);
+            break;
+            case 4:
+                this.leftAnim = new Animation(Assets.p4Left, 100);
+                this.rightAnim = new Animation(Assets.p4Right,100);
+            break;
+        }
+    }
     /**
      * tick method overall movement of the player
      */
     @Override
     public void tick() {
-        if (game.getKeyManager().left) {
-            //System.out.println("left");
-            
-            setMove('l');
+        
+        switch(playerNum){
+            case 1:
+                if (game.getKeyManager().left) {
+                    setMove('l');
+                }
+                if (game.getKeyManager().right) {
+                    setMove('r');
+                }
+                if (game.getKeyManager().up) {
+                    setMove('u');
+                }
+            break;
+            case 2:
+                if (game.getKeyManager().j) {
+                    setMove('l');
+                }
+                if (game.getKeyManager().k) {
+                    setMove('r');
+                }
+                if (game.getKeyManager().l) {
+                    setMove('u');
+                }
+            break;
+            case 3:
+                if (game.getKeyManager().q) {
+                    setMove('l');
+                }
+                if (game.getKeyManager().w) {
+                    setMove('r');
+                }
+                if (game.getKeyManager().e) {
+                    setMove('u');
+                }
+            break;
+            case 4:
+                if (game.getKeyManager().z) {
+                    setMove('l');
+                }
+                if (game.getKeyManager().x) {
+                    setMove('r');
+                }
+                if (game.getKeyManager().c) {
+                    setMove('u');
+                }
+            break;
         }
-        // vertical left down
-        if (game.getKeyManager().right) {
-            //System.out.println("righ");
-            setMove('r');
-        }
-        if (game.getKeyManager().up) {
-            //System.out.println("up");
-            setMove('u');
-        }
+        
 
         // reset x position and y position if colision
         if (getX() + 200 >= game.getWidth()) {
@@ -158,7 +225,9 @@ public class Player extends Item {
         } else if (getX() <= -5) {
             setX(-5);
         }
-        this.playerAnim.tick();
+        //this.playerAnim.tick();
+        this.leftAnim.tick();
+        this.rightAnim.tick();
     }
 
     /**
@@ -169,24 +238,41 @@ public class Player extends Item {
     @Override
     public void render(Graphics g) {
         //draws the player
+<<<<<<< HEAD
         switch (playerNum) {
             case 1:
                 g.drawImage(playerAnim.getCurrentFrame(), getX(), getY(), getWidth(), getHeight(), null);
+=======
+        if(idle){
+            switch (playerNum) {
+                case 1:
+                    g.drawImage(Assets.p1Front, getX(), getY(), getWidth(), getHeight(), null);
+>>>>>>> d4246a8bf100f417e3760718cc067c4bbbd4b5ea
 
-                break;
-            case 2:
-                g.drawImage(Assets.p2Front, getX(), getY(), getWidth(), getHeight(), null);
+                    break;
+                case 2:
+                    g.drawImage(Assets.p2Front, getX(), getY(), getWidth(), getHeight(), null);
 
-                break;
+                    break;
 
-            case 3:
-                g.drawImage(Assets.p3Front, getX(), getY(), getWidth(), getHeight(), null);
+                case 3:
+                    g.drawImage(Assets.p3Front, getX(), getY(), getWidth(), getHeight(), null);
 
-                break;
-            case 4:
-                g.drawImage(Assets.p4Front, getX(), getY(), getWidth(), getHeight(), null);
+                    break;
+                case 4:
+                    g.drawImage(Assets.p4Front, getX(), getY(), getWidth(), getHeight(), null);
 
-                break;
+                    break;
+            }
         }
+        
+        if(moving){
+            if(getDirection() < 0){
+                g.drawImage(leftAnim.getCurrentFrame(), getX(), getY(), getWidth(), getHeight(), null);
+            }else{
+                g.drawImage(rightAnim.getCurrentFrame(), getX(), getY(), getWidth(), getHeight(), null);
+            }
+        }
+        
     }
 }

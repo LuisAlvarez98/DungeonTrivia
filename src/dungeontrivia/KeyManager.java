@@ -16,15 +16,29 @@ import java.awt.event.KeyListener;
 public class KeyManager implements KeyListener {
 
     //Flags to move the player
-    public boolean up;
     public boolean down;
-    public boolean left;
-    public boolean right;
     public boolean space;
     public boolean pause;
     public boolean enter;
     public boolean save;
     public boolean load;
+    
+    //player 1
+    public boolean up;
+    public boolean left;
+    public boolean right;
+    //player 2
+    public boolean j;
+    public boolean k;
+    public boolean l;
+    //player 3
+    public boolean q;
+    public boolean w;
+    public boolean e;
+    //player 4
+    public boolean z;
+    public boolean x;
+    public boolean c;
 
     private boolean keys[]; // to store all the flags for every key
 
@@ -85,6 +99,19 @@ public class KeyManager implements KeyListener {
         up = keys[KeyEvent.VK_UP];
         left = keys[KeyEvent.VK_LEFT];
         right = keys[KeyEvent.VK_RIGHT];
+        
+        j = keys[KeyEvent.VK_J];
+        k = keys[KeyEvent.VK_K];
+        l = keys[KeyEvent.VK_L];
+        
+        q = keys[KeyEvent.VK_Q];
+        w = keys[KeyEvent.VK_W];
+        e = keys[KeyEvent.VK_E];
+                
+        z = keys[KeyEvent.VK_Z];
+        x = keys[KeyEvent.VK_X];
+        c = keys[KeyEvent.VK_C];
+                
         space = keys[KeyEvent.VK_SPACE];
         pause = keys[KeyEvent.VK_P];
         enter = keys[KeyEvent.VK_ENTER];

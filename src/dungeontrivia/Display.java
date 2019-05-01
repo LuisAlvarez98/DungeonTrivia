@@ -29,6 +29,7 @@ public class Display {
         this.height = height;
         createDisplay();
     }
+
     /**
      *  getJframe method
      * @return jframe

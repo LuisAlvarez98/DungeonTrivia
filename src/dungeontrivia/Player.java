@@ -72,7 +72,7 @@ public class Player extends Item {
     public void decreasePlayerLive() {
         this.lives--;
     }
-
+    
     /**
      * setLives method
      *

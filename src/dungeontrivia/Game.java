@@ -29,12 +29,13 @@ public class Game implements Runnable {
     private Graphics g; // for the graphics
     private Display display; // for the display of the game
     String title; // the title of the game
-    private int width; // the width of the game
-    private int height; //the height of the game
+    public static int width; // the width of the game
+    public static int height; //the height of the game
     private Thread thread; //the thread of the game
     private boolean running; //boolean saying if it is running
 
     private KeyManager keyManager; //key manager
+    private MouseInput mouseManager;
 
     private ArrayList<Pregunta> preguntas = new ArrayList<Pregunta>();
     private int numeroPreguntas = 0;
@@ -72,7 +73,15 @@ public class Game implements Runnable {
     private int speed = 7;
 
     //menu helper
-    boolean gameStarted = true;
+    boolean gameStarted = false;
+    private MainMenuPanel menu;
+
+    public static enum STATE {
+        MENU,
+        GAME,
+        EXIT
+    };
+    public static STATE state = STATE.MENU;
 
     /**
      * Game Constructor
@@ -87,6 +96,7 @@ public class Game implements Runnable {
         this.height = height;
         running = false;
         keyManager = new KeyManager();
+        mouseManager = new MouseInput();
     }
 
     /**
@@ -111,41 +121,40 @@ public class Game implements Runnable {
      * inits the game with the display and player
      */
     public void init() {
-
+        menu = new MainMenuPanel();
         display = new Display(title, getWidth(), getHeight());
-
+        display.getCanvas().addMouseListener(mouseManager);
         Assets.init();
-        if (gameStarted) {
-            Assets.sound.setLooping(true);
-            Assets.sound.play();
-            readTxt();
-            finalDePregunta = false;
-            faseMovimiento = false;
-            firstRandomIndex = (int) (Math.random() * 3);
-            secondRandomIndex = (int) (Math.random() * 2);
-            if (firstRandomIndex == 0 && secondRandomIndex == 0) {
-                secondRandomIndex = 1;
-            } else if (firstRandomIndex == 1 && secondRandomIndex == 1) {
-                secondRandomIndex = 2;
-            }
-            thirdRandomIndex = 3 - (firstRandomIndex + secondRandomIndex);
+        readTxt();
 
-            //Create objectcs
-            for (int i = 0; i < numPlayers; i++) {
-                Player player = new Player(200 + 200 * i, 620, 1, 100, 120, this, 3, i + 1);
-                player.getHearts().add(new Heart(player.getX() + 10, player.getY(), 20, 20));
-                player.getHearts().add(new Heart(player.getX() + 30, player.getY(), 20, 20));
-                player.getHearts().add(new Heart(player.getX() + 50, player.getY(), 20, 20));
-                players.add(player);
-            }
-
-            //Player player = new Player(200, 620, 1, 10, 10, this, 1);
-            rectanguloUno = new Rectangle(200, 620, 10, 10);
-            rectanguloDos = new Rectangle(500, 620, 10, 10);
-            rectanguloTres = new Rectangle(900, 620, 10, 10);
-
-            display.getJframe().addKeyListener(keyManager);
+        Assets.sound.setLooping(true);
+        Assets.sound.play();
+        finalDePregunta = false;
+        faseMovimiento = false;
+        firstRandomIndex = (int) (Math.random() * 3);
+        secondRandomIndex = (int) (Math.random() * 2);
+        if (firstRandomIndex == 0 && secondRandomIndex == 0) {
+            secondRandomIndex = 1;
+        } else if (firstRandomIndex == 1 && secondRandomIndex == 1) {
+            secondRandomIndex = 2;
         }
+        thirdRandomIndex = 3 - (firstRandomIndex + secondRandomIndex);
+
+        //Create objectcs
+        for (int i = 0; i < numPlayers; i++) {
+            Player player = new Player(200 + 200 * i, 620, 1, 100, 120, this, 3, i + 1);
+            player.getHearts().add(new Heart(player.getX() + 10, player.getY(), 20, 20));
+            player.getHearts().add(new Heart(player.getX() + 30, player.getY(), 20, 20));
+            player.getHearts().add(new Heart(player.getX() + 50, player.getY(), 20, 20));
+            players.add(player);
+        }
+
+        //Player player = new Player(200, 620, 1, 10, 10, this, 1);
+        rectanguloUno = new Rectangle(200, 620, 10, 10);
+        rectanguloDos = new Rectangle(500, 620, 10, 10);
+        rectanguloTres = new Rectangle(900, 620, 10, 10);
+
+        display.getJframe().addKeyListener(keyManager);
 
     }
 
@@ -243,7 +252,7 @@ public class Game implements Runnable {
      */
     private void tick() {
         //tick
-        if (gameStarted) {
+        if (state == STATE.GAME) {
             answer = preguntas.get(counter3).getRespuestas().get(0);
             //System.out.println(answer);
             if (firstRandomIndex == 0 && secondRandomIndex == 1) {
@@ -395,6 +404,8 @@ public class Game implements Runnable {
                 }
             }
 
+        } else if (state == STATE.EXIT) {
+            System.exit(0);
         }
 
     }
@@ -419,7 +430,7 @@ public class Game implements Runnable {
         } else {
             g = bs.getDrawGraphics();
             //if game has started load all stuff
-            if (gameStarted) {
+            if (state == STATE.GAME) {
                 g.drawImage(Assets.bg, 0, 0, width, height, null);
                 Font myFont = new Font("Courier New", 1, 22);
                 g.setFont(myFont);
@@ -459,6 +470,7 @@ public class Game implements Runnable {
                 }
             } else {
                 g.drawImage(Assets.menu, 0, 0, width, height, null);
+                menu.render(g, getWidth(), getHeight());
             }
 
             bs.show();

@@ -75,10 +75,13 @@ public class Game implements Runnable {
     //menu helper
     boolean gameStarted = false;
     private MainMenuPanel menu;
+    private InstructionsPanel controls;
 
     public static enum STATE {
         MENU,
         GAME,
+        HIGHSCORES,
+        CONTROLS,
         EXIT
     };
     public static STATE state = STATE.MENU;
@@ -122,6 +125,7 @@ public class Game implements Runnable {
      */
     public void init() {
         menu = new MainMenuPanel();
+        controls = new InstructionsPanel();
         display = new Display(title, getWidth(), getHeight());
         display.getCanvas().addMouseListener(mouseManager);
         Assets.init();
@@ -468,6 +472,9 @@ public class Game implements Runnable {
                     }
                     g.drawString(resultado, 200, 200);
                 }
+            } else if (state == state.CONTROLS) {
+                g.drawImage(Assets.controls, 0, 0, width, height, null);
+                controls.render(g, getWidth(), getHeight());
             } else {
                 g.drawImage(Assets.menu, 0, 0, width, height, null);
                 menu.render(g, getWidth(), getHeight());

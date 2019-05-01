@@ -61,6 +61,18 @@ public class MouseInput implements MouseListener, MouseMotionListener {
                 System.out.println("HighScores");
             }
         }
+          if (me.getX() >= 992 && me.getX() <= 1067) {
+            if (me.getY() >= 599 && me.getY() <= 750) {
+                System.out.println("Instructions");
+                state = Game.STATE.CONTROLS;
+            }
+        }
+           if (me.getX() >= 52 && me.getX() <= 107) {
+            if (me.getY() >= 45 && me.getY() <= 119) {
+                state = Game.STATE.MENU;
+            }
+        }
+          
     }
 
     @Override

@@ -20,17 +20,20 @@ public class MainMenuPanel {
     public static Rectangle playButton = new Rectangle();
     private Rectangle highScore = new Rectangle();
     private Rectangle exitButton = new Rectangle();
+    private Rectangle instructionButton = new Rectangle();
 
     public void render(Graphics g, int width, int height) {
         Graphics2D g2d = (Graphics2D) g;
         playButton = new Rectangle(width / 2 - 110, 340, 215, 100);
         highScore = new Rectangle(width / 2 - 110, 465, 215, 100);
         exitButton = new Rectangle(width / 2 - 110, 615, 215, 100);
+        instructionButton = new Rectangle(width / 2 + 450, 600, 75, 150);
         Font fnt0 = new Font("arial", Font.BOLD, 50);
         g.setFont(fnt0);
-        //g.setColor(Color.);
+        g.setColor(Color.white);
         g2d.draw(playButton);
         g2d.draw(highScore);
         g2d.draw(exitButton);
+        g2d.draw(instructionButton);
     }
 }

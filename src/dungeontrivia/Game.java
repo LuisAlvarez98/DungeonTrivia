@@ -298,6 +298,10 @@ public class Game implements Runnable {
                                 }
                                 if (!posZero.equals(answer)) {
                                     players.get(i).decreasePlayerLive();
+                                } else {
+                                    //sets score
+                                    int score = players.get(i).getScore() + 10;
+                                    players.get(i).setScore(score);
                                 }
                                 break;
                             case 'u':
@@ -309,6 +313,10 @@ public class Game implements Runnable {
                                 }
                                 if (!posOne.equals(answer)) {
                                     players.get(i).decreasePlayerLive();
+                                } else {
+                                    //sets score
+                                    int score = players.get(i).getScore() + 10;
+                                    players.get(i).setScore(score);
                                 }
                                 break;
                             case 'r':
@@ -320,6 +328,10 @@ public class Game implements Runnable {
                                 }
                                 if (!posTwo.equals(answer)) {
                                     players.get(i).decreasePlayerLive();
+                                } else {
+                                    //sets score
+                                    int score = players.get(i).getScore() + 10;
+                                    players.get(i).setScore(score);
                                 }
                                 break;
                         }
@@ -427,7 +439,11 @@ public class Game implements Runnable {
                 myFont = new Font("Courier New", 1, 14);
                 g.setFont(myFont);
                 g.setColor(Color.WHITE);
-
+                //Draw score
+                g.drawString("Scores", 10, 10);
+                for (int i = 0; i < players.size(); i++) {
+                    g.drawString("Player " + (i + 1) + ":" + Integer.toString(players.get(i).getScore()), 10, (i * 5) * 3 + 25);
+                }
                 g.drawString(preguntas.get(counter3).getPregunta(), getWidth() / 2 - 250, 100);
                 g.drawString(posZero, getWidth() / 2 - 455, 350);
                 g.drawString(posOne, getWidth() / 2 - 60, 350);

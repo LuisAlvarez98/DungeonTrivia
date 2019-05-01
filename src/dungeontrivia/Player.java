@@ -25,6 +25,8 @@ public class Player extends Item {
     private boolean idle;
     private boolean moving;
     private ArrayList<Heart> hearts;
+    
+    int score;
     /**
      * Player constructor
      *
@@ -49,6 +51,15 @@ public class Player extends Item {
         moving = false;
         this.rect = new Rectangle(x,y, width, height);
         hearts = new ArrayList<Heart>();
+        score = 0;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getScore() {
+        return score;
     }
 
     public ArrayList<Heart> getHearts() {
@@ -193,10 +204,10 @@ public class Player extends Item {
                 if (game.getKeyManager().j) {
                     setMove('l');
                 }
-                if (game.getKeyManager().k) {
+                if (game.getKeyManager().l) {
                     setMove('r');
                 }
-                if (game.getKeyManager().l) {
+                if (game.getKeyManager().k) {
                     setMove('u');
                 }
             break;
@@ -204,10 +215,10 @@ public class Player extends Item {
                 if (game.getKeyManager().q) {
                     setMove('l');
                 }
-                if (game.getKeyManager().w) {
+                if (game.getKeyManager().e) {
                     setMove('r');
                 }
-                if (game.getKeyManager().e) {
+                if (game.getKeyManager().w) {
                     setMove('u');
                 }
             break;
@@ -215,10 +226,10 @@ public class Player extends Item {
                 if (game.getKeyManager().z) {
                     setMove('l');
                 }
-                if (game.getKeyManager().x) {
+                if (game.getKeyManager().c) {
                     setMove('r');
                 }
-                if (game.getKeyManager().c) {
+                if (game.getKeyManager().x) {
                     setMove('u');
                 }
             break;

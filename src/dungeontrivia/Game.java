@@ -70,6 +70,7 @@ public class Game implements Runnable {
     private Player player;
     private boolean check;
     private boolean faseMovimiento;
+    private boolean fasePregunta = true;
     private int speed = 7;
 
     //menu helper
@@ -297,7 +298,9 @@ public class Game implements Runnable {
                     timerStart--;
                     updateTimer(timerStart);
                 } else {
-
+                    
+                    if(fasePregunta){
+                        
                     for (int i = 0; i < players.size(); i++) {
                         switch (players.get(i).getMove()) {
                             case 'l':
@@ -351,7 +354,8 @@ public class Game implements Runnable {
                         System.out.println(players.get(i).getRect());
 
                     }
-
+                    }
+                    fasePregunta = false;
                     faseMovimiento = true;
 
                 }
@@ -386,7 +390,8 @@ public class Game implements Runnable {
                 if (counter2 < 250) {
                     counter2++;
                 } else {
-                    finalDePregunta = false;
+                    
+                    
                     timerStart = 10;
                     updateTimer(timerStart);
                     firstRandomIndex = (int) (Math.random() * 3);
@@ -405,6 +410,9 @@ public class Game implements Runnable {
                         counter3 = 0;
                     }
                     counter2 = 0;
+                    
+                    finalDePregunta = false;
+                    fasePregunta = true;
                 }
             }
 

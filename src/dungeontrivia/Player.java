@@ -171,7 +171,7 @@ public class Player extends Item {
         //draws the player
         switch (playerNum) {
             case 1:
-                g.drawImage(Assets.p1Front, getX(), getY(), getWidth(), getHeight(), null);
+                g.drawImage(playerAnim.getCurrentFrame(), getX(), getY(), getWidth(), getHeight(), null);
 
                 break;
             case 2:

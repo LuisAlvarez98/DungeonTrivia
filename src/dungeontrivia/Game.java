@@ -320,8 +320,10 @@ public class Game implements Runnable {
                                     players.get(i).decreasePlayerLive();
                                 } else {
                                     //sets score
-                                    int score = players.get(i).getScore() + 10;
-                                    players.get(i).setScore(score);
+                                    if(players.get(i).getLives() > 0){
+                                        int score = players.get(i).getScore() + 10;
+                                        players.get(i).setScore(score);
+                                    }
                                 }
                                 break;
                             case 'u':
@@ -335,8 +337,10 @@ public class Game implements Runnable {
                                     players.get(i).decreasePlayerLive();
                                 } else {
                                     //sets score
-                                    int score = players.get(i).getScore() + 10;
-                                    players.get(i).setScore(score);
+                                    if(players.get(i).getLives() > 0){
+                                        int score = players.get(i).getScore() + 10;
+                                        players.get(i).setScore(score);
+                                    }
                                 }
                                 break;
                             case 'r':
@@ -350,8 +354,10 @@ public class Game implements Runnable {
                                     players.get(i).decreasePlayerLive();
                                 } else {
                                     //sets score
-                                    int score = players.get(i).getScore() + 10;
-                                    players.get(i).setScore(score);
+                                    if(players.get(i).getLives() > 0){
+                                        int score = players.get(i).getScore() + 10;
+                                        players.get(i).setScore(score);
+                                    }
                                 }
                                 break;
                         }

@@ -77,6 +77,10 @@ public class Game implements Runnable {
     boolean gameStarted = false;
     private MainMenuPanel menu;
     private InstructionsPanel controls;
+    
+    private boolean puertaZero;
+    private boolean puertaOne;
+    private boolean puertaTwo;
 
     public static enum STATE {
         MENU,
@@ -378,7 +382,23 @@ public class Game implements Runnable {
 
             if (faseMovimiento) {
                 
+                if(posZero.equals(answer)){
+                    puertaZero = true;
+                }else{
+                    puertaZero = false;
+                }
                 
+                if(posOne.equals(answer)){
+                    puertaOne = true;
+                }else{
+                    puertaOne = false;
+                }
+                
+                if(posTwo.equals(answer)){
+                    puertaTwo = true;
+                }else{
+                    puertaTwo = false;
+                }
                 
                 check = true;
                 for (int i = 0; i < players.size(); i++) {
@@ -409,11 +429,10 @@ public class Game implements Runnable {
             }
 
             if (finalDePregunta) {
-
+                      
                 if (counter2 < 250) {
                     counter2++;
                 } else {
-                    
                     
                     timerStart = 10;
                     updateTimer(timerStart);
@@ -437,8 +456,9 @@ public class Game implements Runnable {
                         players.get(i).setEnabled(true);
                         players.get(i).setAnswer(false);
                         players.get(i).setMove('n');
+                        players.get(i).setX(200 + 200 * i);
                     }
-                    
+          
                     finalDePregunta = false;
                     fasePregunta = true;
                 }
@@ -479,9 +499,30 @@ public class Game implements Runnable {
                 g.setColor(Color.WHITE);
                 g.drawString(timer, 950, 100);
                 g.drawImage(Assets.reloj, 1010, 75, 20, 30, null);
-                g.drawImage(Assets.puertaCerrada, 40, 445, 200, 280, null);
-                g.drawImage(Assets.puertaCerrada, 440, 445, 200, 280, null);
-                g.drawImage(Assets.puertaCerrada, 840, 445, 200, 280, null);
+                if(finalDePregunta){
+                    
+                    if(puertaZero){
+                        g.drawImage(Assets.puertaBien, 40, 445, 200, 280, null);
+                    }else{
+                        g.drawImage(Assets.puertaMal, 40, 445, 200, 280, null);
+                    }
+                    if(puertaOne){
+                        g.drawImage(Assets.puertaBien, 440, 445, 200, 280, null);
+                    }else{
+                        g.drawImage(Assets.puertaMal, 440, 445, 200, 280, null);
+                    }
+                    if(puertaTwo){
+                        g.drawImage(Assets.puertaBien, 840, 445, 200, 280, null);
+                    }else{
+                        g.drawImage(Assets.puertaMal, 840, 445, 200, 280, null);
+                    }
+                    
+                }else{
+                    g.drawImage(Assets.puertaCerrada, 40, 445, 200, 280, null);
+                    g.drawImage(Assets.puertaCerrada, 440, 445, 200, 280, null);
+                    g.drawImage(Assets.puertaCerrada, 840, 445, 200, 280, null);
+                }
+                
                 //render stuff
                 for (int i = 0; i < players.size(); i++) {
                    if(players.get(i).getLives() > 0){

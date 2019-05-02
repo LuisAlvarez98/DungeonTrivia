@@ -121,6 +121,10 @@ public class Game implements Runnable {
         return width;
     }
 
+    public boolean isFasePregunta() {
+        return fasePregunta;
+    }
+
     /**
      * inits the game with the display and player
      */

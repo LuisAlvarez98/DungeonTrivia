@@ -20,6 +20,8 @@ public class Player extends Item {
     private char move;
     private Animation leftAnim;
     private Animation rightAnim;
+    private int counter;
+    private boolean showMove;
 
     private int playerNum;
     private boolean idle;
@@ -52,6 +54,8 @@ public class Player extends Item {
         this.rect = new Rectangle(x,y, width, height);
         hearts = new ArrayList<Heart>();
         score = 0;
+        counter = 0;
+        showMove = false;
     }
 
     public void setScore(int score) {
@@ -126,6 +130,10 @@ public class Player extends Item {
         return height;
     }
 
+    public boolean isShowMove() {
+        return showMove;
+    }
+    
     /**
      * setDirection method
      *
@@ -201,50 +209,99 @@ public class Player extends Item {
             case 1:
                 if (game.getKeyManager().left) {
                     setMove('l');
+                    if(game.isFasePregunta()) {
+                        showMove = true;
+                    }
                 }
                 if (game.getKeyManager().right) {
                     setMove('r');
+                    if(game.isFasePregunta()) {
+                        showMove = true;
+                    }
                 }
                 if (game.getKeyManager().up) {
                     setMove('u');
+                    if(game.isFasePregunta()) {
+                        showMove = true;
+                    }
                 }
             break;
             case 2:
                 if (game.getKeyManager().j) {
                     setMove('l');
+                    if(game.isFasePregunta()) {
+                        showMove = true;
+                    }
                 }
                 if (game.getKeyManager().l) {
                     setMove('r');
+                    if(game.isFasePregunta()) {
+                        showMove = true;
+                    }
                 }
                 if (game.getKeyManager().k) {
                     setMove('u');
+                    if(game.isFasePregunta()) {
+                        showMove = true;
+                    }
                 }
             break;
             case 3:
                 if (game.getKeyManager().q) {
                     setMove('l');
+                    if(game.isFasePregunta()) {
+                        showMove = true;
+                    }
                 }
                 if (game.getKeyManager().e) {
                     setMove('r');
+                    if(game.isFasePregunta()) {
+                        showMove = true;
+                    }
                 }
                 if (game.getKeyManager().w) {
                     setMove('u');
+                    if(game.isFasePregunta()) {
+                        showMove = true;
+                    }
                 }
             break;
             case 4:
                 if (game.getKeyManager().z) {
                     setMove('l');
+                    if(game.isFasePregunta()) {
+                        showMove = true;
+                    }
                 }
                 if (game.getKeyManager().c) {
                     setMove('r');
+                    if(game.isFasePregunta()) {
+                        showMove = true;
+                    }
                 }
                 if (game.getKeyManager().x) {
                     setMove('u');
+                    if(game.isFasePregunta()) {
+                        showMove = true;
+                    }
                 }
             break;
         }
         
-
+        if(!game.isFasePregunta()) {
+            showMove = false;
+        }
+        
+//        // Timer foco
+//        if(counter < 150) {
+//            counter++;
+//            if((move == 'l' || move == 'u' || move == 'r') && game.isFasePregunta()) {
+//                showMove = true;
+//            }
+//        } else {
+//            showMove = false;
+//            counter = 0;
+//        }
         // reset x position and y position if colision
         if (getX() + 200 >= game.getWidth()) {
             setX(game.getWidth() - 200);
@@ -269,18 +326,28 @@ public class Player extends Item {
             switch (playerNum) {
                 case 1:
                     g.drawImage(Assets.p1Front, getX(), getY(), getWidth(), getHeight(), null);
+                    if(showMove) {
+                        g.drawImage(Assets.foco, getX() + 35, getY() - 20, 16, 16, null);
+                    }
                     break;
                 case 2:
                     g.drawImage(Assets.p2Front, getX(), getY(), getWidth(), getHeight(), null);
-
+                    if(showMove) {
+                        g.drawImage(Assets.foco, getX() + 35, getY() - 20, 16, 16, null);
+                    }
                     break;
 
                 case 3:
                     g.drawImage(Assets.p3Front, getX(), getY(), getWidth(), getHeight(), null);
-
+                    if(showMove) {
+                        g.drawImage(Assets.foco, getX() + 35, getY() - 20, 16, 16, null);
+                    }
                     break;
                 case 4:
                     g.drawImage(Assets.p4Front, getX(), getY(), getWidth(), getHeight(), null);
+                    if(showMove) {
+                        g.drawImage(Assets.foco, getX() + 35, getY() - 20, 16, 16, null);
+                    }
                     break;
             }
         }

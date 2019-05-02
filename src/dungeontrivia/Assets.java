@@ -12,6 +12,7 @@ public class Assets {
     public static SoundClip sound;
     public static BufferedImage bg, heart, menu, controls;
     public static BufferedImage player, sprites;
+    public static BufferedImage foco;
 
     //Player 1
     public static BufferedImage p1Front;
@@ -47,6 +48,7 @@ public class Assets {
         heart = ImageLoader.loadImage("/images/heart.png");
         sprites = ImageLoader.loadImage("/images/players.png");
         controls = ImageLoader.loadImage("/images/controls.png");
+        foco = ImageLoader.loadImage("/images/foco.png");
         SpreadSheet spritesheet = new SpreadSheet(sprites);
 
         //player 1

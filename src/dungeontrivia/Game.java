@@ -360,6 +360,10 @@ public class Game implements Runnable {
                                     }
                                 }
                                 break;
+                            default:
+                                players.get(i).decreasePlayerLive();
+                                players.get(i).setAnswer(true);
+                                break;
                         }
 
                     }
@@ -382,7 +386,7 @@ public class Game implements Runnable {
                     //deshabilitar teclado
                     players.get(i).setEnabled(false);
                     
-                    if (!getRectangulo(players.get(i).getMove()).intersects(players.get(i).getRect())) {
+                    if (!getRectangulo(players.get(i).getMove()).intersects(players.get(i).getRect()) && !players.get(i).isAnswer()) {
                         players.get(i).setMoving(true);
                         players.get(i).setIdle(false);
                         players.get(i).setX(players.get(i).getX() + players.get(i).getDirection() * speed);
@@ -390,8 +394,10 @@ public class Game implements Runnable {
                         players.get(i).setMoving(false);
                         players.get(i).setIdle(true);
                     }
-
-                    check &= getRectangulo(players.get(i).getMove()).intersects(players.get(i).getRect());
+                    
+                    if(!players.get(i).isAnswer()) {
+                        check &= getRectangulo(players.get(i).getMove()).intersects(players.get(i).getRect());
+                    }
 
                 }
 
@@ -429,6 +435,8 @@ public class Game implements Runnable {
                     counter2 = 0;
                     for (int i = 0; i < players.size(); i++) {
                         players.get(i).setEnabled(true);
+                        players.get(i).setAnswer(false);
+                        players.get(i).setMove('n');
                     }
                     
                     finalDePregunta = false;

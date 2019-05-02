@@ -13,6 +13,7 @@ public class Assets {
     public static BufferedImage bg, heart, menu, controls, reloj, puertaCerrada, puertaMal, puertaBien;
     public static BufferedImage player, sprites;
     public static BufferedImage foco;
+    public static BufferedImage qmark;
 
     //Player 1
     public static BufferedImage p1Front;
@@ -53,6 +54,7 @@ public class Assets {
         puertaCerrada = ImageLoader.loadImage("/images/Puerta Cerrada.png");
         puertaMal = ImageLoader.loadImage("/images/Puerta mal 1.png");
         puertaBien = ImageLoader.loadImage("/images/Puerta Bien.png");
+        qmark = ImageLoader.loadImage("/images/qmark.png");
         
         SpreadSheet spritesheet = new SpreadSheet(sprites);
 

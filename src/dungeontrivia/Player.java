@@ -22,12 +22,13 @@ public class Player extends Item {
     private Animation rightAnim;
     private int counter;
     private boolean showMove;
-
+    private boolean showMark;
     private int playerNum;
     private boolean idle;
     private boolean moving;
     private ArrayList<Heart> hearts;
    private boolean enabled;
+   private boolean answer;
     
     int score;
     /**
@@ -56,7 +57,10 @@ public class Player extends Item {
         hearts = new ArrayList<Heart>();
         score = 0;
         showMove = false;
+        showMark = false;
         enabled = true;
+        move = 'n';
+        answer = false;
     }
 
     public void setScore(int score) {
@@ -71,6 +75,10 @@ public class Player extends Item {
         return hearts;
     }
 
+    public boolean isAnswer() {
+        return answer;
+    }
+    
     /**
      * decreases the player lives by one
      */
@@ -104,6 +112,10 @@ public class Player extends Item {
         return this.lives;
     }
 
+    public void setAnswer(boolean answer) {
+        this.answer = answer;
+    }
+    
     /**
      * getDirection method
      *
@@ -171,6 +183,10 @@ public class Player extends Item {
      */
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public void setShowMark(boolean showMark) {
+        this.showMark = showMark;
     }
     
     public void setX(int x) {
@@ -324,11 +340,17 @@ public class Player extends Item {
                     if(showMove) {
                         g.drawImage(Assets.foco, getX() + 35, getY() - 20, 16, 16, null);
                     }
+                    if(answer) {
+                        g.drawImage(Assets.qmark, getX() + 35, getY() - 20, 16, 16, null);
+                    }
                     break;
                 case 2:
                     g.drawImage(Assets.p2Front, getX(), getY(), getWidth(), getHeight(), null);
                     if(showMove) {
                         g.drawImage(Assets.foco, getX() + 35, getY() - 20, 16, 16, null);
+                    }
+                    if(answer) {
+                        g.drawImage(Assets.qmark, getX() + 35, getY() - 20, 16, 16, null);
                     }
                     break;
 
@@ -337,11 +359,17 @@ public class Player extends Item {
                     if(showMove) {
                         g.drawImage(Assets.foco, getX() + 35, getY() - 20, 16, 16, null);
                     }
+                    if(answer) {
+                        g.drawImage(Assets.qmark, getX() + 35, getY() - 20, 16, 16, null);
+                    }
                     break;
                 case 4:
                     g.drawImage(Assets.p4Front, getX(), getY(), getWidth(), getHeight(), null);
                     if(showMove) {
                         g.drawImage(Assets.foco, getX() + 35, getY() - 20, 16, 16, null);
+                    }
+                    if(answer) {
+                        g.drawImage(Assets.qmark, getX() + 35, getY() - 20, 16, 16, null);
                     }
                     break;
             }

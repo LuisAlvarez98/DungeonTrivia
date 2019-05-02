@@ -291,10 +291,11 @@ public class Game implements Runnable {
             }
 
             keyManager.tick();
-            //if(!timerOff){
+
             for (int i = 0; i < players.size(); i++) {
                 players.get(i).tick();
             }
+            
             if (counter < 50) {
                 counter++;
             } else {
@@ -306,9 +307,10 @@ public class Game implements Runnable {
                     if(fasePregunta){
                         
                     for (int i = 0; i < players.size(); i++) {
+                        
                         switch (players.get(i).getMove()) {
                             case 'l':
-                                System.out.println("hola");
+
                                 rectangulo = getRectangulo('l');
                                 System.out.println(rectangulo);
                                 if (rectangulo.getX() - players.get(i).getX() > 0) {
@@ -355,7 +357,6 @@ public class Game implements Runnable {
                                 }
                                 break;
                         }
-                        System.out.println(players.get(i).getRect());
 
                     }
                     }
@@ -364,11 +365,19 @@ public class Game implements Runnable {
 
                 }
                 counter = 0;
+            
             }
 
             if (faseMovimiento) {
+                
+                
+                
                 check = true;
                 for (int i = 0; i < players.size(); i++) {
+                    
+                    //deshabilitar teclado
+                    players.get(i).setEnabled(false);
+                    
                     if (!getRectangulo(players.get(i).getMove()).intersects(players.get(i).getRect())) {
                         players.get(i).setMoving(true);
                         players.get(i).setIdle(false);
@@ -414,11 +423,16 @@ public class Game implements Runnable {
                         counter3 = 0;
                     }
                     counter2 = 0;
+                    for (int i = 0; i < players.size(); i++) {
+                        players.get(i).setEnabled(true);
+                    }
                     
                     finalDePregunta = false;
                     fasePregunta = true;
                 }
             }
+            
+            
 
         } else if (state == STATE.EXIT) {
             System.exit(0);

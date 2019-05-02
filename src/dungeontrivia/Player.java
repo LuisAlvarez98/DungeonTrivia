@@ -27,6 +27,7 @@ public class Player extends Item {
     private boolean idle;
     private boolean moving;
     private ArrayList<Heart> hearts;
+   private boolean enabled;
     
     int score;
     /**
@@ -54,8 +55,8 @@ public class Player extends Item {
         this.rect = new Rectangle(x,y, width, height);
         hearts = new ArrayList<Heart>();
         score = 0;
-        counter = 0;
         showMove = false;
+        enabled = true;
     }
 
     public void setScore(int score) {
@@ -129,9 +130,9 @@ public class Player extends Item {
     public int getHeight() {
         return height;
     }
-
-    public boolean isShowMove() {
-        return showMove;
+    
+    public boolean getEnabled(){
+        return enabled;
     }
     
     /**
@@ -150,7 +151,10 @@ public class Player extends Item {
     public void setIdle(boolean idle){
         this.idle = idle;
     }
-
+    
+    public void setEnabled(boolean enabled){
+        this.enabled = enabled;
+    }
     /**
      * setWidth method
      *
@@ -174,7 +178,6 @@ public class Player extends Item {
         this.rect.setLocation(x, getY());
         for(int i = 0; i < hearts.size(); i++){
             hearts.get(i).setX( x + 10 + i*20);
-            System.out.println(hearts.get(i).getX());
         }
     }
     
@@ -205,6 +208,8 @@ public class Player extends Item {
     @Override
     public void tick() {
         
+        System.out.println(enabled);
+        if(enabled){
         switch(playerNum){
             case 1:
                 if (game.getKeyManager().left) {
@@ -287,21 +292,12 @@ public class Player extends Item {
                 }
             break;
         }
+        }
         
         if(!game.isFasePregunta()) {
             showMove = false;
         }
         
-//        // Timer foco
-//        if(counter < 150) {
-//            counter++;
-//            if((move == 'l' || move == 'u' || move == 'r') && game.isFasePregunta()) {
-//                showMove = true;
-//            }
-//        } else {
-//            showMove = false;
-//            counter = 0;
-//        }
         // reset x position and y position if colision
         if (getX() + 200 >= game.getWidth()) {
             setX(game.getWidth() - 200);

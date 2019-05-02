@@ -186,14 +186,12 @@ public class Game implements Runnable {
             int counter = 0;
             while (line != null) {
                 if (counter == 0) {
-                    //System.out.println("Pregunta");
+
                     preguntas.get(numeroPreguntas).setPregunta(line);
                 } else {
                     respuestas.add(line);
-                    //System.out.println("respuesta");
                 }
-                //System.out.println(line);
-                // read next line
+
                 counter++;
                 line = reader.readLine();
                 if (counter > 3) {
@@ -263,7 +261,6 @@ public class Game implements Runnable {
         //tick
         if (state == STATE.GAME) {
             answer = preguntas.get(counter3).getRespuestas().get(0);
-            //System.out.println(answer);
             if (firstRandomIndex == 0 && secondRandomIndex == 1) {
                 posZero = preguntas.get(counter3).getRespuestas().get(0);
                 posOne = preguntas.get(counter3).getRespuestas().get(1);
@@ -293,7 +290,9 @@ public class Game implements Runnable {
             keyManager.tick();
 
             for (int i = 0; i < players.size(); i++) {
-                players.get(i).tick();
+                if(players.get(i).getLives() > 0){
+                    players.get(i).tick();
+                }
             }
             
             if (counter < 50) {
@@ -312,7 +311,6 @@ public class Game implements Runnable {
                             case 'l':
 
                                 rectangulo = getRectangulo('l');
-                                System.out.println(rectangulo);
                                 if (rectangulo.getX() - players.get(i).getX() > 0) {
                                     players.get(i).setDirection(1);
                                 } else {
@@ -466,9 +464,15 @@ public class Game implements Runnable {
                 g.setFont(myFont);
                 g.setColor(Color.WHITE);
                 g.drawString(timer, 950, 100);
+                g.drawImage(Assets.reloj, 1010, 75, 20, 30, null);
+                g.drawImage(Assets.puertaCerrada, 40, 445, 200, 280, null);
+                g.drawImage(Assets.puertaCerrada, 440, 445, 200, 280, null);
+                g.drawImage(Assets.puertaCerrada, 840, 445, 200, 280, null);
                 //render stuff
                 for (int i = 0; i < players.size(); i++) {
-                    players.get(i).render(g);
+                   if(players.get(i).getLives() > 0){
+                        players.get(i).render(g);
+                    }
                     for (int j = 0; j < players.get(i).getLives(); j++) {
                         Heart heart = players.get(i).getHearts().get(j);
                         heart.render(g);
@@ -479,12 +483,17 @@ public class Game implements Runnable {
                 //player.render(g);
                 myFont = new Font("Courier New", 1, 14);
                 g.setFont(myFont);
-                g.setColor(Color.BLACK);
+                g.setColor(Color.WHITE);
                 //Draw score
                 g.drawString("Scores", 10, 10);
                 for (int i = 0; i < players.size(); i++) {
                     g.drawString("Player " + (i + 1) + ":" + Integer.toString(players.get(i).getScore()), 10, (i * 5) * 3 + 25);
                 }
+                
+                myFont = new Font("Courier New", 1, 14);
+                g.setFont(myFont);
+                g.setColor(Color.BLACK);
+                
                 g.drawString(preguntas.get(counter3).getPregunta(), getWidth() / 2 - 250, 100);
                 g.drawString(posZero, getWidth() / 2 - 455, 350);
                 g.drawString(posOne, getWidth() / 2 - 60, 350);

@@ -208,7 +208,6 @@ public class Player extends Item {
     @Override
     public void tick() {
         
-        System.out.println(enabled);
         if(enabled){
         switch(playerNum){
             case 1:

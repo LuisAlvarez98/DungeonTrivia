@@ -6,8 +6,6 @@
 package dungeontrivia;
 
 import static dungeontrivia.Game.state;
-import static dungeontrivia.Game.width;
-import static dungeontrivia.MainMenuPanel.playButton;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;

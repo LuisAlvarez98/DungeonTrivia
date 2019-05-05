@@ -85,6 +85,7 @@ public class Game implements Runnable {
     public static enum STATE {
         MENU,
         GAME,
+        ENDGAME,
         HIGHSCORES,
         CONTROLS,
         EXIT
@@ -479,7 +480,7 @@ public class Game implements Runnable {
                     if (counter3 < numeroPreguntas - 1) {
                         counter3++;
                     } else {
-                        //fin de juego
+                        //fin de preguntas
                         counter3 = 0;
                     }
                     counter2 = 0;

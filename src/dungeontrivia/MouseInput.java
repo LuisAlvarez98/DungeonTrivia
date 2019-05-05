@@ -49,7 +49,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
                 if (me.getY() >= 338 && me.getY() <= 435) {
                     //play button
                     System.out.println("Play");
-                    state = Game.STATE.GAME;
+                    state = Game.STATE.LEVELS;
                 }
             }
             if (me.getX() >= 435 && me.getX() <= 643) {
@@ -69,17 +69,32 @@ public class MouseInput implements MouseListener, MouseMotionListener {
                     state = Game.STATE.CONTROLS;
                 }
             }
-               
         }
         
         if(state == Game.STATE.CONTROLS){
-            if (me.getX() >= 52 && me.getX() <= 107) {
-                if (me.getY() >= 45 && me.getY() <= 119) {
+            if (me.getX() >= 53 && me.getX() <= 104) {
+                if (me.getY() >= 118 && me.getY() <= 165) {
                     state = Game.STATE.MENU;
                 }
             }
+            
         }
-          
+            
+        if(state == Game.STATE.LEVELS){
+            if (me.getX() >= 53 && me.getX() <= 115) {
+                if (me.getY() >= 107 && me.getY() <= 163) {
+                    state = Game.STATE.MENU;
+                }
+            }
+            
+              if (me.getX() >= 296 && me.getX() <= 503) {
+                if (me.getY() >= 359 && me.getY() <= 393) {
+                    state = Game.STATE.GAME;
+                    System.out.println("ajaja");
+                }
+            } 
+           
+        }
     }
 
     @Override

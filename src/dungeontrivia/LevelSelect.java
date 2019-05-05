@@ -24,6 +24,6 @@ public class LevelSelect {
 
     public void render(Graphics g, int width, int height) {
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(Assets.back, 200, 200,50, 50,null);
+        g2d.drawImage(Assets.back, 50, 100,70, 70,null);
     }
 }

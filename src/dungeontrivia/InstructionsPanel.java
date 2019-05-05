@@ -27,6 +27,8 @@ public class InstructionsPanel {
         Color c = new Color(1f, 0f, 0f, .5f);
         g.setColor(c);
         //g2d.draw(backButton);
-
+        g2d.drawImage(Assets.back, 50, 100, 70, 70, null);
     }
 }
+//53:103
+//112:162

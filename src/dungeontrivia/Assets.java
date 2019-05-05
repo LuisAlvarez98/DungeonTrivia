@@ -10,6 +10,9 @@ import java.awt.image.BufferedImage;
 public class Assets {
 
     public static SoundClip sound;
+    public static SoundClip deathSound;
+    public static SoundClip openDoor;
+    public static SoundClip closeDoor;
     public static BufferedImage bg, heart, menu, controls, reloj, puertaCerrada, puertaMal, puertaBien;
     public static BufferedImage player, sprites;
     public static BufferedImage foco;
@@ -46,6 +49,9 @@ public class Assets {
         bg = ImageLoader.loadImage("/images/bg_end.jpg");
         menu = ImageLoader.loadImage("/images/menu_bg.png");
         sound = new SoundClip("/sounds/soundtrack.wav");
+        deathSound = new SoundClip("/sounds/DeathSound.wav");
+        openDoor = new SoundClip("/sounds/openDoor.wav");
+        closeDoor = new SoundClip("/sounds/closeDoor.wav");
         heart = ImageLoader.loadImage("/images/heart.png");
         sprites = ImageLoader.loadImage("/images/players.png");
         controls = ImageLoader.loadImage("/images/controls.png");

@@ -322,6 +322,9 @@ public class Game implements Runnable {
                                 }
                                 if (!posZero.equals(answer)) {
                                     players.get(i).decreasePlayerLive();
+                                    if(players.get(i).getLives() == 0){
+                                        Assets.deathSound.play();
+                                    }
                                 } else {
                                     //sets score
                                     if(players.get(i).getLives() > 0){
@@ -339,6 +342,9 @@ public class Game implements Runnable {
                                 }
                                 if (!posOne.equals(answer)) {
                                     players.get(i).decreasePlayerLive();
+                                    if(players.get(i).getLives() == 0){
+                                        Assets.deathSound.play();
+                                    }
                                 } else {
                                     //sets score
                                     if(players.get(i).getLives() > 0){
@@ -356,6 +362,9 @@ public class Game implements Runnable {
                                 }
                                 if (!posTwo.equals(answer)) {
                                     players.get(i).decreasePlayerLive();
+                                    if(players.get(i).getLives() == 0){
+                                        Assets.deathSound.play();
+                                    }
                                 } else {
                                     //sets score
                                     if(players.get(i).getLives() > 0){
@@ -366,14 +375,19 @@ public class Game implements Runnable {
                                 break;
                             default:
                                 players.get(i).decreasePlayerLive();
+                                if(players.get(i).getLives() == 0){
+                                    Assets.deathSound.play();
+                                }
                                 players.get(i).setAnswer(true);
                                 break;
                         }
 
                     }
-                    }
+                    
                     fasePregunta = false;
                     faseMovimiento = true;
+                    }
+                    
 
                 }
                 counter = 0;
@@ -422,6 +436,9 @@ public class Game implements Runnable {
                 }
 
                 if (check) {
+                    System.out.println("Hola");
+                    Assets.openDoor.setLooping(false);
+                    Assets.openDoor.play();
                     faseMovimiento = false;
                     finalDePregunta = true;
                 }
@@ -429,7 +446,9 @@ public class Game implements Runnable {
             }
 
             if (finalDePregunta) {
-                      
+                
+               
+                
                 if (counter2 < 250) {
                     counter2++;
                 } else {
@@ -461,6 +480,7 @@ public class Game implements Runnable {
           
                     finalDePregunta = false;
                     fasePregunta = true;
+                    Assets.closeDoor.play();
                 }
             }
             

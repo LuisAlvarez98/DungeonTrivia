@@ -77,7 +77,8 @@ public class Game implements Runnable {
     boolean gameStarted = false;
     private MainMenuPanel menu;
     private InstructionsPanel controls;
-    
+    private LevelSelect levelSelect;
+
     private boolean puertaZero;
     private boolean puertaOne;
     private boolean puertaTwo;
@@ -87,6 +88,7 @@ public class Game implements Runnable {
         GAME,
         HIGHSCORES,
         CONTROLS,
+        LEVELS,
         EXIT
     };
     public static STATE state = STATE.MENU;
@@ -135,6 +137,7 @@ public class Game implements Runnable {
     public void init() {
         menu = new MainMenuPanel();
         controls = new InstructionsPanel();
+        levelSelect = new LevelSelect();
         display = new Display(title, getWidth(), getHeight());
         display.getCanvas().addMouseListener(mouseManager);
         Assets.init();
@@ -294,11 +297,11 @@ public class Game implements Runnable {
             keyManager.tick();
 
             for (int i = 0; i < players.size(); i++) {
-                if(players.get(i).getLives() > 0){
+                if (players.get(i).getLives() > 0) {
                     players.get(i).tick();
                 }
             }
-            
+
             if (counter < 50) {
                 counter++;
             } else {
@@ -306,120 +309,119 @@ public class Game implements Runnable {
                     timerStart--;
                     updateTimer(timerStart);
                 } else {
-                    
-                    if(fasePregunta){
-                        
-                    for (int i = 0; i < players.size(); i++) {
-                        
-                        switch (players.get(i).getMove()) {
-                            case 'l':
 
-                                rectangulo = getRectangulo('l');
-                                if (rectangulo.getX() - players.get(i).getX() > 0) {
-                                    players.get(i).setDirection(1);
-                                } else {
-                                    players.get(i).setDirection(-1);
-                                }
-                                if (!posZero.equals(answer)) {
+                    if (fasePregunta) {
+
+                        for (int i = 0; i < players.size(); i++) {
+
+                            switch (players.get(i).getMove()) {
+                                case 'l':
+
+                                    rectangulo = getRectangulo('l');
+                                    if (rectangulo.getX() - players.get(i).getX() > 0) {
+                                        players.get(i).setDirection(1);
+                                    } else {
+                                        players.get(i).setDirection(-1);
+                                    }
+                                    if (!posZero.equals(answer)) {
+                                        players.get(i).decreasePlayerLive();
+                                        if (players.get(i).getLives() == 0) {
+                                            Assets.deathSound.play();
+                                        }
+                                    } else {
+                                        //sets score
+                                        if (players.get(i).getLives() > 0) {
+                                            int score = players.get(i).getScore() + 10;
+                                            players.get(i).setScore(score);
+                                        }
+                                    }
+                                    break;
+                                case 'u':
+                                    rectangulo = getRectangulo('u');
+                                    if (rectangulo.getX() - players.get(i).getX() > 0) {
+                                        players.get(i).setDirection(1);
+                                    } else {
+                                        players.get(i).setDirection(-1);
+                                    }
+                                    if (!posOne.equals(answer)) {
+                                        players.get(i).decreasePlayerLive();
+                                        if (players.get(i).getLives() == 0) {
+                                            Assets.deathSound.play();
+                                        }
+                                    } else {
+                                        //sets score
+                                        if (players.get(i).getLives() > 0) {
+                                            int score = players.get(i).getScore() + 10;
+                                            players.get(i).setScore(score);
+                                        }
+                                    }
+                                    break;
+                                case 'r':
+                                    rectangulo = getRectangulo('r');
+                                    if (rectangulo.getX() - players.get(i).getX() > 0) {
+                                        players.get(i).setDirection(1);
+                                    } else {
+                                        players.get(i).setDirection(-1);
+                                    }
+                                    if (!posTwo.equals(answer)) {
+                                        players.get(i).decreasePlayerLive();
+                                        if (players.get(i).getLives() == 0) {
+                                            Assets.deathSound.play();
+                                        }
+                                    } else {
+                                        //sets score
+                                        if (players.get(i).getLives() > 0) {
+                                            int score = players.get(i).getScore() + 10;
+                                            players.get(i).setScore(score);
+                                        }
+                                    }
+                                    break;
+                                default:
                                     players.get(i).decreasePlayerLive();
-                                    if(players.get(i).getLives() == 0){
+                                    if (players.get(i).getLives() == 0) {
                                         Assets.deathSound.play();
                                     }
-                                } else {
-                                    //sets score
-                                    if(players.get(i).getLives() > 0){
-                                        int score = players.get(i).getScore() + 10;
-                                        players.get(i).setScore(score);
-                                    }
-                                }
-                                break;
-                            case 'u':
-                                rectangulo = getRectangulo('u');
-                                if (rectangulo.getX() - players.get(i).getX() > 0) {
-                                    players.get(i).setDirection(1);
-                                } else {
-                                    players.get(i).setDirection(-1);
-                                }
-                                if (!posOne.equals(answer)) {
-                                    players.get(i).decreasePlayerLive();
-                                    if(players.get(i).getLives() == 0){
-                                        Assets.deathSound.play();
-                                    }
-                                } else {
-                                    //sets score
-                                    if(players.get(i).getLives() > 0){
-                                        int score = players.get(i).getScore() + 10;
-                                        players.get(i).setScore(score);
-                                    }
-                                }
-                                break;
-                            case 'r':
-                                rectangulo = getRectangulo('r');
-                                if (rectangulo.getX() - players.get(i).getX() > 0) {
-                                    players.get(i).setDirection(1);
-                                } else {
-                                    players.get(i).setDirection(-1);
-                                }
-                                if (!posTwo.equals(answer)) {
-                                    players.get(i).decreasePlayerLive();
-                                    if(players.get(i).getLives() == 0){
-                                        Assets.deathSound.play();
-                                    }
-                                } else {
-                                    //sets score
-                                    if(players.get(i).getLives() > 0){
-                                        int score = players.get(i).getScore() + 10;
-                                        players.get(i).setScore(score);
-                                    }
-                                }
-                                break;
-                            default:
-                                players.get(i).decreasePlayerLive();
-                                if(players.get(i).getLives() == 0){
-                                    Assets.deathSound.play();
-                                }
-                                players.get(i).setAnswer(true);
-                                break;
+                                    players.get(i).setAnswer(true);
+                                    break;
+                            }
+
                         }
 
+                        fasePregunta = false;
+                        faseMovimiento = true;
                     }
-                    
-                    fasePregunta = false;
-                    faseMovimiento = true;
-                    }
-                    
 
                 }
                 counter = 0;
-            
+
             }
 
             if (faseMovimiento) {
-                
-                if(posZero.equals(answer)){
+
+                if (posZero.equals(answer)) {
                     puertaZero = true;
-                }else{
+                } else {
                     puertaZero = false;
                 }
-                
-                if(posOne.equals(answer)){
+
+                if (posOne.equals(answer)) {
                     puertaOne = true;
-                }else{
+                } else {
                     puertaOne = false;
                 }
-                
-                if(posTwo.equals(answer)){
+
+                if (posTwo.equals(answer)) {
                     puertaTwo = true;
-                }else{
+                } else {
                     puertaTwo = false;
                 }
-                
+
                 check = true;
                 for (int i = 0; i < players.size(); i++) {
-                    
+
                     //deshabilitar teclado
                     players.get(i).setEnabled(false);
-                    
+
                     if (!getRectangulo(players.get(i).getMove()).intersects(players.get(i).getRect()) && !players.get(i).isAnswer()) {
                         players.get(i).setMoving(true);
                         players.get(i).setIdle(false);
@@ -428,8 +430,8 @@ public class Game implements Runnable {
                         players.get(i).setMoving(false);
                         players.get(i).setIdle(true);
                     }
-                    
-                    if(!players.get(i).isAnswer()) {
+
+                    if (!players.get(i).isAnswer()) {
                         check &= getRectangulo(players.get(i).getMove()).intersects(players.get(i).getRect());
                     }
 
@@ -446,13 +448,11 @@ public class Game implements Runnable {
             }
 
             if (finalDePregunta) {
-                
-               
-                
+
                 if (counter2 < 250) {
                     counter2++;
                 } else {
-                    
+
                     timerStart = 10;
                     updateTimer(timerStart);
                     firstRandomIndex = (int) (Math.random() * 3);
@@ -477,14 +477,12 @@ public class Game implements Runnable {
                         players.get(i).setMove('n');
                         players.get(i).setX(200 + 200 * i);
                     }
-          
+
                     finalDePregunta = false;
                     fasePregunta = true;
                     Assets.closeDoor.play();
                 }
             }
-            
-            
 
         } else if (state == STATE.EXIT) {
             System.exit(0);
@@ -519,33 +517,33 @@ public class Game implements Runnable {
                 g.setColor(Color.WHITE);
                 g.drawString(timer, 950, 100);
                 g.drawImage(Assets.reloj, 1010, 75, 20, 30, null);
-                if(finalDePregunta){
-                    
-                    if(puertaZero){
+                if (finalDePregunta) {
+
+                    if (puertaZero) {
                         g.drawImage(Assets.puertaBien, 40, 445, 200, 280, null);
-                    }else{
+                    } else {
                         g.drawImage(Assets.puertaMal, 40, 445, 200, 280, null);
                     }
-                    if(puertaOne){
+                    if (puertaOne) {
                         g.drawImage(Assets.puertaBien, 440, 445, 200, 280, null);
-                    }else{
+                    } else {
                         g.drawImage(Assets.puertaMal, 440, 445, 200, 280, null);
                     }
-                    if(puertaTwo){
+                    if (puertaTwo) {
                         g.drawImage(Assets.puertaBien, 840, 445, 200, 280, null);
-                    }else{
+                    } else {
                         g.drawImage(Assets.puertaMal, 840, 445, 200, 280, null);
                     }
-                    
-                }else{
+
+                } else {
                     g.drawImage(Assets.puertaCerrada, 40, 445, 200, 280, null);
                     g.drawImage(Assets.puertaCerrada, 440, 445, 200, 280, null);
                     g.drawImage(Assets.puertaCerrada, 840, 445, 200, 280, null);
                 }
-                
+
                 //render stuff
                 for (int i = 0; i < players.size(); i++) {
-                   if(players.get(i).getLives() > 0){
+                    if (players.get(i).getLives() > 0) {
                         players.get(i).render(g);
                     }
                     for (int j = 0; j < players.get(i).getLives(); j++) {
@@ -564,11 +562,11 @@ public class Game implements Runnable {
                 for (int i = 0; i < players.size(); i++) {
                     g.drawString("Player " + (i + 1) + ":" + Integer.toString(players.get(i).getScore()), 10, (i * 5) * 3 + 25);
                 }
-                
+
                 myFont = new Font("Courier New", 1, 14);
                 g.setFont(myFont);
                 g.setColor(Color.BLACK);
-                
+
                 g.drawString(preguntas.get(counter3).getPregunta(), getWidth() / 2 - 250, 100);
                 g.drawString(posZero, getWidth() / 2 - 455, 350);
                 g.drawString(posOne, getWidth() / 2 - 60, 350);
@@ -585,6 +583,9 @@ public class Game implements Runnable {
             } else if (state == state.CONTROLS) {
                 g.drawImage(Assets.controls, 0, 0, width, height, null);
                 controls.render(g, getWidth(), getHeight());
+            } else if (state == state.LEVELS) {
+                g.drawImage(Assets.level_select, 0, 0, width, height, null);
+                levelSelect.render(g, getWidth(), getHeight());
             } else {
                 g.drawImage(Assets.menu, 0, 0, width, height, null);
                 menu.render(g, getWidth(), getHeight());

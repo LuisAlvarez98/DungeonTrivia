@@ -47,7 +47,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
             if (me.getY() >= 338 && me.getY() <= 435) {
                 //play button
                 System.out.println("Play");
-                state = Game.STATE.GAME;
+                state = Game.STATE.LEVELS;
             }
         }
         if (me.getX() >= 435 && me.getX() <= 643) {

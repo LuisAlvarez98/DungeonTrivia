@@ -13,10 +13,11 @@ public class Assets {
     public static SoundClip deathSound;
     public static SoundClip openDoor;
     public static SoundClip closeDoor;
-    public static BufferedImage bg, heart, menu, controls, reloj, puertaCerrada, puertaMal, puertaBien;
+    public static BufferedImage bg, heart, menu, controls, reloj, puertaCerrada, puertaMal, puertaBien, level_select;
     public static BufferedImage player, sprites;
     public static BufferedImage foco;
     public static BufferedImage qmark;
+    public static BufferedImage back;
 
     //Player 1
     public static BufferedImage p1Front;
@@ -46,7 +47,9 @@ public class Assets {
      * loads the assets
      */
     public static void init() {
+        back = ImageLoader.loadImage("/images/back.png");
         bg = ImageLoader.loadImage("/images/bg_end.jpg");
+        level_select = ImageLoader.loadImage("/images/level_select.png");
         menu = ImageLoader.loadImage("/images/menu_bg.png");
         sound = new SoundClip("/sounds/soundtrack.wav");
         deathSound = new SoundClip("/sounds/DeathSound.wav");
@@ -61,7 +64,7 @@ public class Assets {
         puertaMal = ImageLoader.loadImage("/images/Puerta mal 1.png");
         puertaBien = ImageLoader.loadImage("/images/Puerta Bien.png");
         qmark = ImageLoader.loadImage("/images/qmark.png");
-        
+
         SpreadSheet spritesheet = new SpreadSheet(sprites);
 
         //player 1

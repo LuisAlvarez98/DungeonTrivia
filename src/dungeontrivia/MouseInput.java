@@ -40,6 +40,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
     @Override
     public void mousePressed(MouseEvent me) {
         System.out.println(me.getX() + ":" + me.getY());
+
         
         if(state == Game.STATE.MENU){
             if (me.getX() >= 433 && me.getX() <= 642) {

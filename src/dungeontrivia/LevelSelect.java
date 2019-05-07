@@ -15,18 +15,15 @@ import java.awt.Rectangle;
  *
  * @author luisf
  */
-public class InstructionsPanel {
+public class LevelSelect {
 
-    private Rectangle backButton = new Rectangle();
+    public static Rectangle playButton = new Rectangle();
+    private Rectangle highScore = new Rectangle();
+    private Rectangle exitButton = new Rectangle();
+    private Rectangle instructionButton = new Rectangle();
 
     public void render(Graphics g, int width, int height) {
         Graphics2D g2d = (Graphics2D) g;
-        backButton = new Rectangle(50, 50, 60, 70);
-        Font fnt0 = new Font("arial", Font.BOLD, 50);
-        g.setFont(fnt0);
-        Color c = new Color(1f, 0f, 0f, .5f);
-        g.setColor(c);
-        //g2d.draw(backButton);
-
+        g2d.drawImage(Assets.back, 200, 200,50, 50,null);
     }
 }

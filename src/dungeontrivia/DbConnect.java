@@ -33,7 +33,7 @@ public class DbConnect {
     public DbConnect() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            DungeonTrivia.con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dungeontrivia", "root", "");
+            DungeonTrivia.con = DriverManager.getConnection("jdbc:mysql://dungeontrivia.c91oxw9rgzr9.us-east-1.rds.amazonaws.com:3306/?user=dungeontrivia", "lfas98", "pipepipe");
             DungeonTrivia.st = DungeonTrivia.con.createStatement();
             System.out.println("Connected to DB.");
 

@@ -102,7 +102,10 @@ public class Player extends Item {
     public char getMove() {
         return move;
     }
-
+    
+    public int getPlayerNum(){
+        return playerNum;
+    }
     /**
      * getLives method
      *

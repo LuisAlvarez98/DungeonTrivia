@@ -44,7 +44,7 @@ public class Game implements Runnable {
     private int thirdRandomIndex;
 
     private String timer = "0:00";
-    private int timerStart = 10;
+    private int timerStart = 4;
     private int counter = 0;
     private int counter2 = 0;
     private boolean timerOff = false;
@@ -78,6 +78,7 @@ public class Game implements Runnable {
     private MainMenuPanel menu;
     private InstructionsPanel controls;
     private LevelSelect levelSelect;
+    private EndGame endGamelvl;
 
     private boolean puertaZero;
     private boolean puertaOne;
@@ -93,7 +94,7 @@ public class Game implements Runnable {
         LEVELS,
         EXIT
     };
-    public static STATE state = STATE.MENU;
+    public static STATE state = STATE.ENDGAME;
 
     /**
      * Game Constructor
@@ -120,6 +121,9 @@ public class Game implements Runnable {
         return height;
     }
 
+    public ArrayList<Player> getPlayers(){
+        return players;
+    }
     /**
      * getWidth method
      *
@@ -171,6 +175,9 @@ public class Game implements Runnable {
         rectanguloUno = new Rectangle(200, 620, 10, 10);
         rectanguloDos = new Rectangle(500, 620, 10, 10);
         rectanguloTres = new Rectangle(900, 620, 10, 10);
+        
+        endGamelvl = new EndGame(this);
+
 
         display.getJframe().addKeyListener(keyManager);
 
@@ -614,6 +621,7 @@ public class Game implements Runnable {
                 levelSelect.render(g, getWidth(), getHeight());
             } else if(state == state.ENDGAME){
                 g.drawImage(Assets.bg1, 0, 0, width, height, null);
+                endGamelvl.render(g, getWidth(), getHeight());
             }else{
                 g.drawImage(Assets.menu, 0, 0, width, height, null);
                 menu.render(g, getWidth(), getHeight());

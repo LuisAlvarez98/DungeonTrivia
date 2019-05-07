@@ -144,7 +144,6 @@ public class Game implements Runnable {
     public void init() {
         menu = new MainMenuPanel();
         controls = new InstructionsPanel();
-        endGamelvl = new EndGame(this);
 
         levelSelect = new LevelSelect();
         display = new Display(title, getWidth(), getHeight());
@@ -178,6 +177,8 @@ public class Game implements Runnable {
         rectanguloUno = new Rectangle(200, 620, 10, 10);
         rectanguloDos = new Rectangle(500, 620, 10, 10);
         rectanguloTres = new Rectangle(900, 620, 10, 10);
+
+        endGamelvl = new EndGame(this);
 
         display.getJframe().addKeyListener(keyManager);
 

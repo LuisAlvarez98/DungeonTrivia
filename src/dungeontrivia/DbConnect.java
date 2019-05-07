@@ -33,7 +33,7 @@ public class DbConnect {
     public DbConnect() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            DungeonTrivia.con = DriverManager.getConnection("jdbc:mysql://dungeontrivia.c91oxw9rgzr9.us-east-1.rds.amazonaws.com:3306/?user=dungeontrivia", "lfas98", "pipepipe");
+                       DungeonTrivia.con = DriverManager.getConnection("jdbc:mysql://dungeontrivia.cyqk3zuszau6.us-east-2.rds.amazonaws.com:3306/dungeontrivia", "lfas98", "pipepipe");
             DungeonTrivia.st = DungeonTrivia.con.createStatement();
             System.out.println("Connected to DB.");
 
@@ -49,12 +49,12 @@ public class DbConnect {
      *
      * @return stats
      */
-    public ArrayList<Stat> getStats() {
+    public ArrayList<Stat> getHighscores() {
         ArrayList<Stat> stats = new ArrayList<Stat>();
 
         try {
 
-            String query = "select * from stats";
+            String query = "SELECT * FROM stats ORDER BY stat DESC LIMIT 6";
             DungeonTrivia.rs = DungeonTrivia.st.executeQuery(query);
 
             while (DungeonTrivia.rs.next()) {

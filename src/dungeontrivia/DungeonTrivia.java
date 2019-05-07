@@ -35,7 +35,7 @@ public class DungeonTrivia extends JFrame implements ActionListener {
         Game n = new Game("Dungeon Trivia", 1080, 800);
         n.start();//       
         DbConnect connect = new DbConnect();
-        stats = connect.getStats();
+        stats = connect.getHighscores();
 
         for (int i = 0; i < stats.size(); i++) {
             System.out.println(stats.get(i).getName());

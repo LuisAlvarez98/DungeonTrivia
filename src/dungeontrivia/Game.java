@@ -121,9 +121,10 @@ public class Game implements Runnable {
         return height;
     }
 
-    public ArrayList<Player> getPlayers(){
+    public ArrayList<Player> getPlayers() {
         return players;
     }
+
     /**
      * getWidth method
      *
@@ -143,6 +144,8 @@ public class Game implements Runnable {
     public void init() {
         menu = new MainMenuPanel();
         controls = new InstructionsPanel();
+        endGamelvl = new EndGame(this);
+
         levelSelect = new LevelSelect();
         display = new Display(title, getWidth(), getHeight());
         display.getCanvas().addMouseListener(mouseManager);
@@ -175,9 +178,6 @@ public class Game implements Runnable {
         rectanguloUno = new Rectangle(200, 620, 10, 10);
         rectanguloDos = new Rectangle(500, 620, 10, 10);
         rectanguloTres = new Rectangle(900, 620, 10, 10);
-        
-        endGamelvl = new EndGame(this);
-
 
         display.getJframe().addKeyListener(keyManager);
 
@@ -304,11 +304,11 @@ public class Game implements Runnable {
             }
 
             keyManager.tick();
-            
+
             for (int i = 0; i < players.size(); i++) {
                 if (players.get(i).getLives() > 0) {
                     players.get(i).tick();
-                    
+
                 }
             }
 
@@ -453,7 +453,7 @@ public class Game implements Runnable {
                     Assets.openDoor.play();
                     faseMovimiento = false;
                     finalDePregunta = true;
-                    for (int i = 0; i < players.size(); i++) { 
+                    for (int i = 0; i < players.size(); i++) {
 
                         if (!getRectangulo(players.get(i).getMove()).intersects(players.get(i).getRect()) && !players.get(i).isAnswer()) {
                             players.get(i).setMoving(true);
@@ -464,7 +464,7 @@ public class Game implements Runnable {
                             players.get(i).setIdle(true);
                         }
 
-                    }   
+                    }
                 }
 
             }
@@ -503,19 +503,17 @@ public class Game implements Runnable {
                     finalDePregunta = false;
                     fasePregunta = true;
                     Assets.closeDoor.play();
-                    
+
                     endgame = false;
                     for (int i = 0; i < players.size(); i++) {
                         endgame |= (players.get(i).getLives() > 0);
                     }
-                    
-                    if(!endgame){
+
+                    if (!endgame) {
                         state = Game.STATE.ENDGAME;
                     }
                 }
             }
-            
-            
 
         } else if (state == STATE.EXIT) {
             System.exit(0);
@@ -619,10 +617,10 @@ public class Game implements Runnable {
             } else if (state == state.LEVELS) {
                 g.drawImage(Assets.level_select, 0, 0, width, height, null);
                 levelSelect.render(g, getWidth(), getHeight());
-            } else if(state == state.ENDGAME){
+            } else if (state == state.ENDGAME) {
                 g.drawImage(Assets.bg1, 0, 0, width, height, null);
                 endGamelvl.render(g, getWidth(), getHeight());
-            }else{
+            } else {
                 g.drawImage(Assets.menu, 0, 0, width, height, null);
                 menu.render(g, getWidth(), getHeight());
             }

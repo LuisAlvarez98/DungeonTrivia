@@ -94,7 +94,7 @@ public class Game implements Runnable {
         LEVELS,
         EXIT
     };
-    public static STATE state = STATE.ENDGAME;
+    public static STATE state = STATE.MENU;
 
     /**
      * Game Constructor

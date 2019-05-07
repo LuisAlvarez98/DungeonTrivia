@@ -40,18 +40,10 @@ public class EndGame {
         g.setFont(fnt1);
         g.setColor(Color.white);
         
-        //System.out.println(players.size());
-        
-        
-        
         Collections.sort(
                 players,
                 (player1, player2) -> player2.getScore()
                         - player1.getScore());
-        
-        for(int i = 0; i < players.size(); i++){
-            System.out.println(players.get(i).score);
-        }
         
         for(int i = 0; i < players.size(); i++){
             g2d.drawString(""+ (i+1) + ") ", width / 2 - 200, 300 + 100 * i);

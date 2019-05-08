@@ -89,6 +89,8 @@ public class Game implements Runnable {
     private int counter4 = 0;
 
     public static boolean paused; // paused boolean
+    public static HighScoreDialog highScoreDialog = new HighScoreDialog(false);
+    public static boolean isAvailableForHighscore;
 
     public static enum STATE {
         MENU,
@@ -153,6 +155,7 @@ public class Game implements Runnable {
      * inits the game with the display and player
      */
     public void init() {
+        highScoreDialog = new HighScoreDialog(false);
         menu = new MainMenuPanel();
         controls = new InstructionsPanel();
         playerSelect = new PlayerSelectPanel();
@@ -188,47 +191,19 @@ public class Game implements Runnable {
     }
 
     /**
-     * Load questions now work!
+     *
+     * @param isAvailableForHighscore
      */
-    public void readTxt() {
+    public static void setIsAvailableForHighscore(boolean isAvailableForHighscore) {
+        Game.isAvailableForHighscore = isAvailableForHighscore;
+    }
 
-        // The name of the file to open.
-        String fileName = "questions.txt";
-        ArrayList<String> respuestas = new ArrayList<String>();
-        Pregunta pregunta = new Pregunta();
-        preguntas.add(pregunta);
-
-        BufferedReader reader;
-        try {
-            reader = new BufferedReader(new FileReader(
-                    fileName));
-            String line = reader.readLine();
-            int counter = 0;
-            while (line != null) {
-                if (counter == 0) {
-
-                    preguntas.get(numeroPreguntas).setPregunta(line);
-                } else {
-                    respuestas.add(line);
-                }
-
-                counter++;
-                line = reader.readLine();
-                if (counter > 3) {
-
-                    preguntas.get(numeroPreguntas).setRespuestas(respuestas);
-                    respuestas = new ArrayList<String>();
-                    numeroPreguntas++;
-                    Pregunta p = new Pregunta();
-                    preguntas.add(p);
-                    counter = 0;
-                }
-            }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+    /**
+     *
+     * @return
+     */
+    public static boolean isIsAvailableForHighscore() {
+        return isAvailableForHighscore;
     }
 
     /**
@@ -286,6 +261,7 @@ public class Game implements Runnable {
                 paused = !paused;
             }
             if (!paused) {
+
                 answer = preguntas.get(counter3).getRespuestas().get(0);
                 if (firstRandomIndex == 0 && secondRandomIndex == 1) {
                     posZero = preguntas.get(counter3).getRespuestas().get(0);
@@ -583,7 +559,7 @@ public class Game implements Runnable {
             g = bs.getDrawGraphics();
             //if game has started load all stuff
             if (state == STATE.GAME) {
-               
+
                 g.drawImage(Assets.bg, 0, 0, width, height, null);
                 Font myFont = new Font("Courier New", 1, 22);
                 g.setFont(myFont);
@@ -655,9 +631,9 @@ public class Game implements Runnable {
                     }
                     g.drawString(resultado, 200, 200);
                 }
-                 if (paused) {
+                if (paused) {
                     pausePanel.render(g, getWidth(), getHeight());
-                 
+
                 }
             } else if (state == state.CONTROLS) {
                 g.drawImage(Assets.controls, 0, 0, width, height, null);
@@ -670,6 +646,7 @@ public class Game implements Runnable {
                 g.drawImage(Assets.level_select, 0, 0, width, height, null);
                 levelSelect.render(g, getWidth(), getHeight());
             } else if (state == state.ENDGAME) {
+               // highScoreDialog.setAvailable(true);
                 g.drawImage(Assets.bg1, 0, 0, width, height, null);
                 endGamelvl.render(g, getWidth(), getHeight());
                 //Player select

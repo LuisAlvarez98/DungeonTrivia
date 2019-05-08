@@ -16,6 +16,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * MouseInput utilizada para checar los eventos con el mouse
@@ -29,6 +31,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
     private boolean derecho;
     private int x;
     private int y;
+    private int contador = 0;
     DbConnect connect = new DbConnect();
 
     /**
@@ -119,6 +122,11 @@ public class MouseInput implements MouseListener, MouseMotionListener {
         }
 
         if (state == Game.STATE.LEVELS) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
             if (me.getX() >= 53 && me.getX() <= 115) {
                 if (me.getY() >= 107 && me.getY() <= 163) {
                     state = Game.STATE.MENU;
@@ -174,7 +182,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
                     numeroPreguntas = preguntas.size();
                 }
             }
-
+            
         }
         if (state == Game.STATE.GAME) {
             if (paused) {

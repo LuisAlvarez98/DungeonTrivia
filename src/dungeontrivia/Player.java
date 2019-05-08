@@ -29,6 +29,8 @@ public class Player extends Item {
     private ArrayList<Heart> hearts;
    private boolean enabled;
    private boolean answer;
+   private boolean sec;
+   private int counter4 = 0;
     
     int score;
     private boolean dead;
@@ -81,7 +83,20 @@ public class Player extends Item {
     public boolean isAnswer() {
         return answer;
     }
-
+    
+    public boolean isSec(){
+        return sec;
+    }
+    public int getCounter4(){
+        return counter4;
+    }
+    
+    public void setCounter4(int counter4){
+        this.counter4 = counter4;
+    }
+    public void setSec(boolean sec){
+        this.sec = sec;
+    }
     /**
      * decreases the player lives by one
      */

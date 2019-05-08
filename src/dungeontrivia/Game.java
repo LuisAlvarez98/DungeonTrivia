@@ -86,7 +86,6 @@ public class Game implements Runnable {
     private boolean puertaOne;
     private boolean puertaTwo;
     private boolean endgame;
-    private boolean sec;
     private int counter4 = 0;
 
     public static enum STATE {
@@ -312,7 +311,7 @@ public class Game implements Runnable {
 
 
             for (int i = 0; i < players.size(); i++) {
-                if (players.get(i).getLives() > 0 || sec) {
+                if (players.get(i).getLives() > 0 || players.get(i).isSec()) {
                     players.get(i).tick();
                 }if (players.get(i).getLives() == 0){
                     players.get(i).setDead(true);
@@ -321,14 +320,15 @@ public class Game implements Runnable {
                 }
             }
             
-            
-            if(sec){
+            for (int i = 0; i < players.size(); i++) {
+                if(players.get(i).isSec()){
 
-                if(counter4 < 80){
-                    counter4++;
-                }else{
-                sec = false;
-                
+                    if(players.get(i).getCounter4() < 40){
+                        players.get(i).setCounter4(players.get(i).getCounter4() + 1);
+                    }else{
+                    players.get(i).setSec(false);
+
+                    }
                 }
             }
 
@@ -356,7 +356,7 @@ public class Game implements Runnable {
                                     if (!posZero.equals(answer)) {
                                         players.get(i).decreasePlayerLive();
                                         if (players.get(i).getLives() == 0) {
-                                            sec = true;
+                                            players.get(i).setSec(true);
                                             players.get(i).setDead(true);
                                             players.get(i).setMoving(false);
                                             players.get(i).setIdle(false);
@@ -380,7 +380,7 @@ public class Game implements Runnable {
                                     if (!posOne.equals(answer)) {
                                         players.get(i).decreasePlayerLive();
                                         if (players.get(i).getLives() == 0) {
-                                            sec = true;
+                                            players.get(i).setSec(true);
                                             players.get(i).setDead(true);
                                             players.get(i).setMoving(false);
                                             players.get(i).setIdle(false);
@@ -404,7 +404,7 @@ public class Game implements Runnable {
                                     if (!posTwo.equals(answer)) {
                                         players.get(i).decreasePlayerLive();
                                         if (players.get(i).getLives() == 0) {
-                                            sec = true;
+                                            players.get(i).setSec(true);
                                             players.get(i).setDead(true);
                                             players.get(i).setMoving(false);
                                             players.get(i).setIdle(false);
@@ -421,7 +421,7 @@ public class Game implements Runnable {
                                 default:
                                     players.get(i).decreasePlayerLive();
                                     if (players.get(i).getLives() == 0) {
-                                        sec = true;
+                                        players.get(i).setSec(true);
                                         players.get(i).setDead(true);
                                         players.get(i).setMoving(false);
                                         players.get(i).setIdle(false);
@@ -610,7 +610,7 @@ public class Game implements Runnable {
 
                 //render stuff
                 for (int i = 0; i < players.size(); i++) {
-                    if (players.get(i).getLives() > 0 || sec) {
+                    if (players.get(i).getLives() > 0 || players.get(i).isSec()) {
                         players.get(i).render(g);
                     }   
                     

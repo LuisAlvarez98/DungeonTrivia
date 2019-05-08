@@ -75,19 +75,16 @@ public class MouseInput implements MouseListener, MouseMotionListener {
      */
     @Override
     public void mousePressed(MouseEvent me) {
-        System.out.println(me.getX() + ":" + me.getY());
         // Delimitaciones de posiciones para los botones
         if (state == Game.STATE.MENU) {
             if (me.getX() >= 433 && me.getX() <= 642) {
                 if (me.getY() >= 338 && me.getY() <= 435) {
                     //play button
-                    System.out.println("Play");
                     state = Game.STATE.LEVELS;
                 }
             }
             if (me.getX() >= 435 && me.getX() <= 643) {
                 if (me.getY() >= 616 && me.getY() <= 709) {
-                    System.out.println("Exit");
                     state = Game.STATE.EXIT;
                 }
             }
@@ -100,7 +97,6 @@ public class MouseInput implements MouseListener, MouseMotionListener {
             }
             if (me.getX() >= 992 && me.getX() <= 1067) {
                 if (me.getY() >= 599 && me.getY() <= 750) {
-                    System.out.println("Instructions");
                     state = Game.STATE.CONTROLS;
                 }
             }

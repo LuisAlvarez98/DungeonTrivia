@@ -8,45 +8,53 @@ package dungeontrivia;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * MainMenu utilizada para crear el menu principal
+ * @author Luis, Adrian, Antonio and Rodrigo
+ */
 class MainMenu extends JFrame {
 
+    // Variables
     JMenuBar menuBar;
     JMenu menu;
     JMenuItem newFile, open, save, saveas, exit;
 
+    /**
+     * MainMenu Constructor
+     */
     public MainMenu() {
+        // Establecer sus atributos
         setTitle("Menu Button");
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
 
-        // Set a background for menubutton to have a visible look
+        // Modificar el color a un color visible
         getContentPane().setBackground(Color.darkGray);
-
+        
         menuBar = new JMenuBar();
         menuBar.setBorderPainted(false);
 
         menu = new JMenu("File");
 
-        // It's my style!
         menu.setBorderPainted(false);
 
+        // Crear los items
         newFile = new JMenuItem("New");
         open = new JMenuItem("Open");
         save = new JMenuItem("Save");
         saveas = new JMenuItem("Save As");
         exit = new JMenuItem("Exit");
 
+        // Agregar los items
         menu.add(newFile);
         menu.add(open);
         menu.add(save);
         menu.add(saveas);
         menu.add(exit);
 
-        // Add menu to menubar
+        // Agregar la barra al menu
         menuBar.add(menu);
-
-        // Add(don't set) menubar to frame
         add(menuBar);
 
         // Make frame maximized for a good look

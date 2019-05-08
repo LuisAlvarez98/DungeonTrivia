@@ -5,14 +5,13 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- * ImageLoader Class
- * @author Luis Felipe Alvarez Sanchez A01194173
- * 4 Feb 2019
+ * ImageLoader Class es utilizada para cargar imagenes
+ * @author Luis, Adrian, Antonio and Rodrigo
  */
 public class ImageLoader {
     /**
-     * Image loader
-     * @param path
+     * ImageLoader Constructor
+     * @param path un <code>String</code> con la direccion de la imagen
      * @return bufferedImage
      */
   public static BufferedImage loadImage(String path) {

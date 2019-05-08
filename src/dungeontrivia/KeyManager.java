@@ -9,13 +9,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 /**
- * KeyManager Class
- *
- * @author Luis Felipe Alvarez Sanchez A01194173 4 Feb 2019
+ * KeyManager Class utilizada para poder recibir eventos del teclado
+ * @author Luis, Adrian, Antonio and Rodrigo
  */
 public class KeyManager implements KeyListener {
 
-    //Flags to move the player
+    // Flags para mover jugadores
     public boolean down;
     public boolean space;
     public boolean pause;
@@ -23,24 +22,27 @@ public class KeyManager implements KeyListener {
     public boolean save;
     public boolean load;
     
-    //player 1
+    // Player 1
     public boolean up;
     public boolean left;
     public boolean right;
-    //player 2
+    
+    // Player 2
     public boolean j;
     public boolean k;
     public boolean l;
-    //player 3
+    
+    // Player 3
     public boolean q;
     public boolean w;
     public boolean e;
-    //player 4
+    
+    // Player 4
     public boolean z;
     public boolean x;
     public boolean c;
 
-    private boolean keys[]; // to store all the flags for every key
+    private boolean keys[]; // Para guardar los flags de cada tecla
 
     /**
      * KeyManager Constructor
@@ -48,24 +50,26 @@ public class KeyManager implements KeyListener {
     public KeyManager() {
         keys = new boolean[256];
     }
-  /**
-     * keyPressed method
+    
+    /**
+     * Metodo para marcar una teclada como presionada
      *
-     * @param e
+     * @param e un <code>KeyEvent</code> con el evento de la tecla
      */
     @Override
     public void keyPressed(KeyEvent e) {
         // set true to every key pressed
         keys[e.getKeyCode()] = true;
     }
-    /*
-    Set Key Down method
-    */
+    
+    /**
+     * Metodo para marcar una tecla como presionada (actualmente)
+     */
     public void setKeyDown(){
           keys[KeyEvent.VK_P] = false;
     }
     /**
-     * KeyReleased method
+     * Metodo para marcar una tecla como soltada
      * @param e 
      */
     @Override
@@ -74,26 +78,34 @@ public class KeyManager implements KeyListener {
         keys[e.getKeyCode()] = false;
 
     }
-
+    
+    /**
+     * Metodo para actualizar checker con el estado de la tecla
+     * @param key un <code>int</code> con el valor de la tecla
+     * @param checker un <code>boolean</code> con el estado de checker
+     */
+    public void keyCheck(int key, boolean checker) {
+        keys[key] = checker;
+    }
+    
+    /**
+     * Metodo para acceder el valor de pausa
+     * @return un <code>boolean</code> con el estado de pantalla
+     */
     public boolean getPause() {
         return pause;
     }
 
     /**
-     * setPause method
-     *
-     * @param pause
+     * Metodo para modifciar el estado de pausa
+     * @param pause un <code>boolean</code> con el nuevo estado de pausa
      */
     public void setPause(boolean pause) {
         this.pause = pause;
     }
-
-    public void keyCheck(int key, boolean checker) {
-        keys[key] = checker;
-    }
-
+    
     /**
-     * to enable or disable moves on every tick
+     * Para actualizar los valores de las teclas
      */
     public void tick() {
         up = keys[KeyEvent.VK_UP];
@@ -115,10 +127,15 @@ public class KeyManager implements KeyListener {
         space = keys[KeyEvent.VK_SPACE];
         pause = keys[KeyEvent.VK_P];
         enter = keys[KeyEvent.VK_ENTER];
+        
         save = keys[KeyEvent.VK_S];
         load = keys[KeyEvent.VK_L];
     }
 
+    /**
+     * Metodo para checar si una llave fue escrita
+     * @param ke un <code>KeyEvent</code>
+     */
     @Override
     public void keyTyped(KeyEvent ke) {
     }

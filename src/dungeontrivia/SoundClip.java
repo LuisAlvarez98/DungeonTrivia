@@ -8,8 +8,8 @@ import javax.sound.sampled.AudioSystem;
 import java.io.IOException;
 import java.net.URL;
 /**
- *
- * @author Luis Felipe Alvarez
+ * SoundClip utilizada para crear sonidos en el juego
+ * @author Luis, Adrian, Antonio and Rodrigo
  */
 public class SoundClip {
 

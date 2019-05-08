@@ -3,12 +3,13 @@ package dungeontrivia;
 import java.awt.image.BufferedImage;
 
 /**
- * Assets Class
+ * Assets Class es una clase para instanciar las imagenes y sonidos  
  *
- * @author Luis Felipe Alvarez Sanchez 4 Feb 2019
+ * @author Luis, Adrian, Antonio and Rodrigo
  */
 public class Assets {
 
+    // Assets generales
     public static SoundClip sound;
     public static SoundClip deathSound;
     public static SoundClip openDoor;
@@ -44,7 +45,7 @@ public class Assets {
     public static BufferedImage p4Left[];
 
     /**
-     * loads the assets
+     * Cargar el asset
      */
     public static void init() {
         back = ImageLoader.loadImage("/images/back.png");
@@ -68,30 +69,31 @@ public class Assets {
 
         SpreadSheet spritesheet = new SpreadSheet(sprites);
 
-        //player 1
+        // Player 1
         p1Front = spritesheet.crop(50, 0, 50, 71);
         p1Back = spritesheet.crop(50, 216, 50, 71);
         p1Right = new BufferedImage[3];
         p1Left = new BufferedImage[3];
 
-        //player 2
+        // Player 2
         p2Front = spritesheet.crop(50, 284, 50, 71);
         p2Back = spritesheet.crop(50, 502, 50, 71);
         p2Right = new BufferedImage[3];
         p2Left = new BufferedImage[3];
 
-        //player 3
+        // Player 3
         p3Front = spritesheet.crop(350, 284, 50, 71);
         p3Back = spritesheet.crop(350, 502, 50, 71);
         p3Right = new BufferedImage[3];
         p3Left = new BufferedImage[3];
 
-        //player 4
+        // Player 4
         p4Front = spritesheet.crop(505, 290, 50, 71);
         p4Back = spritesheet.crop(505, 502, 50, 71);
         p4Right = new BufferedImage[3];
         p4Left = new BufferedImage[3];
-
+        
+        // Cargar los sprite sheets a un arreglo de imagenes
         for (int i = 0; i < 3; i++) {
             p1Right[i] = spritesheet.crop(i * 50, 144, 51, 71);
             p1Left[i] = spritesheet.crop(i * 50, 71, 51, 71);

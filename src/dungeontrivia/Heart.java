@@ -3,20 +3,20 @@ package dungeontrivia;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 /**
- *  Heart class
- * @author Luis Felipe Alvarez Sanchez A01194173
- *  10 Feb 2019
+ * Heart class utilizado para poder instanciar las vidas de los jugadores
+ * en pantalla
+ * @author Luis, Adrian, Antonio and Rodrigo
  */
 public class Heart extends Item{
-    //Instance variables
+    // Variables
     private int width;
     private int height;
     /**
-     * 
-     * @param x
-     * @param y
-     * @param width
-     * @param height
+     * Constructor del Heart
+     * @param x un <code>int</code> con la posicion en el eje x
+     * @param y un <code>int</code> con la posicion en el eje y
+     * @param width un <code>int</code> con la anchura
+     * @param height un <code>int</code> con la altura
      */
     public Heart(int x, int y, int width, int height) {
         super(x, y);
@@ -24,44 +24,50 @@ public class Heart extends Item{
         this.height = height;
         this.rect = new Rectangle(x,y, width, height);
     }
+    
     /**
-     * getHeight method
+     * Metodo para acceder a la altura
      * @return height
      */
     public int getHeight() {
         return height;
     }
+    
     /**
-     * getWidth method
+     * Metodo para acceder a la anchura
      * @return width
      */
     public int getWidth() {
         return width;
     }
+    
     /**
-     * setHeight method
+     * Metodo para modificar a la altura
      * @param height 
      */
     public void setHeight(int height) {
         this.height = height;
     }
+    
     /**
-     * setWidth method
+     * Metodo para modificar la anchura
      * @param width 
      */
     public void setWidth(int width) {
         this.width = width;
     }
-     /**
-      * tick method
+    
+    /**
+      * Metodo para actualizar
      */
     @Override
     public void tick() {  
         
     }
+    
     /**
-     * Renders the heart
-     * @param g 
+     * Metodo para pintar
+     * @param g un <code>Graphics</code> con el graficador
      */
     @Override
     public void render(Graphics g) {

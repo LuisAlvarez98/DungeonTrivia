@@ -261,9 +261,14 @@ public class DbConnect {
     /*
         Insert
      */
-    void insertTop(String name, int score) {
+    void insertTop(String name, int stat) {
         try {
-            DungeonTrivia.st.execute("INSERT INTO stats " + "VALUES (''," + name + "," + score +")");
+           String insert = "INSERT INTO stats (name, stat)"
+            + " values (?, ?)";
+            PreparedStatement preparedStmt = DungeonTrivia.con.prepareStatement(insert);
+            preparedStmt.setString(1, name);
+            preparedStmt.setInt(2, stat);
+            preparedStmt.execute();
         } catch (Exception e) {
             System.out.print("Error" + e);
         }

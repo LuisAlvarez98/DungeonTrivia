@@ -11,6 +11,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Collections;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  * EndGame class es una clase para instanciar el Highscore al final del juego
@@ -72,14 +74,13 @@ public class EndGame {
                 - player1.getScore());
 
         // Pintar los puntajes de los jugadores
-        if (isGameDone()) {
-            connect.insertTop("Anon", players.get(0).getScore());
-        }
+        //System.exit(0);
         for (int i = 0; i < players.size(); i++) {
             g2d.drawString("" + (i + 1) + ") ", width / 2 - 200, 300 + 100 * i);
             g2d.drawString("Player " + players.get(i).getPlayerNum(), width / 2, 300 + 100 * i);
             g2d.drawString("" + players.get(i).getScore(), width / 2 + 200, 300 + 100 * i);
 
         }
+
     }
 }

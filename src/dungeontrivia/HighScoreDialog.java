@@ -49,11 +49,17 @@ public class HighScoreDialog {
         f.add(textfield);
         f.add(label);
         f.add(b);
-        f.setSize(300, 200);
+        f.setSize(400, 200);
         f.setLayout(null);
         f.setLocationRelativeTo(null);
         f.setVisible(false);
-       
+        f.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+               f.setVisible(false);
+               setHighscoreUpdated(true);
+            }
+        });
         //action listener
         b.addActionListener(new ActionListener() {
 

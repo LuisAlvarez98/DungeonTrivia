@@ -33,7 +33,7 @@ public class DungeonTrivia extends JFrame implements ActionListener {
      * Metodo Main
      */
     public static void main(String[] args) {
-        n = new Game("Dungeon Trivia", 1080, 800);
+        n = new Game("Dungeon Trivia - Arkamys", 1080, 800);
         n.start();
     }
 

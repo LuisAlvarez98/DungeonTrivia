@@ -6,22 +6,12 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferStrategy;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 
 /**
- * Dungeon Trivia
+ * Dungeon Trivia MAIN GAME CLASS- ESTRUCTURA COMPLETA DEL VIDEOJUEGO
  *
- * @author Luis Felipe Alvarez Sanchez
+ * @author Luis, Adrian, Antonio and Rodrigo
  */
 public class Game implements Runnable {
 
@@ -92,6 +82,7 @@ public class Game implements Runnable {
     public static HighScoreDialog highScoreDialog = new HighScoreDialog(false);
     public static boolean isAvailableForHighscore;
 
+    //Maneja los estados del juego
     public static enum STATE {
         MENU,
         GAME,
@@ -129,17 +120,20 @@ public class Game implements Runnable {
     public int getHeight() {
         return height;
     }
+
     /**
      * getPlayers method
+     *
      * @return players
      */
     public ArrayList<Player> getPlayers() {
         return players;
     }
-    
+
     /**
      * setNumPlayers method
-     * @param numPlayers 
+     *
+     * @param numPlayers
      */
     public void setNumPlayers(int numPlayers) {
         this.numPlayers = numPlayers;
@@ -156,6 +150,7 @@ public class Game implements Runnable {
 
     /**
      * isFasePregunta method
+     *
      * @return fasePregunta
      */
     public boolean isFasePregunta() {
@@ -200,6 +195,7 @@ public class Game implements Runnable {
 
     /**
      * setIsAvailableForHighscore method
+     *
      * @param isAvailableForHighscore
      */
     public static void setIsAvailableForHighscore(boolean isAvailableForHighscore) {
@@ -208,6 +204,7 @@ public class Game implements Runnable {
 
     /**
      * isIsAvailableForHighscore method
+     *
      * @return isIsAvailableForHighscore
      */
     public static boolean isIsAvailableForHighscore() {
@@ -250,7 +247,8 @@ public class Game implements Runnable {
 
     /**
      * Metodo que actualiza el tiempo a desplegar en la pantalla
-     * @param time 
+     *
+     * @param time
      */
     private void updateTimer(int time) {
 
@@ -266,12 +264,14 @@ public class Game implements Runnable {
      */
     private void tick() {
         //tick
+        //Si esta corriendo el juego
         if (state == STATE.GAME) {
             keyManager.tick();
             if (getKeyManager().pause) {
                 getKeyManager().setKeyDown();
                 paused = !paused;
             }
+            //Si no esta en pausa
             if (!paused) {
 
                 //se obtiene la respuesta a la pregunta
@@ -303,7 +303,7 @@ public class Game implements Runnable {
                     posOne = preguntas.get(counter3).getRespuestas().get(1);
                     posTwo = preguntas.get(counter3).getRespuestas().get(0);
                 }
-                
+
                 //se tickea los players, y si uno muere, se establece como muerto
                 for (int i = 0; i < players.size(); i++) {
                     if (players.get(i).getLives() > 0 || players.get(i).isSec()) {
@@ -315,7 +315,7 @@ public class Game implements Runnable {
                         players.get(i).setIdle(false);
                     }
                 }
-                
+
                 //Contador para la animacion de muerte de un player
                 for (int i = 0; i < players.size(); i++) {
                     if (players.get(i).isSec()) {
@@ -336,12 +336,12 @@ public class Game implements Runnable {
                         timerStart--;
                         updateTimer(timerStart);
                     } else {
-                        
+
                         //Primera fase del juego, donde se hace la pregunta y corre el tiempo.
                         if (fasePregunta) {
 
                             for (int i = 0; i < numPlayers; i++) {
-                                
+
                                 //por cada jugador, se obtiene su movimiento
                                 switch (players.get(i).getMove()) {
                                     case 'l':
@@ -555,9 +555,10 @@ public class Game implements Runnable {
             System.exit(0);
         }
     }
-    
+
     /**
      * Metodo auxiliar que regresa un rectangulo que corresponde a cada puerta
+     *
      * @param c
      * @return rectanguloUno o rectanguloDos o rectanguloTres
      */
@@ -572,7 +573,7 @@ public class Game implements Runnable {
     }
 
     /**
-     * render method where all the magic happens
+     * render method 
      */
     private void render() {
         bs = display.getCanvas().getBufferStrategy();

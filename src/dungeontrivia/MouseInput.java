@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dungeontrivia;
 
 import static dungeontrivia.DungeonTrivia.n;
@@ -242,7 +237,6 @@ public class MouseInput implements MouseListener, MouseMotionListener {
             if (me.getX() >= 53 && me.getX() <= 115) {
                 if (me.getY() >= 107 && me.getY() <= 163) {
                     state = Game.STATE.MENU;
-                    System.out.println("ajaja");
                 }
             }
         }

@@ -24,7 +24,7 @@ public class DbConnect {
     public DbConnect() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            //DungeonTrivia.con = DriverManager.getConnection("jdbc:mysql://localhost:3308/dungeontrivia", "root", "");
+            //AWS Connection
             DungeonTrivia.con = DriverManager.getConnection("jdbc:mysql://dungeontriviafinal.cyqk3zuszau6.us-east-2.rds.amazonaws.com:3306/dungeontrivia", "lfas98", "pipepipe");
             DungeonTrivia.st = DungeonTrivia.con.createStatement();
             System.out.println("Connected to DB.");
@@ -259,12 +259,12 @@ public class DbConnect {
     }
 
     /*
-        Insert
+        Insert top player query
      */
     void insertTop(String name, int stat) {
         try {
-           String insert = "INSERT INTO stats (name, stat)"
-            + " values (?, ?)";
+            String insert = "INSERT INTO stats (name, stat)"
+                    + " values (?, ?)";
             PreparedStatement preparedStmt = DungeonTrivia.con.prepareStatement(insert);
             preparedStmt.setString(1, name);
             preparedStmt.setInt(2, stat);

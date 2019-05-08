@@ -24,7 +24,7 @@ public class Animation {
 
     /**
      * Utilizado para crear una instancia de una animacion
-     * 
+     *
      * @param frame un <code>BufferedImage</code> con la imagen a cargar
      * @param speed un <code>int</code> con la velocidad de la imagen
      */
@@ -58,9 +58,9 @@ public class Animation {
     public BufferedImage getCurrentFrame() {
         return frames[index];
     }
-   
+
     /**
-     * Utilizado para actualizar 
+     * Utilizado para actualizar
      */
     public void tick() {
         timer += System.currentTimeMillis() - lastTime;

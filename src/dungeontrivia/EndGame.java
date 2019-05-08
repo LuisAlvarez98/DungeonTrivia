@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dungeontrivia;
 
 import static dungeontrivia.Game.highScoreDialog;
@@ -12,8 +7,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Collections;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 /**
  * EndGame class es una clase para instanciar el Highscore al final del juego
@@ -35,14 +28,6 @@ public class EndGame {
     public EndGame(Game game) {
         this.game = game;
         players = new ArrayList<Player>(game.getPlayers());
-    }
-
-    public static void setGameDone(boolean gameDone) {
-        EndGame.gameDone = gameDone;
-    }
-
-    public static boolean isGameDone() {
-        return gameDone;
     }
 
     /**
@@ -89,4 +74,23 @@ public class EndGame {
         }
 
     }
+
+    /**
+     * setGameDone method
+     *
+     * @param gameDone
+     */
+    public static void setGameDone(boolean gameDone) {
+        EndGame.gameDone = gameDone;
+    }
+
+    /**
+     * isGameDone method
+     *
+     * @return gameDone
+     */
+    public static boolean isGameDone() {
+        return gameDone;
+    }
+
 }

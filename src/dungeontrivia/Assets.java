@@ -18,6 +18,11 @@ public class Assets {
     public static BufferedImage foco;
     public static BufferedImage qmark;
     public static BufferedImage back;
+    public static BufferedImage P1;
+    public static BufferedImage P2;
+    public static BufferedImage P3;
+    public static BufferedImage P4;
+    public static BufferedImage bg_hs;
 
     //Player 1
     public static BufferedImage p1Front;
@@ -47,6 +52,7 @@ public class Assets {
      * loads the assets
      */
     public static void init() {
+        bg_hs = ImageLoader.loadImage("/images/bghs.png");
         back = ImageLoader.loadImage("/images/back.png");
         bg = ImageLoader.loadImage("/images/bg_end.jpg");
         bg1 = ImageLoader.loadImage("/images/bg.png");
@@ -65,6 +71,11 @@ public class Assets {
         puertaMal = ImageLoader.loadImage("/images/Puerta mal 1.png");
         puertaBien = ImageLoader.loadImage("/images/Puerta Bien.png");
         qmark = ImageLoader.loadImage("/images/qmark.png");
+
+        P1 = ImageLoader.loadImage("/images/1P.png");
+        P2 = ImageLoader.loadImage("/images/P2.png");
+        P3 = ImageLoader.loadImage("/images/3P.png");
+        P4 = ImageLoader.loadImage("/images/4P.png");
 
         SpreadSheet spritesheet = new SpreadSheet(sprites);
 

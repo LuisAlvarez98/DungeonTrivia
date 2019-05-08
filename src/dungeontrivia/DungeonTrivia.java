@@ -24,23 +24,17 @@ public class DungeonTrivia extends JFrame implements ActionListener {
     public static Statement st;
     public static ResultSet rs;
 
-    public static ArrayList<Stat> stats = new ArrayList<Stat>();
+  
 
     public static boolean offline;
+    public static Game n;
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Game n = new Game("Dungeon Trivia", 1080, 800);
-        n.start();//       
-        DbConnect connect = new DbConnect();
-        stats = connect.getHighscores();
-
-        for (int i = 0; i < stats.size(); i++) {
-            System.out.println(stats.get(i).getName());
-            System.out.println(stats.get(i).getScore());
-        }
+        n = new Game("Dungeon Trivia", 1080, 800);
+        n.start();
     }
 
     @Override

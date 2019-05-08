@@ -49,9 +49,9 @@ public class Game implements Runnable {
     private int counter2 = 0;
     private boolean timerOff = false;
     //Players
-    private ArrayList<Player> players = new ArrayList<Player>();
+    public static ArrayList<Player> players = new ArrayList<Player>();
 
-    private int numPlayers = 4;
+    public static int numPlayers = 4;
     //EndPlayers
     private String answer;
     private String posZero;
@@ -79,6 +79,8 @@ public class Game implements Runnable {
     private InstructionsPanel controls;
     private LevelSelect levelSelect;
     private EndGame endGamelvl;
+    private HighscoresPanel highscoresPanel;
+    PlayerSelectPanel playerSelect;
 
     private boolean puertaZero;
     private boolean puertaOne;
@@ -92,6 +94,7 @@ public class Game implements Runnable {
         HIGHSCORES,
         CONTROLS,
         LEVELS,
+        PLAYERSELECT,
         EXIT
     };
     public static STATE state = STATE.ENDGAME;
@@ -125,6 +128,10 @@ public class Game implements Runnable {
         return players;
     }
 
+    public void setNumPlayers(int numPlayers) {
+        this.numPlayers = numPlayers;
+    }
+    
     /**
      * getWidth method
      *
@@ -144,8 +151,9 @@ public class Game implements Runnable {
     public void init() {
         menu = new MainMenuPanel();
         controls = new InstructionsPanel();
-
+        playerSelect = new PlayerSelectPanel();
         levelSelect = new LevelSelect();
+        highscoresPanel = new HighscoresPanel();
         display = new Display(title, getWidth(), getHeight());
         display.getCanvas().addMouseListener(mouseManager);
         Assets.init();
@@ -164,14 +172,7 @@ public class Game implements Runnable {
         }
         thirdRandomIndex = 3 - (firstRandomIndex + secondRandomIndex);
 
-        //Create objectcs
-        for (int i = 0; i < numPlayers; i++) {
-            Player player = new Player(200 + 200 * i, 620, 1, 100, 120, this, 3, i + 1);
-            player.getHearts().add(new Heart(player.getX() + 10, player.getY(), 20, 20));
-            player.getHearts().add(new Heart(player.getX() + 30, player.getY(), 20, 20));
-            player.getHearts().add(new Heart(player.getX() + 50, player.getY(), 20, 20));
-            players.add(player);
-        }
+      
 
         //Player player = new Player(200, 620, 1, 10, 10, this, 1);
         rectanguloUno = new Rectangle(200, 620, 10, 10);
@@ -276,6 +277,7 @@ public class Game implements Runnable {
      */
     private void tick() {
         //tick
+    
         if (state == STATE.GAME) {
             answer = preguntas.get(counter3).getRespuestas().get(0);
             if (firstRandomIndex == 0 && secondRandomIndex == 1) {
@@ -306,7 +308,7 @@ public class Game implements Runnable {
 
             keyManager.tick();
 
-            for (int i = 0; i < players.size(); i++) {
+            for (int i = 0; i < numPlayers; i++) {
                 if (players.get(i).getLives() > 0) {
                     players.get(i).tick();
 
@@ -323,7 +325,7 @@ public class Game implements Runnable {
 
                     if (fasePregunta) {
 
-                        for (int i = 0; i < players.size(); i++) {
+                        for (int i = 0; i < numPlayers; i++) {
 
                             switch (players.get(i).getMove()) {
                                 case 'l':
@@ -615,12 +617,20 @@ public class Game implements Runnable {
             } else if (state == state.CONTROLS) {
                 g.drawImage(Assets.controls, 0, 0, width, height, null);
                 controls.render(g, getWidth(), getHeight());
-            } else if (state == state.LEVELS) {
+            } else if (state == state.HIGHSCORES) {
+                g.drawImage(Assets.bg_hs, 0, 0, width, height, null);
+                highscoresPanel.render(g, getWidth(), getHeight());
+                //Player select
+            }else if (state == state.LEVELS) {
                 g.drawImage(Assets.level_select, 0, 0, width, height, null);
                 levelSelect.render(g, getWidth(), getHeight());
             } else if (state == state.ENDGAME) {
                 g.drawImage(Assets.bg1, 0, 0, width, height, null);
                 endGamelvl.render(g, getWidth(), getHeight());
+                //Player select
+            } else if (state == state.PLAYERSELECT) {
+                g.drawImage(Assets.bg1, 0, 0, width, height, null);
+                playerSelect.render(g, getWidth(), getHeight());
             } else {
                 g.drawImage(Assets.menu, 0, 0, width, height, null);
                 menu.render(g, getWidth(), getHeight());

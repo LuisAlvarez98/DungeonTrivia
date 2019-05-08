@@ -37,7 +37,7 @@ public class Game implements Runnable {
     private KeyManager keyManager; //key manager
     private MouseInput mouseManager;
 
-    private ArrayList<Pregunta> preguntas = new ArrayList<Pregunta>();
+    public static ArrayList<Pregunta> preguntas = new ArrayList<Pregunta>();
     private int numeroPreguntas = 0;
     private int firstRandomIndex;
     private int secondRandomIndex;
@@ -132,7 +132,7 @@ public class Game implements Runnable {
     public void setNumPlayers(int numPlayers) {
         this.numPlayers = numPlayers;
     }
-    
+
     /**
      * getWidth method
      *
@@ -158,7 +158,7 @@ public class Game implements Runnable {
         display = new Display(title, getWidth(), getHeight());
         display.getCanvas().addMouseListener(mouseManager);
         Assets.init();
-        readTxt();
+        // readTxt();
 
         Assets.sound.setLooping(true);
         Assets.sound.play();
@@ -173,15 +173,12 @@ public class Game implements Runnable {
         }
         thirdRandomIndex = 3 - (firstRandomIndex + secondRandomIndex);
 
-      
-
         //Player player = new Player(200, 620, 1, 10, 10, this, 1);
         rectanguloUno = new Rectangle(200, 620, 10, 10);
         rectanguloDos = new Rectangle(500, 620, 10, 10);
         rectanguloTres = new Rectangle(900, 620, 10, 10);
 
         //endGamelvl = new EndGame(this);
-
         display.getJframe().addKeyListener(keyManager);
 
     }
@@ -278,7 +275,7 @@ public class Game implements Runnable {
      */
     private void tick() {
         //tick
-    
+
         if (state == STATE.GAME) {
             answer = preguntas.get(counter3).getRespuestas().get(0);
             if (firstRandomIndex == 0 && secondRandomIndex == 1) {
@@ -309,24 +306,24 @@ public class Game implements Runnable {
 
             keyManager.tick();
 
-
             for (int i = 0; i < players.size(); i++) {
                 if (players.get(i).getLives() > 0 || players.get(i).isSec()) {
                     players.get(i).tick();
-                }if (players.get(i).getLives() == 0){
+                }
+                if (players.get(i).getLives() == 0) {
                     players.get(i).setDead(true);
                     players.get(i).setMoving(false);
                     players.get(i).setIdle(false);
                 }
             }
-            
-            for (int i = 0; i < players.size(); i++) {
-                if(players.get(i).isSec()){
 
-                    if(players.get(i).getCounter4() < 40){
+            for (int i = 0; i < players.size(); i++) {
+                if (players.get(i).isSec()) {
+
+                    if (players.get(i).getCounter4() < 40) {
                         players.get(i).setCounter4(players.get(i).getCounter4() + 1);
-                    }else{
-                    players.get(i).setSec(false);
+                    } else {
+                        players.get(i).setSec(false);
 
                     }
                 }
@@ -612,8 +609,8 @@ public class Game implements Runnable {
                 for (int i = 0; i < players.size(); i++) {
                     if (players.get(i).getLives() > 0 || players.get(i).isSec()) {
                         players.get(i).render(g);
-                    }   
-                    
+                    }
+
                     for (int j = 0; j < players.get(i).getLives(); j++) {
                         Heart heart = players.get(i).getHearts().get(j);
                         heart.render(g);
@@ -655,7 +652,7 @@ public class Game implements Runnable {
                 g.drawImage(Assets.bg_hs, 0, 0, width, height, null);
                 highscoresPanel.render(g, getWidth(), getHeight());
                 //Player select
-            }else if (state == state.LEVELS) {
+            } else if (state == state.LEVELS) {
                 g.drawImage(Assets.level_select, 0, 0, width, height, null);
                 levelSelect.render(g, getWidth(), getHeight());
             } else if (state == state.ENDGAME) {

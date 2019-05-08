@@ -62,4 +62,31 @@ public class DbConnect {
         }
         return stats;
     }
+
+    public ArrayList<Pregunta> getQuestions() {
+        ArrayList<Pregunta> questions = new ArrayList<Pregunta>();
+
+        try {
+
+            String query = "SELECT * FROM questions WHERE type = 'history'";
+            DungeonTrivia.rs = DungeonTrivia.st.executeQuery(query);
+
+            while (DungeonTrivia.rs.next()) {
+                ArrayList<String> respuestas = new ArrayList<String>();
+                String question = DungeonTrivia.rs.getString("question");
+                String type = DungeonTrivia.rs.getString("type");
+                String ans1 = DungeonTrivia.rs.getString("ans1");
+                String ans2 = DungeonTrivia.rs.getString("ans2");
+                String ans3 = DungeonTrivia.rs.getString("ans3");
+                respuestas.add(ans1);
+                respuestas.add(ans2);
+                respuestas.add(ans3);
+                
+                questions.add(new Pregunta(question, type,respuestas));
+            }
+        } catch (Exception e) {
+            System.out.print("Error" + e);
+        }
+        return questions;
+    }
 }

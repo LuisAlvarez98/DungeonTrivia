@@ -7,6 +7,7 @@ package dungeontrivia;
 
 import static dungeontrivia.DungeonTrivia.n;
 import static dungeontrivia.Game.players;
+import static dungeontrivia.Game.preguntas;
 import static dungeontrivia.Game.state;
 import static dungeontrivia.HighscoresPanel.stats;
 import java.awt.event.MouseEvent;
@@ -122,6 +123,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
             if (me.getX() >= 296 && me.getX() <= 503) {
                 if (me.getY() >= 359 && me.getY() <= 393) {
                     state = Game.STATE.PLAYERSELECT;
+                    preguntas =connect.getQuestions();
                     System.out.println("ajaja");
                 }
             }

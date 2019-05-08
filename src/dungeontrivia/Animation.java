@@ -52,7 +52,7 @@ public class Animation {
     public BufferedImage getCurrentFrame() {
         return frames[index];
     }
-
+   
     /**
      * Used to tick the animation in the main tick method
      */

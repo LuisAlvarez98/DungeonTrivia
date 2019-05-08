@@ -31,6 +31,8 @@ public class Player extends Item {
    private boolean answer;
     
     int score;
+    private boolean dead;
+    private Animation death;
     /**
      * Player constructor
      *
@@ -61,6 +63,7 @@ public class Player extends Item {
         enabled = true;
         move = 'n';
         answer = false;
+        dead = false;
     }
 
     public void setScore(int score) {
@@ -78,7 +81,7 @@ public class Player extends Item {
     public boolean isAnswer() {
         return answer;
     }
-    
+
     /**
      * decreases the player lives by one
      */
@@ -163,6 +166,10 @@ public class Player extends Item {
         this.moving = moving;
     }
     
+    public void setDead(boolean dead){
+        this.dead = dead;
+    }
+    
     public void setIdle(boolean idle){
         this.idle = idle;
     }
@@ -202,6 +209,7 @@ public class Player extends Item {
     
     public void setAnimations(){
         
+        this.death = new Animation(Assets.explosion, 100);
         switch(playerNum){
             case 1:
                 this.leftAnim = new Animation(Assets.p1Left, 100);
@@ -226,7 +234,7 @@ public class Player extends Item {
      */
     @Override
     public void tick() {
-        
+        System.out.println(dead);
         if(enabled){
         switch(playerNum){
             case 1:
@@ -325,6 +333,7 @@ public class Player extends Item {
         //this.playerAnim.tick();
         this.leftAnim.tick();
         this.rightAnim.tick();
+        this.death.tick();
     }
 
     /**
@@ -385,6 +394,11 @@ public class Player extends Item {
                 g.drawImage(rightAnim.getCurrentFrame(), getX(), getY(), getWidth(), getHeight(), null);
             }
         }
+        if(dead){
+            System.out.println("Holafdsafdsafdsafdsafdsafds");
+            g.drawImage(death.getCurrentFrame(), getX(), getY(), getWidth(), getHeight(), null);
+        }
+        
         
     }
 }

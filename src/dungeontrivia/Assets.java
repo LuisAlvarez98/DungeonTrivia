@@ -47,7 +47,8 @@ public class Assets {
     public static BufferedImage p4Back;
     public static BufferedImage p4Right[];
     public static BufferedImage p4Left[];
-
+    
+    public static BufferedImage explosion[];
     /**
      * loads the assets
      */
@@ -78,6 +79,7 @@ public class Assets {
         P4 = ImageLoader.loadImage("/images/4P.png");
 
         SpreadSheet spritesheet = new SpreadSheet(sprites);
+        SpreadSheet spritesheet2 = new SpreadSheet(ImageLoader.loadImage("/images/explosion.png"));
 
         //player 1
         p1Front = spritesheet.crop(50, 0, 50, 71);
@@ -102,7 +104,9 @@ public class Assets {
         p4Back = spritesheet.crop(505, 502, 50, 71);
         p4Right = new BufferedImage[3];
         p4Left = new BufferedImage[3];
-
+        
+        explosion = new BufferedImage[15];
+        
         for (int i = 0; i < 3; i++) {
             p1Right[i] = spritesheet.crop(i * 50, 144, 51, 71);
             p1Left[i] = spritesheet.crop(i * 50, 71, 51, 71);
@@ -117,7 +121,10 @@ public class Assets {
             p4Left[i] = spritesheet.crop(455 + (i * 50), 358, 51, 71);
 
         }
-
+        
+        for(int i = 0; i < 15; i++){
+            explosion[i] = spritesheet2.crop(i*52,0,52,62);
+        }
     }
 
 }

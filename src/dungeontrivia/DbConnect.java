@@ -14,20 +14,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- * DbConnect Class In charge of connecting the java application to the MySQL
- * database, also in charge of getting all the data from the tables in the
- * database.
+ * DbConnect Class es utilizado para poder conectar la aplicacion de Java al
+ * servidor de MySQL y acceder a la informacion de la base de datos.
  *
- * @author Luis Alvarez
- * @since 09/10/2016
- * @version 1.0
- *
+ * @author Luis, Adrian, Antonio and Rodrigo
  */
 public class DbConnect {
 
     /**
-     * DbConnect Constructor In charge of connecting the java application to the
-     * MySQL database
+     * Constructor con el proposito de conectar la aplicacion al servidor
      *
      */
     public DbConnect() {
@@ -45,9 +40,9 @@ public class DbConnect {
     }
 
     /**
-     * gets stats
+     * Obtiene los datos del Highscore
      *
-     * @return stats
+     * @return stats un <code>Stat</code> con un arreglo de estadisticas
      */
     public ArrayList<Stat> getHighscores() {
         ArrayList<Stat> stats = new ArrayList<Stat>();

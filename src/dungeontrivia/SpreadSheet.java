@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
  * SpreadSheet class is used to load and crop the sprites of an image into
  * frames
  *
- * @author Antonio and Rodrigo
+ * @author Luis, Adrian, Antonio and Rodrigo
  */
 public class SpreadSheet {
 

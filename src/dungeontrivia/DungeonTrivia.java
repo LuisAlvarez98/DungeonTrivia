@@ -15,28 +15,32 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 /**
- *
- * @author luisfelipealvarez
+ * DungeonTrivia class es utilizada para poder ejecutar el metodo main
+ * @author Luis, Adrian, Antonio and Rodrigo
  */
 public class DungeonTrivia extends JFrame implements ActionListener {
 
+    // Variables
     public static Connection con;
     public static Statement st;
     public static ResultSet rs;
 
-  
 
     public static boolean offline;
     public static Game n;
 
     /**
-     * @param args the command line arguments
+     * Metodo Main
      */
     public static void main(String[] args) {
         n = new Game("Dungeon Trivia", 1080, 800);
         n.start();
     }
-
+    
+    /**
+     * Metodo heredado por extension
+     * @param ae 
+     */
     @Override
     public void actionPerformed(ActionEvent ae) {
 

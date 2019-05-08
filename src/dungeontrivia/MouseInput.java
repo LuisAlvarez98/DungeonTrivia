@@ -15,36 +15,58 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 /**
- *
- * @author luisf
+ * MouseInput utilizada para checar los eventos con el mouse
+ * @author Luis, Adrian, Antonio and Rodrigo
  */
 public class MouseInput implements MouseListener, MouseMotionListener {
 
+    // Variables
     private boolean izquierdo;
     private boolean derecho;
     private int x;
     private int y;
     DbConnect connect = new DbConnect();
 
+    /**
+     * Constructor MouseInput
+     */
     public MouseInput() {
 
     }
 
+    /**
+     * Metodo para acceder la x
+     * @return un <code>int</code> con la posicion en x
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * Metodo para acceder la y
+     * @return un <code>int</code> con la posicion en y
+     */
     public int getY() {
         return y;
     }
 
+    /**
+     * Metodo para actuar en case de pinchar el mouse
+     * @param me 
+     */
     @Override
     public void mouseClicked(MouseEvent me) {
     }
-
+    
+    /**
+     * Metodo para actuar en caso de tener el mouse presionado
+     * @param me 
+     */
     @Override
     public void mousePressed(MouseEvent me) {
         System.out.println(me.getX() + ":" + me.getY());
+
+        // Delimitaciones de posiciones para los botones
 
         if (state == Game.STATE.MENU) {
             if (me.getX() >= 433 && me.getX() <= 642) {

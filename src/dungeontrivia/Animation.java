@@ -8,20 +8,26 @@ package dungeontrivia;
 import java.awt.image.BufferedImage;
 
 /**
- * Animation class is used to handle animations from other objects
+ * Animation class es utilizada para poder generar y cargar una animacion
  *
- * @author Antonio and Rodrigo
+ * @author Luis, Adrian, Antonio and Rodrigo
  */
 public class Animation {
 
     // Variables
-    private int speed;              // to store the speed
-    private int index;              // to store the frame index
-    private long lastTime;          // to store the system's last time
-    private long timer;             // to store the system's current time
-    private BufferedImage[] frames;
-    private BufferedImage frame;
+    private int speed;              // Para guardar la velocidad
+    private int index;              // Para guardar el indice
+    private long lastTime;          // Para guardar el ultimo tiempo
+    private long timer;             // Para guardar el tiempo actual
+    private BufferedImage[] frames; // Para guardar el arreglo de imagenes
+    private BufferedImage frame;    // Para guardar una imagen del arreglo
 
+    /**
+     * Utilizado para crear una instancia de una animacion
+     * 
+     * @param frame un <code>BufferedImage</code> con la imagen a cargar
+     * @param speed un <code>int</code> con la velocidad de la imagen
+     */
     public Animation(BufferedImage frame, int speed) {
         this.frame = frame;
         this.speed = speed;
@@ -31,10 +37,10 @@ public class Animation {
     }
 
     /**
-     * Used to create and instance of the object
+     * Utilizado para crear una instancia de una animacion
      *
-     * @param frames a <code>BufferedImage</code> with the animation frames
-     * @param speed a <code>int</code> with the speed of the animation
+     * @param frames un <code>BufferedImage</code> con el arreglo de imagenes
+     * @param speed un <code>int</code> con la velocidad de la animacion
      */
     public Animation(BufferedImage[] frames, int speed) {
         this.frames = frames;
@@ -45,16 +51,16 @@ public class Animation {
     }
 
     /**
-     * To get the current frame of the animation
+     * Para recibir la imagen que actualmente se esta utilizando
      *
-     * @return a <code>BufferedImage</code> with the current frame
+     * @return un <code>BufferedImage</code> con la imagen actual
      */
     public BufferedImage getCurrentFrame() {
         return frames[index];
     }
    
     /**
-     * Used to tick the animation in the main tick method
+     * Utilizado para actualizar 
      */
     public void tick() {
         timer += System.currentTimeMillis() - lastTime;

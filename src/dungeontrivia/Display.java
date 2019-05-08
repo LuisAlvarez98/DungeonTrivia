@@ -7,9 +7,8 @@ import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 /**
- * Display Class
- * @author Luis Felipe Alvarez Sanchez A01194173
- * 4 Feb 2019
+ * Display Class es una clase para crear y mostrar la pantalla del juego
+ * @author Luis, Adrian, Antonio and Rodrigo
  */
 public class Display {
     private JFrame jframe;
@@ -18,10 +17,10 @@ public class Display {
     private int width;
     private int height;
     /**
-     * Display Constructor
-     * @param title
-     * @param width
-     * @param height 
+     * Display Constructor utilizado para instanciar la clase
+     * @param title un <code>String</code> que contiene el titulo de la pantalla
+     * @param width un <code>int</code> que contiene el ancho de la pantalla
+     * @param height un <code>int</code> que contiene la altura de la pantalla
      */
     public Display(String title, int width, int height){
         this.title = title;
@@ -31,28 +30,30 @@ public class Display {
     }
 
     /**
-     *  getJframe method
-     * @return jframe
+     * Metodo para accesar el JFrame del Display
+     * @return jframe un <code>JFrame</code> con el JFrame
      */
     public JFrame getJframe() {
         return jframe;
     }
     /**
-     * setJframe method
-     * @param jframe 
-     */
-    public void setJframe(JFrame jframe) {
-        this.jframe = jframe;
-    }
-    /**
-     * getCanvas method
-     * @return canvas
+     * Metodo para acceder al canvas de la pantalla
+     * @return canvas un <code>Canvas</code> con el Canvas
      */
     public Canvas getCanvas(){
         return canvas;
     }
+    
     /**
-     * createDisplay method
+     * Metodo para modificar el JFrame del Display
+     * @param jframe un <code>JFrame</code> con el JFrame
+     */
+    public void setJframe(JFrame jframe) {
+        this.jframe = jframe;
+    }
+    
+    /**
+     * Metodo para crear la pantalla
      */
     public void createDisplay(){
         jframe = new JFrame(title);

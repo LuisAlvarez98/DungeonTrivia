@@ -20,6 +20,7 @@ public class HighScoreDialog {
 
     DbConnect connect = new DbConnect();
 
+    
     JTextField tf1, tf2, tf3;
     JButton b1, b2;
     public boolean available;

@@ -88,6 +88,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
             }
             if (me.getX() >= 435 && me.getX() <= 643) {
                 if (me.getY() >= 616 && me.getY() <= 709) {
+                    System.out.println("Exit");
                     state = Game.STATE.EXIT;
                 }
             }
@@ -122,7 +123,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
 
         if (state == Game.STATE.LEVELS) {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(500);
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }

@@ -60,7 +60,7 @@ public class Assets {
         back = ImageLoader.loadImage("/images/back.png");
         bg = ImageLoader.loadImage("/images/bg_end.jpg");
         bg1 = ImageLoader.loadImage("/images/bg.png");
-        level_select = ImageLoader.loadImage("/images/level_select.png");
+        level_select = ImageLoader.loadImage("/images/level_select.PNG");
         menu = ImageLoader.loadImage("/images/menu_bg.png");
         sound = new SoundClip("/sounds/soundtrack.wav");
         deathSound = new SoundClip("/sounds/DeathSound.wav");
@@ -68,12 +68,12 @@ public class Assets {
         closeDoor = new SoundClip("/sounds/closeDoor.wav");
         heart = ImageLoader.loadImage("/images/heart.png");
         sprites = ImageLoader.loadImage("/images/players.png");
-        controls = ImageLoader.loadImage("/images/controls.png");
+        controls = ImageLoader.loadImage("/images/controls.PNG");
         foco = ImageLoader.loadImage("/images/foco.png");
         reloj = ImageLoader.loadImage("/images/Reloj.png");
-        puertaCerrada = ImageLoader.loadImage("/images/Puerta Cerrada.png");
-        puertaMal = ImageLoader.loadImage("/images/Puerta mal 1.png");
-        puertaBien = ImageLoader.loadImage("/images/Puerta Bien.png");
+        puertaCerrada = ImageLoader.loadImage("/images/puertacerrada.png");
+        puertaMal = ImageLoader.loadImage("/images/puertamal.png");
+        puertaBien = ImageLoader.loadImage("/images/puertabien.png");
         qmark = ImageLoader.loadImage("/images/qmark.png");
 
         P1 = ImageLoader.loadImage("/images/1P.png");

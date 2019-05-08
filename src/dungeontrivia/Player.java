@@ -5,13 +5,12 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 /**
- * Player Class
- *
- * @author Luis Felipe Alvarez Sanchez A01194173 12 Feb 2019
+ * Player Class utilizada para crear un jugador
+ * @author Luis, Adrian, Antonio and Rodrigo
  */
 public class Player extends Item {
 
-    //Instance variables
+    // Variables 
     private int direction;
     private int width;
     private int height;
@@ -27,24 +26,23 @@ public class Player extends Item {
     private boolean idle;
     private boolean moving;
     private ArrayList<Heart> hearts;
-   private boolean enabled;
-   private boolean answer;
-   private boolean sec;
-   private int counter4 = 0;
-    
+    private boolean enabled;
+    private boolean answer;
+    private boolean sec;
+    private int counter4 = 0;
+
     int score;
     private boolean dead;
     private Animation death;
     /**
-     * Player constructor
+     * Player Constructor
      *
-     * @param x
-     * @param y
-     * @param direction
-     * @param width
-     * @param height
-     * @param game
-     * @param bullet
+     * @param x un <code>int</code> con la posicion del jugador en el eje x
+     * @param y un <code>int</code> con la posicion del jugador en el eje y
+     * @param direction un <code>int</code> con la direccon del jugador
+     * @param width un <code>int</code> con la anchura del jugador
+     * @param height un <code>int</code> con la altura del jugador
+     * @param game un <code>Game</code> con el juego donde esta el jugador
      */
     public Player(int x, int y, int direction, int width, int height, Game game, int lives, int playerNum) {
         super(x, y);
@@ -68,152 +66,218 @@ public class Player extends Item {
         dead = false;
     }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
-
+    /**
+     * Metodo para acceder al puntaje del jugador
+     * @return un <code>int</code> con el puntaje
+     */
     public int getScore() {
         return score;
     }
     
+    /**
+     * Metodo para acceder al arreglo de Heart del jugador
+     * @return un <code>ArrayList<Heart></code> con el arreglo de Heart
+     */
     public ArrayList<Heart> getHearts() {
         return hearts;
     }
-
-    public boolean isAnswer() {
-        return answer;
-    }
     
-    public boolean isSec(){
-        return sec;
-    }
+    /**
+     * Metodo para acceder a el counter #4
+     * @return un <code>int</code> con el counter
+     */
     public int getCounter4(){
         return counter4;
     }
     
-    public void setCounter4(int counter4){
-        this.counter4 = counter4;
-    }
-    public void setSec(boolean sec){
-        this.sec = sec;
-    }
     /**
-     * decreases the player lives by one
+     * Metodo para acceder la opcione que selecciono el jugador
+     * @return un <code>char</code> con su opcion seleccionada
      */
-    public void decreasePlayerLive() {
-        this.lives--;
-    }
-    
-    /**
-     * setLives method
-     *
-     * @param lives
-     */
-    public void setLives(int lives) {
-        this.lives = lives;
-    }
-
-    public void setMove(char move) {
-        this.move = move;
-    }
-
     public char getMove() {
         return move;
     }
     
+    /**
+     * Metodo para acceder al numero del juegador
+     * @return un <code>int</code> con el numero del jugador
+     */
     public int getPlayerNum(){
         return playerNum;
     }
+    
     /**
-     * getLives method
-     *
-     * @return lives
+     * Metodo para acceder a las vidas del juegador
+     * @return un <code>int</code> con las vidas restantes
      */
     public int getLives() {
         return this.lives;
     }
-
-    public void setAnswer(boolean answer) {
-        this.answer = answer;
-    }
     
     /**
-     * getDirection method
-     *
-     * @return direction
+     * Metodo para acceder a la direccion del jugador
+     * @return direction un <code>int</code> con la direccion del jugador
      */
     public int getDirection() {
         return direction;
     }
 
     /**
-     * getWidth method
-     *
-     * @return width
+     * Metodo para acceder a la anchura del jugador
+     * @return width un <code>int</code> con la anchura del jugador
      */
     public int getWidth() {
         return width;
     }
 
     /**
-     * getHeight method
-     *
-     * @return height
+     * Metodo para acceder a la altura del jugador
+     * @return height un <code>int</code> con la altura del jugador
      */
     public int getHeight() {
         return height;
     }
     
+    /**
+     * Metodo para acceder al flag, checando si puede marcar una respuesta
+     * @return un <code>boolean</code>
+     */
     public boolean getEnabled(){
         return enabled;
     }
     
     /**
-     * setDirection method
-     *
-     * @param direction
+     * Metodo para acceder al flag del juegador, para saber si ya contesto
+     * @return un <code>boolean</code>
+     */
+    public boolean isAnswer() {
+        return answer;
+    }
+    
+    /**
+     * Metodo para acceder al sec del juegador
+     * @return un <code>boolean</code>
+     */
+    public boolean isSec(){
+        return sec;
+    }
+    
+    /**
+     * Metodo para modificar el puntaje del juegador
+     * @param score un <code>int</code> con el puntaje nuevo
+     */
+    public void setScore(int score) {
+        this.score = score;
+    }
+    
+    /**
+     * Metodo para modificar el contador #4
+     * @param counter4 un <code>int</code> con el nuevo tiempo
+     */
+    public void setCounter4(int counter4){
+        this.counter4 = counter4;
+    }
+    
+    /**
+     * Metodo para modificar sec
+     * @param sec un <code>boolean</code>
+     */
+    public void setSec(boolean sec){
+        this.sec = sec;
+    }
+    
+    /**
+     * Metodo para modificar las vidas del juegador
+     * @param lives un <code>int</code> con la nueva cantidad de vidas
+     */
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
+
+    /**
+     * Metodo para modificar la opcion seleccionada por el jugador
+     * @param move un <code>char</code> con el nuevo movimiento
+     */
+    public void setMove(char move) {
+        this.move = move;
+    }
+
+    /**
+     * Metodo para modificar el flag de respuesta
+     * @param answer un <code>boolean</code>
+     */
+    public void setAnswer(boolean answer) {
+        this.answer = answer;
+    }
+    
+    /**
+     * Metodo para modificar la direccion del juegador
+     * @param direction un <code>int</code> con la nueva direccion
      */
     public void setDirection(int direction) {
         this.direction = direction;
     }
     
+    /**
+     * Metodo para modificar el flag en relacion a que si se esta moviendo
+     * @param moving un <code>boolean</code>
+     */
     public void setMoving(boolean moving){
         this.moving = moving;
     }
     
+    /**
+     * Metodo para modificar para marcar a un jugador como muerto
+     * @param dead un <code>boolean</code>
+     */
     public void setDead(boolean dead){
         this.dead = dead;
     }
     
+    /**
+     * Metodo para modificar el estado del juegador
+     * @param idle un <code>boolean</code>
+     */
     public void setIdle(boolean idle){
         this.idle = idle;
     }
     
+    /**
+     * Metodo para modificar el flag, dejando al jugador seleccionar una opcion
+     * @param enabled un <code>boolean</code>
+     */
     public void setEnabled(boolean enabled){
         this.enabled = enabled;
     }
+    
     /**
-     * setWidth method
-     *
-     * @param width
+     * Metodo para modificar la anchura del jugador
+     * @param width un <code>int</code> con la nueva anchura
      */
     public void setWidth(int width) {
         this.width = width;
     }
 
     /**
-     * setHeight method
-     *
-     * @param height
+     * Metodo para modificar la altura del jugador
+     * @param height un <code>int</code> con la nueva altura
      */
     public void setHeight(int height) {
         this.height = height;
     }
 
+    /**
+     * Metodo para modificar el flag para mostrar si no selecciono una opcion
+     * @param showMark un <code>boolean</code>
+     */
     public void setShowMark(boolean showMark) {
         this.showMark = showMark;
     }
     
+    /**
+     * Metodo para cambiar la posicion en el eje x
+     * @param x un <code>int</code> con la nueva posicion en el eje x
+     */
     public void setX(int x) {
         this.x = x;
         this.rect.setLocation(x, getY());
@@ -222,6 +286,9 @@ public class Player extends Item {
         }
     }
     
+    /**
+     * Metodo para cambiar la animacion del jugador
+     */
     public void setAnimations(){
         
         this.death = new Animation(Assets.explosion, 100);
@@ -244,102 +311,111 @@ public class Player extends Item {
             break;
         }
     }
+    
     /**
-     * tick method overall movement of the player
+     * Metodo que reduce las vidas del jugador
+     */
+    public void decreasePlayerLive() {
+        this.lives--;
+    }
+    
+    /**
+     * Metodo para actualizar el jugador
      */
     @Override
     public void tick() {
-        System.out.println(dead);
-        if(enabled){
-        switch(playerNum){
-            case 1:
-                if (game.getKeyManager().left) {
-                    setMove('l');
-                    if(game.isFasePregunta()) {
-                        showMove = true;
+        // Si se puede responder, checar la respuesta
+        if (enabled) {
+            switch (playerNum) {
+                case 1:
+                    if (game.getKeyManager().left) {
+                        setMove('l');
+                        if (game.isFasePregunta()) {
+                            showMove = true;
+                        }
                     }
-                }
-                if (game.getKeyManager().right) {
-                    setMove('r');
-                    if(game.isFasePregunta()) {
-                        showMove = true;
+                    if (game.getKeyManager().right) {
+                        setMove('r');
+                        if (game.isFasePregunta()) {
+                            showMove = true;
+                        }
                     }
-                }
-                if (game.getKeyManager().up) {
-                    setMove('u');
-                    if(game.isFasePregunta()) {
-                        showMove = true;
+                    if (game.getKeyManager().up) {
+                        setMove('u');
+                        if (game.isFasePregunta()) {
+                            showMove = true;
+                        }
                     }
-                }
-            break;
-            case 2:
-                if (game.getKeyManager().j) {
-                    setMove('l');
-                    if(game.isFasePregunta()) {
-                        showMove = true;
+                    break;
+                case 2:
+                    if (game.getKeyManager().j) {
+                        setMove('l');
+                        if (game.isFasePregunta()) {
+                            showMove = true;
+                        }
                     }
-                }
-                if (game.getKeyManager().l) {
-                    setMove('r');
-                    if(game.isFasePregunta()) {
-                        showMove = true;
+                    if (game.getKeyManager().l) {
+                        setMove('r');
+                        if (game.isFasePregunta()) {
+                            showMove = true;
+                        }
                     }
-                }
-                if (game.getKeyManager().k) {
-                    setMove('u');
-                    if(game.isFasePregunta()) {
-                        showMove = true;
+                    if (game.getKeyManager().k) {
+                        setMove('u');
+                        if (game.isFasePregunta()) {
+                            showMove = true;
+                        }
                     }
-                }
-            break;
-            case 3:
-                if (game.getKeyManager().q) {
-                    setMove('l');
-                    if(game.isFasePregunta()) {
-                        showMove = true;
+                    break;
+                case 3:
+                    if (game.getKeyManager().q) {
+                        setMove('l');
+                        if (game.isFasePregunta()) {
+                            showMove = true;
+                        }
                     }
-                }
-                if (game.getKeyManager().e) {
-                    setMove('r');
-                    if(game.isFasePregunta()) {
-                        showMove = true;
+                    if (game.getKeyManager().e) {
+                        setMove('r');
+                        if (game.isFasePregunta()) {
+                            showMove = true;
+                        }
                     }
-                }
-                if (game.getKeyManager().w) {
-                    setMove('u');
-                    if(game.isFasePregunta()) {
-                        showMove = true;
+                    if (game.getKeyManager().w) {
+                        setMove('u');
+                        if (game.isFasePregunta()) {
+                            showMove = true;
+                        }
                     }
-                }
-            break;
-            case 4:
-                if (game.getKeyManager().z) {
-                    setMove('l');
-                    if(game.isFasePregunta()) {
-                        showMove = true;
+                    break;
+                case 4:
+                    if (game.getKeyManager().z) {
+                        setMove('l');
+                        if (game.isFasePregunta()) {
+                            showMove = true;
+                        }
                     }
-                }
-                if (game.getKeyManager().c) {
-                    setMove('r');
-                    if(game.isFasePregunta()) {
-                        showMove = true;
+                    if (game.getKeyManager().c) {
+                        setMove('r');
+                        if (game.isFasePregunta()) {
+                            showMove = true;
+                        }
                     }
-                }
-                if (game.getKeyManager().x) {
-                    setMove('u');
-                    if(game.isFasePregunta()) {
-                        showMove = true;
+                    if (game.getKeyManager().x) {
+                        setMove('u');
+                        if (game.isFasePregunta()) {
+                            showMove = true;
+                        }
                     }
-                }
-            break;
-        }
+                    break;
+            }
         }
         
+        // Cuando se acabe la fase pregunta, dejar de mostrar el signo
         if(!game.isFasePregunta()) {
             showMove = false;
         }
         
-        // reset x position and y position if colision
+        // Re establecer la posicion
         if (getX() + 200 >= game.getWidth()) {
             setX(game.getWidth() - 200);
         } else if (getX() <= -5) {
@@ -352,14 +428,12 @@ public class Player extends Item {
     }
 
     /**
-     * render method
-     *
-     * @param g
+     * Metodo para pintar el jugador en pantalla
+     * @param g un <code>Graphics</code> con el graficador
      */
     @Override
     public void render(Graphics g) {
-        //draws the player
-
+        // En caso de no moverse, pintar al jugador sin movimiento
         if(idle){
             switch (playerNum) {
                 case 1:
@@ -402,6 +476,7 @@ public class Player extends Item {
             }
         }
         
+        // Si el jugador se esta moviendo, animar al jugador
         if(moving){
             if(getDirection() < 0){
                 g.drawImage(leftAnim.getCurrentFrame(), getX(), getY(), getWidth(), getHeight(), null);
@@ -409,8 +484,8 @@ public class Player extends Item {
                 g.drawImage(rightAnim.getCurrentFrame(), getX(), getY(), getWidth(), getHeight(), null);
             }
         }
+        // Mostrar la animacion de muerte, cuando no tenga vidas
         if(dead){
-            System.out.println("Holafdsafdsafdsafdsafdsafds");
             g.drawImage(death.getCurrentFrame(), getX(), getY(), getWidth(), getHeight(), null);
         }
         

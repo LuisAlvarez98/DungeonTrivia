@@ -44,7 +44,7 @@ public class Game implements Runnable {
     private int thirdRandomIndex;
 
     private String timer = "0:00";
-    private int timerStart = 4;
+    private int timerStart = 10;
     private int counter = 0;
     private int counter2 = 0;
     private boolean timerOff = false;
@@ -464,7 +464,6 @@ public class Game implements Runnable {
                     }
 
                     if (check) {
-                        System.out.println("Hola");
                         Assets.openDoor.setLooping(false);
                         Assets.openDoor.play();
                         faseMovimiento = false;
@@ -491,7 +490,7 @@ public class Game implements Runnable {
                         counter2++;
                     } else {
 
-                        timerStart = 4;
+                        timerStart = 10;
                         updateTimer(timerStart);
                         firstRandomIndex = (int) (Math.random() * 3);
                         secondRandomIndex = (int) (Math.random() * 2);

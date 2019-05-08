@@ -7,6 +7,7 @@ import static dungeontrivia.Game.preguntas;
 import static dungeontrivia.Game.state;
 import static dungeontrivia.Game.numeroPreguntas;
 import static dungeontrivia.Game.paused;
+import static dungeontrivia.Game.timerStart;
 import static dungeontrivia.HighscoresPanel.stats;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -79,6 +80,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
                     System.out.println("Play");
                     highScoreDialog.setHighscoreUpdated(false);
                     state = Game.STATE.LEVELS;
+                    timerStart = 10;
                 }
             }
             if (me.getX() >= 435 && me.getX() <= 643) {
@@ -179,6 +181,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
             }
 
         }
+        //STATE GAME
         if (state == Game.STATE.GAME) {
             if (paused) {
                 if (me.getX() >= 280 && me.getX() <= 494) {

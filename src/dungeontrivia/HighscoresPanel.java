@@ -5,8 +5,6 @@
  */
 package dungeontrivia;
 
-import static dungeontrivia.Game.highScoreDialog;
-import static dungeontrivia.Game.isAvailableForHighscore;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -15,14 +13,22 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 /**
+ * Highscore Panel class
  *
- * @author luisf
+ * @author Luis, Adrian, Antonio and Rodrigo
  */
 public class HighscoresPanel {
 
     public static ArrayList<Stat> stats;
     private Rectangle backButton = new Rectangle();
 
+    /**
+     * render method
+     *
+     * @param g
+     * @param width
+     * @param height
+     */
     public void render(Graphics g, int width, int height) {
         Graphics2D g2d = (Graphics2D) g;
         backButton = new Rectangle(50, 50, 60, 70);
@@ -32,8 +38,9 @@ public class HighscoresPanel {
         Font fnt0 = new Font("timesroman", Font.BOLD, 17);
         g.setFont(fnt0);
         g.setColor(Color.black);
+        //draw stats
         for (int i = 0; i < stats.size(); i++) {
-            g2d.drawString(stats.get(i).getName() + " : " + stats.get(i).getScore(), width / 2 - 100, height / 2 - 50 -80 * (-i) );
+            g2d.drawString(stats.get(i).getName() + " : " + stats.get(i).getScore(), width / 2 - 100, height / 2 - 50 - 80 * (-i));
         }
     }
 }

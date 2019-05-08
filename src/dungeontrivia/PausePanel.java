@@ -9,17 +9,20 @@ import java.util.ArrayList;
 
 /**
  * Panel para la pantalla de pausa
+ *
  * @author Luis, Adrian, Antonio and Rodrigo
  */
 public class PausePanel {
 
     public static ArrayList<Stat> stats;
     private Rectangle backButton = new Rectangle();
+
     /**
      * render method para pausepanel
+     *
      * @param g
      * @param width
-     * @param height 
+     * @param height
      */
     public void render(Graphics g, int width, int height) {
         Graphics2D g2d = (Graphics2D) g;

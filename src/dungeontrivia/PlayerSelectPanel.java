@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dungeontrivia;
 
 import java.awt.Color;
@@ -13,7 +8,7 @@ import java.awt.Rectangle;
 
 /**
  *
- * @author luisf
+ * @author Luis, Adrian, Antonio and Rodrigo
  */
 public class PlayerSelectPanel {
 
@@ -30,12 +25,12 @@ public class PlayerSelectPanel {
 
         g2d.drawImage(Assets.P1, width / 2 - 100, height / 2 - 300, 260, 100, null);
         g2d.drawImage(Assets.P2, width / 2 - 100, height / 2 - 150, 260, 100, null);
-        g2d.drawImage(Assets.P3, width / 2 - 100, height / 2  + 50, 260, 100, null);
+        g2d.drawImage(Assets.P3, width / 2 - 100, height / 2 + 50, 260, 100, null);
         g2d.drawImage(Assets.P4, width / 2 - 100, height / 2 + 200, 260, 100, null);
-        
-        g2d.drawString("SINGLE PLAYER",width / 2 - 75, height / 2 - 300);
-        g2d.drawString("2 PLAYERS",width / 2 - 75, height / 2 - 150);
-        g2d.drawString("3 PLAYERS",width / 2 - 75, height / 2  + 50);
-        g2d.drawString("PARTY MODE",width / 2 - 75, height / 2 + 200);
+
+        g2d.drawString("SINGLE PLAYER", width / 2 - 75, height / 2 - 300);
+        g2d.drawString("2 PLAYERS", width / 2 - 75, height / 2 - 150);
+        g2d.drawString("3 PLAYERS", width / 2 - 75, height / 2 + 50);
+        g2d.drawString("PARTY MODE", width / 2 - 75, height / 2 + 200);
     }
 }

@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package dungeontrivia;
 
 import java.awt.Graphics;
@@ -11,14 +5,17 @@ import java.awt.Rectangle;
 
 /**
  *
- * @author antoniomejorado
+ * @author Luis, Adrian, Antonio and Rodrigo
  */
 public abstract class Item {
+
     protected int x;        // to store x position
     protected int y;        // to store y position
     protected Rectangle rect;
+
     /**
      * Set the initial values to create the item
+     *
      * @param x <b>x</b> position of the object
      * @param y <b>y</b> position of the object
      */
@@ -29,7 +26,8 @@ public abstract class Item {
 
     /**
      * Get x value
-     * @return x 
+     *
+     * @return x
      */
     public int getX() {
         return x;
@@ -37,18 +35,20 @@ public abstract class Item {
 
     /**
      * Get y value
-     * @return y 
+     *
+     * @return y
      */
     public int getY() {
         return y;
     }
-    
-    public Rectangle getRect(){
+
+    public Rectangle getRect() {
         return rect;
     }
 
     /**
      * Set x value
+     *
      * @param x to modify
      */
     public void setX(int x) {
@@ -58,20 +58,22 @@ public abstract class Item {
 
     /**
      * Set y value
+     *
      * @param y to modify
      */
     public void setY(int y) {
         this.y = y;
         this.rect.setLocation(getX(), y);
     }
-    
+
     /**
      * To update positions of the item for every tick
      */
     public abstract void tick();
-    
+
     /**
      * To paint the item
+     *
      * @param g <b>Graphics</b> object to paint the item
      */
     public abstract void render(Graphics g);

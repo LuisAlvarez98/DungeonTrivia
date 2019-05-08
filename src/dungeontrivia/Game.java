@@ -34,7 +34,7 @@ public class Game implements Runnable {
     private int thirdRandomIndex;
 
     private String timer = "0:00";
-    private int timerStart = 10;
+    public static int timerStart = 10;
     private int counter = 0;
     private int counter2 = 0;
     private boolean timerOff = false;

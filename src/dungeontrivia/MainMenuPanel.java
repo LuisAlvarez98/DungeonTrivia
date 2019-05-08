@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dungeontrivia;
 
 import java.awt.Color;
@@ -13,6 +8,7 @@ import java.awt.Rectangle;
 
 /**
  * MainMenuPanel utilizada para crear los botones del juego
+ *
  * @author Luis, Adrian, Antonio and Rodrigo
  */
 public class MainMenuPanel {
@@ -25,6 +21,7 @@ public class MainMenuPanel {
 
     /**
      * Metodo para pintar en pantalla
+     *
      * @param g un <code>Graphics</code> con el graficador
      * @param width un <code>int</code> con la anchura
      * @param height un <code>int</code> con la altura
@@ -41,7 +38,7 @@ public class MainMenuPanel {
         g2d.drawString("How to play?", width / 2 + 460, 585);
         Font fnt0 = new Font("arial", Font.BOLD, 50);
         g.setFont(fnt0);
-        Color c=new Color(1f,0f,0f,.5f );
+        Color c = new Color(1f, 0f, 0f, .5f);
         g.setColor(c);
         //g2d.draw(playButton);
         //g2d.draw(highScore);

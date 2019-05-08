@@ -6,8 +6,9 @@
 package dungeontrivia;
 
 /**
+ * Highscore dialog class, Creates the dialog for the highscore insertion
  *
- * @author luisf
+ * @author Luis, Adrian, Antonio and Rodrigo
  */
 import static dungeontrivia.DungeonTrivia.con;
 import static dungeontrivia.Game.highScoreDialog;
@@ -19,8 +20,6 @@ import java.awt.event.*;
 public class HighScoreDialog {
 
     DbConnect connect = new DbConnect();
-
-    
     JTextField tf1, tf2, tf3;
     JButton b1, b2;
     public boolean available;
@@ -30,6 +29,11 @@ public class HighScoreDialog {
     private int score;
     private boolean highscoreUpdated = false;
 
+    /**
+     * HighScoreDialog constructor
+     *
+     * @param available
+     */
     HighScoreDialog(boolean available) {
         //submit button
         f.setTitle("Insert highscore");
@@ -57,8 +61,8 @@ public class HighScoreDialog {
         f.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-               f.setVisible(false);
-               setHighscoreUpdated(true);
+                f.setVisible(false);
+                setHighscoreUpdated(true);
             }
         });
         //action listener
@@ -78,39 +82,84 @@ public class HighScoreDialog {
         });
     }
 
+    /**
+     * setHighscoreUpdated method
+     *
+     * @param highscoreUpdated
+     */
     public void setHighscoreUpdated(boolean highscoreUpdated) {
         this.highscoreUpdated = highscoreUpdated;
     }
 
+    /**
+     * isHighscoreUpdated method
+     *
+     * @return highscoreUpdated
+     */
     public boolean isHighscoreUpdated() {
         return highscoreUpdated;
     }
 
+    /**
+     * isAvailable method
+     *
+     * @return available
+     */
     public boolean isAvailable() {
         return available;
     }
 
+    /**
+     * setAvailable method
+     *
+     * @param available
+     */
     public void setAvailable(boolean available) {
         this.available = available;
         f.setVisible(available);
     }
 
+    /**
+     * setName method
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * setScore method
+     *
+     * @param score
+     */
     public void setScore(int score) {
         this.score = score;
     }
 
+    /**
+     * getName method
+     *
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * getScore method
+     *
+     * @return score
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     * main method
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         new HighScoreDialog(false);
     }

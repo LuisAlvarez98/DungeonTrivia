@@ -31,6 +31,7 @@ public class HighScoreDialog {
 
     HighScoreDialog(boolean available) {
         //submit button
+        f.setTitle("Insert highscore");
         JButton b = new JButton("Submit");
         b.setBounds(100, 100, 140, 40);
         //enter name label

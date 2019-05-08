@@ -68,7 +68,7 @@ public class DbConnect {
 
         try {
 
-            String query = "SELECT * FROM questions WHERE type = 'history'";
+            String query = "SELECT * FROM questions WHERE type = 'math'";
             DungeonTrivia.rs = DungeonTrivia.st.executeQuery(query);
 
             while (DungeonTrivia.rs.next()) {
@@ -83,6 +83,7 @@ public class DbConnect {
                 respuestas.add(ans3);
                 
                 questions.add(new Pregunta(question, type,respuestas));
+                
             }
         } catch (Exception e) {
             System.out.print("Error" + e);

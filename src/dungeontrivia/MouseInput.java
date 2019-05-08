@@ -9,6 +9,7 @@ import static dungeontrivia.DungeonTrivia.n;
 import static dungeontrivia.Game.players;
 import static dungeontrivia.Game.preguntas;
 import static dungeontrivia.Game.state;
+import static dungeontrivia.Game.numeroPreguntas;
 import static dungeontrivia.HighscoresPanel.stats;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 
 /**
  * MouseInput utilizada para checar los eventos con el mouse
+ *
  * @author Luis, Adrian, Antonio and Rodrigo
  */
 public class MouseInput implements MouseListener, MouseMotionListener {
@@ -37,6 +39,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
 
     /**
      * Metodo para acceder la x
+     *
      * @return un <code>int</code> con la posicion en x
      */
     public int getX() {
@@ -45,6 +48,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
 
     /**
      * Metodo para acceder la y
+     *
      * @return un <code>int</code> con la posicion en y
      */
     public int getY() {
@@ -53,22 +57,23 @@ public class MouseInput implements MouseListener, MouseMotionListener {
 
     /**
      * Metodo para actuar en case de pinchar el mouse
-     * @param me 
+     *
+     * @param me
      */
     @Override
     public void mouseClicked(MouseEvent me) {
     }
-    
+
     /**
      * Metodo para actuar en caso de tener el mouse presionado
-     * @param me 
+     *
+     * @param me
      */
     @Override
     public void mousePressed(MouseEvent me) {
         System.out.println(me.getX() + ":" + me.getY());
 
         // Delimitaciones de posiciones para los botones
-
         if (state == Game.STATE.MENU) {
             if (me.getX() >= 433 && me.getX() <= 642) {
                 if (me.getY() >= 338 && me.getY() <= 435) {
@@ -122,42 +127,53 @@ public class MouseInput implements MouseListener, MouseMotionListener {
 
             if (me.getX() >= 296 && me.getX() <= 503) {
                 if (me.getY() >= 359 && me.getY() <= 393) {
+                    //All
                     state = Game.STATE.PLAYERSELECT;
-                    preguntas =connect.getQuestions();
+                    preguntas = connect.getQuestions();
+                    numeroPreguntas = preguntas.size();
                 }
             }
-            
+
             if (me.getX() >= 573 && me.getX() <= 811) {
                 if (me.getY() >= 370 && me.getY() <= 419) {
                     //boton Math
                     state = Game.STATE.PLAYERSELECT;
+                    preguntas = connect.getQuestions();
+                    numeroPreguntas = preguntas.size();
                 }
             }
             if (me.getX() >= 266 && me.getX() <= 501) {
                 if (me.getY() >= 473 && me.getY() <= 522) {
                     //boton Science
                     state = Game.STATE.PLAYERSELECT;
+                    preguntas = connect.getQuestions();
+                    numeroPreguntas = preguntas.size();
                 }
             }
             if (me.getX() >= 573 && me.getX() <= 811) {
                 if (me.getY() >= 470 && me.getY() <= 521) {
                     //boton History
                     state = Game.STATE.PLAYERSELECT;
+                    preguntas = connect.getQuestions();
+                    numeroPreguntas = preguntas.size();
                 }
             }
             if (me.getX() >= 266 && me.getX() <= 501) {
                 if (me.getY() >= 575 && me.getY() <= 624) {
                     //boton Geography
                     state = Game.STATE.PLAYERSELECT;
+                    preguntas = connect.getQuestions();
+                    numeroPreguntas = preguntas.size();
                 }
             }
             if (me.getX() >= 573 && me.getX() <= 811) {
                 if (me.getY() >= 575 && me.getY() <= 620) {
                     //boton Comp Sci
                     state = Game.STATE.PLAYERSELECT;
+                    preguntas = connect.getQuestions();
+                    numeroPreguntas = preguntas.size();
                 }
             }
-            
 
         }
         if (state == Game.STATE.PLAYERSELECT) {

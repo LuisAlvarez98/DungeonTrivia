@@ -38,7 +38,7 @@ public class Game implements Runnable {
     private MouseInput mouseManager;
 
     public static ArrayList<Pregunta> preguntas = new ArrayList<Pregunta>();
-    private int numeroPreguntas = 0;
+    public static int numeroPreguntas = 0;
     private int firstRandomIndex;
     private int secondRandomIndex;
     private int thirdRandomIndex;

@@ -35,7 +35,6 @@ public class DungeonTrivia extends JFrame implements ActionListener {
     public static void main(String[] args) {
         n = new Game("Dungeon Trivia", 1080, 800);
         n.start();
-        DbConnect connect = new DbConnect();
     }
 
     /**

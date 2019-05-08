@@ -27,7 +27,7 @@ public class HighscoresPanel {
 
         //g2d.draw(backButton);
         g2d.drawImage(Assets.back, 50, 100, 70, 70, null);
-        Font fnt0 = new Font("arial", Font.BOLD, 17);
+        Font fnt0 = new Font("timesroman", Font.BOLD, 17);
         g.setFont(fnt0);
         g.setColor(Color.black);
         for (int i = 0; i < stats.size(); i++) {

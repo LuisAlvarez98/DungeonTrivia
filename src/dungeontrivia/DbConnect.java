@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dungeontrivia;
 
 import java.security.MessageDigest;
@@ -29,6 +24,7 @@ public class DbConnect {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             DungeonTrivia.con = DriverManager.getConnection("jdbc:mysql://localhost:3308/dungeontrivia", "root", "");
+            // DungeonTrivia.con = DriverManager.getConnection("jdbc:mysql://dungeontrivia.cyqk3zuszau6.us-east-2.rds.amazonaws.com:3306/dungeontrivia", "lfas98", "pipepipe");
             DungeonTrivia.st = DungeonTrivia.con.createStatement();
             System.out.println("Connected to DB.");
 
@@ -63,7 +59,45 @@ public class DbConnect {
         return stats;
     }
 
+    /**
+     * getAllTheQuestions Query
+     *
+     * @return questions
+     */
     public ArrayList<Pregunta> getQuestions() {
+        ArrayList<Pregunta> questions = new ArrayList<Pregunta>();
+
+        try {
+
+            String query = "SELECT * FROM questions";
+            DungeonTrivia.rs = DungeonTrivia.st.executeQuery(query);
+
+            while (DungeonTrivia.rs.next()) {
+                ArrayList<String> respuestas = new ArrayList<String>();
+                String question = DungeonTrivia.rs.getString("question");
+                String type = DungeonTrivia.rs.getString("type");
+                String ans1 = DungeonTrivia.rs.getString("ans1");
+                String ans2 = DungeonTrivia.rs.getString("ans2");
+                String ans3 = DungeonTrivia.rs.getString("ans3");
+                respuestas.add(ans1);
+                respuestas.add(ans2);
+                respuestas.add(ans3);
+
+                questions.add(new Pregunta(question, type, respuestas));
+
+            }
+        } catch (Exception e) {
+            System.out.print("Error" + e);
+        }
+        return questions;
+    }
+
+    /**
+     * get math questions Query
+     *
+     * @return questions
+     */
+    public ArrayList<Pregunta> getMathQuestions() {
         ArrayList<Pregunta> questions = new ArrayList<Pregunta>();
 
         try {
@@ -81,9 +115,141 @@ public class DbConnect {
                 respuestas.add(ans1);
                 respuestas.add(ans2);
                 respuestas.add(ans3);
-                
-                questions.add(new Pregunta(question, type,respuestas));
-                
+
+                questions.add(new Pregunta(question, type, respuestas));
+
+            }
+        } catch (Exception e) {
+            System.out.print("Error" + e);
+        }
+        return questions;
+    }
+
+    /**
+     * get cs questions Query
+     *
+     * @return questions
+     */
+    public ArrayList<Pregunta> getCSQuestions() {
+        ArrayList<Pregunta> questions = new ArrayList<Pregunta>();
+
+        try {
+
+            String query = "SELECT * FROM questions WHERE type = 'cs'";
+            DungeonTrivia.rs = DungeonTrivia.st.executeQuery(query);
+
+            while (DungeonTrivia.rs.next()) {
+                ArrayList<String> respuestas = new ArrayList<String>();
+                String question = DungeonTrivia.rs.getString("question");
+                String type = DungeonTrivia.rs.getString("type");
+                String ans1 = DungeonTrivia.rs.getString("ans1");
+                String ans2 = DungeonTrivia.rs.getString("ans2");
+                String ans3 = DungeonTrivia.rs.getString("ans3");
+                respuestas.add(ans1);
+                respuestas.add(ans2);
+                respuestas.add(ans3);
+
+                questions.add(new Pregunta(question, type, respuestas));
+
+            }
+        } catch (Exception e) {
+            System.out.print("Error" + e);
+        }
+        return questions;
+    }
+
+    /**
+     * get science questions Query
+     *
+     * @return questions
+     */
+    public ArrayList<Pregunta> getScienceQuestions() {
+        ArrayList<Pregunta> questions = new ArrayList<Pregunta>();
+
+        try {
+
+            String query = "SELECT * FROM questions WHERE type = 'science'";
+            DungeonTrivia.rs = DungeonTrivia.st.executeQuery(query);
+
+            while (DungeonTrivia.rs.next()) {
+                ArrayList<String> respuestas = new ArrayList<String>();
+                String question = DungeonTrivia.rs.getString("question");
+                String type = DungeonTrivia.rs.getString("type");
+                String ans1 = DungeonTrivia.rs.getString("ans1");
+                String ans2 = DungeonTrivia.rs.getString("ans2");
+                String ans3 = DungeonTrivia.rs.getString("ans3");
+                respuestas.add(ans1);
+                respuestas.add(ans2);
+                respuestas.add(ans3);
+
+                questions.add(new Pregunta(question, type, respuestas));
+
+            }
+        } catch (Exception e) {
+            System.out.print("Error" + e);
+        }
+        return questions;
+    }
+
+    /**
+     * get geography questions Query
+     *
+     * @return questions
+     */
+    public ArrayList<Pregunta> getGeographyQuestions() {
+        ArrayList<Pregunta> questions = new ArrayList<Pregunta>();
+
+        try {
+
+            String query = "SELECT * FROM questions WHERE type = 'geography'";
+            DungeonTrivia.rs = DungeonTrivia.st.executeQuery(query);
+
+            while (DungeonTrivia.rs.next()) {
+                ArrayList<String> respuestas = new ArrayList<String>();
+                String question = DungeonTrivia.rs.getString("question");
+                String type = DungeonTrivia.rs.getString("type");
+                String ans1 = DungeonTrivia.rs.getString("ans1");
+                String ans2 = DungeonTrivia.rs.getString("ans2");
+                String ans3 = DungeonTrivia.rs.getString("ans3");
+                respuestas.add(ans1);
+                respuestas.add(ans2);
+                respuestas.add(ans3);
+
+                questions.add(new Pregunta(question, type, respuestas));
+
+            }
+        } catch (Exception e) {
+            System.out.print("Error" + e);
+        }
+        return questions;
+    }
+
+    /**
+     * get history questions Query
+     *
+     * @return questions
+     */
+    public ArrayList<Pregunta> getHistoryQuestions() {
+        ArrayList<Pregunta> questions = new ArrayList<Pregunta>();
+
+        try {
+
+            String query = "SELECT * FROM questions WHERE type = 'history'";
+            DungeonTrivia.rs = DungeonTrivia.st.executeQuery(query);
+
+            while (DungeonTrivia.rs.next()) {
+                ArrayList<String> respuestas = new ArrayList<String>();
+                String question = DungeonTrivia.rs.getString("question");
+                String type = DungeonTrivia.rs.getString("type");
+                String ans1 = DungeonTrivia.rs.getString("ans1");
+                String ans2 = DungeonTrivia.rs.getString("ans2");
+                String ans3 = DungeonTrivia.rs.getString("ans3");
+                respuestas.add(ans1);
+                respuestas.add(ans2);
+                respuestas.add(ans3);
+
+                questions.add(new Pregunta(question, type, respuestas));
+
             }
         } catch (Exception e) {
             System.out.print("Error" + e);

@@ -127,7 +127,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
 
             if (me.getX() >= 296 && me.getX() <= 503) {
                 if (me.getY() >= 359 && me.getY() <= 393) {
-                    //All
+                    //boton All
                     state = Game.STATE.PLAYERSELECT;
                     preguntas = connect.getQuestions();
                     numeroPreguntas = preguntas.size();
@@ -138,7 +138,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
                 if (me.getY() >= 370 && me.getY() <= 419) {
                     //boton Math
                     state = Game.STATE.PLAYERSELECT;
-                    preguntas = connect.getQuestions();
+                    preguntas = connect.getMathQuestions();
                     numeroPreguntas = preguntas.size();
                 }
             }
@@ -146,7 +146,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
                 if (me.getY() >= 473 && me.getY() <= 522) {
                     //boton Science
                     state = Game.STATE.PLAYERSELECT;
-                    preguntas = connect.getQuestions();
+                    preguntas = connect.getScienceQuestions();
                     numeroPreguntas = preguntas.size();
                 }
             }
@@ -154,7 +154,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
                 if (me.getY() >= 470 && me.getY() <= 521) {
                     //boton History
                     state = Game.STATE.PLAYERSELECT;
-                    preguntas = connect.getQuestions();
+                    preguntas = connect.getHistoryQuestions();
                     numeroPreguntas = preguntas.size();
                 }
             }
@@ -162,7 +162,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
                 if (me.getY() >= 575 && me.getY() <= 624) {
                     //boton Geography
                     state = Game.STATE.PLAYERSELECT;
-                    preguntas = connect.getQuestions();
+                    preguntas = connect.getGeographyQuestions();
                     numeroPreguntas = preguntas.size();
                 }
             }
@@ -170,7 +170,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
                 if (me.getY() >= 575 && me.getY() <= 620) {
                     //boton Comp Sci
                     state = Game.STATE.PLAYERSELECT;
-                    preguntas = connect.getQuestions();
+                    preguntas = connect.getCSQuestions();
                     numeroPreguntas = preguntas.size();
                 }
             }

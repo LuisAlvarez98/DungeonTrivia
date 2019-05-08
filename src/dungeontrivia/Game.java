@@ -277,6 +277,7 @@ public class Game implements Runnable {
         //tick
 
         if (state == STATE.GAME) {
+            endGamelvl.setGameDone(false);
             answer = preguntas.get(counter3).getRespuestas().get(0);
             if (firstRandomIndex == 0 && secondRandomIndex == 1) {
                 posZero = preguntas.get(counter3).getRespuestas().get(0);
@@ -543,6 +544,7 @@ public class Game implements Runnable {
                     }
 
                     if (!endgame) {
+                        endGamelvl.setGameDone(true);
                         state = Game.STATE.ENDGAME;
                     }
                 }
@@ -581,6 +583,7 @@ public class Game implements Runnable {
                 g.setColor(Color.WHITE);
                 g.drawString(timer, 950, 100);
                 g.drawImage(Assets.reloj, 1010, 75, 20, 30, null);
+
                 if (finalDePregunta) {
 
                     if (puertaZero) {

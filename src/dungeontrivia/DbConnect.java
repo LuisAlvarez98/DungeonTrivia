@@ -4,6 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.*;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -22,9 +23,9 @@ public class DbConnect {
      */
     public DbConnect() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            DungeonTrivia.con = DriverManager.getConnection("jdbc:mysql://localhost:3308/dungeontrivia", "root", "");
-            // DungeonTrivia.con = DriverManager.getConnection("jdbc:mysql://dungeontrivia.cyqk3zuszau6.us-east-2.rds.amazonaws.com:3306/dungeontrivia", "lfas98", "pipepipe");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            //DungeonTrivia.con = DriverManager.getConnection("jdbc:mysql://localhost:3308/dungeontrivia", "root", "");
+            DungeonTrivia.con = DriverManager.getConnection("jdbc:mysql://dungeontriviafinal.cyqk3zuszau6.us-east-2.rds.amazonaws.com:3306/dungeontrivia", "lfas98", "pipepipe");
             DungeonTrivia.st = DungeonTrivia.con.createStatement();
             System.out.println("Connected to DB.");
 
@@ -45,12 +46,12 @@ public class DbConnect {
 
         try {
 
-            String query = "SELECT * FROM stats ORDER BY score DESC LIMIT 5";
+            String query = "SELECT * FROM stats ORDER BY stat DESC LIMIT 5";
             DungeonTrivia.rs = DungeonTrivia.st.executeQuery(query);
 
             while (DungeonTrivia.rs.next()) {
                 String name = DungeonTrivia.rs.getString("name");
-                String stat = DungeonTrivia.rs.getString("score");
+                String stat = DungeonTrivia.rs.getString("stat");
                 stats.add(new Stat(name, stat));
             }
         } catch (Exception e) {
@@ -255,5 +256,16 @@ public class DbConnect {
             System.out.print("Error" + e);
         }
         return questions;
+    }
+
+    /*
+        Insert
+     */
+    void insertTop(String name, int score) {
+        try {
+            DungeonTrivia.st.execute("INSERT INTO stats " + "VALUES (''," + name + "," + score +")");
+        } catch (Exception e) {
+            System.out.print("Error" + e);
+        }
     }
 }

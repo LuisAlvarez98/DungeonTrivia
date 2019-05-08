@@ -16,6 +16,7 @@ import javax.swing.*;
 
 /**
  * DungeonTrivia class es utilizada para poder ejecutar el metodo main
+ *
  * @author Luis, Adrian, Antonio and Rodrigo
  */
 public class DungeonTrivia extends JFrame implements ActionListener {
@@ -24,7 +25,6 @@ public class DungeonTrivia extends JFrame implements ActionListener {
     public static Connection con;
     public static Statement st;
     public static ResultSet rs;
-
 
     public static boolean offline;
     public static Game n;
@@ -35,11 +35,13 @@ public class DungeonTrivia extends JFrame implements ActionListener {
     public static void main(String[] args) {
         n = new Game("Dungeon Trivia", 1080, 800);
         n.start();
+        DbConnect connect = new DbConnect();
     }
-    
+
     /**
      * Metodo heredado por extension
-     * @param ae 
+     *
+     * @param ae
      */
     @Override
     public void actionPerformed(ActionEvent ae) {

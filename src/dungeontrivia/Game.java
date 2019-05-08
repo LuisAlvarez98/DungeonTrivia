@@ -84,6 +84,8 @@ public class Game implements Runnable {
     private boolean puertaOne;
     private boolean puertaTwo;
     private boolean endgame;
+    private boolean sec;
+    private int counter4 = 0;
 
     public static enum STATE {
         MENU,
@@ -94,7 +96,7 @@ public class Game implements Runnable {
         LEVELS,
         EXIT
     };
-    public static STATE state = STATE.MENU;
+    public static STATE state = STATE.ENDGAME;
 
     /**
      * Game Constructor
@@ -307,9 +309,23 @@ public class Game implements Runnable {
             keyManager.tick();
 
             for (int i = 0; i < players.size(); i++) {
-                if (players.get(i).getLives() > 0) {
+                if (players.get(i).getLives() > 0 || sec) {
                     players.get(i).tick();
+                }if (players.get(i).getLives() == 0){
+                    players.get(i).setDead(true);
+                    players.get(i).setMoving(false);
+                    players.get(i).setIdle(false);
+                }
+            }
+            
+            
+            if(sec){
 
+                if(counter4 < 40){
+                    counter4++;
+                }else{
+                sec = false;
+                
                 }
             }
 
@@ -337,6 +353,10 @@ public class Game implements Runnable {
                                     if (!posZero.equals(answer)) {
                                         players.get(i).decreasePlayerLive();
                                         if (players.get(i).getLives() == 0) {
+                                            sec = true;
+                                            players.get(i).setDead(true);
+                                            players.get(i).setMoving(false);
+                                            players.get(i).setIdle(false);
                                             Assets.deathSound.play();
                                         }
                                     } else {
@@ -357,6 +377,10 @@ public class Game implements Runnable {
                                     if (!posOne.equals(answer)) {
                                         players.get(i).decreasePlayerLive();
                                         if (players.get(i).getLives() == 0) {
+                                            sec = true;
+                                            players.get(i).setDead(true);
+                                            players.get(i).setMoving(false);
+                                            players.get(i).setIdle(false);
                                             Assets.deathSound.play();
                                         }
                                     } else {
@@ -377,6 +401,10 @@ public class Game implements Runnable {
                                     if (!posTwo.equals(answer)) {
                                         players.get(i).decreasePlayerLive();
                                         if (players.get(i).getLives() == 0) {
+                                            sec = true;
+                                            players.get(i).setDead(true);
+                                            players.get(i).setMoving(false);
+                                            players.get(i).setIdle(false);
                                             Assets.deathSound.play();
                                         }
                                     } else {
@@ -390,6 +418,10 @@ public class Game implements Runnable {
                                 default:
                                     players.get(i).decreasePlayerLive();
                                     if (players.get(i).getLives() == 0) {
+                                        sec = true;
+                                        players.get(i).setDead(true);
+                                        players.get(i).setMoving(false);
+                                        players.get(i).setIdle(false);
                                         Assets.deathSound.play();
                                     }
                                     players.get(i).setAnswer(true);
@@ -476,7 +508,7 @@ public class Game implements Runnable {
                     counter2++;
                 } else {
 
-                    timerStart = 10;
+                    timerStart = 4;
                     updateTimer(timerStart);
                     firstRandomIndex = (int) (Math.random() * 3);
                     secondRandomIndex = (int) (Math.random() * 2);
@@ -575,9 +607,10 @@ public class Game implements Runnable {
 
                 //render stuff
                 for (int i = 0; i < players.size(); i++) {
-                    if (players.get(i).getLives() > 0) {
+                    if (players.get(i).getLives() > 0 || sec) {
                         players.get(i).render(g);
-                    }
+                    }   
+                    
                     for (int j = 0; j < players.get(i).getLives(); j++) {
                         Heart heart = players.get(i).getHearts().get(j);
                         heart.render(g);

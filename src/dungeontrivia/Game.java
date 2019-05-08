@@ -78,7 +78,7 @@ public class Game implements Runnable {
     private MainMenuPanel menu;
     private InstructionsPanel controls;
     private LevelSelect levelSelect;
-    private EndGame endGamelvl;
+    public static EndGame endGamelvl;
     private HighscoresPanel highscoresPanel;
     PlayerSelectPanel playerSelect;
 
@@ -99,7 +99,7 @@ public class Game implements Runnable {
         PLAYERSELECT,
         EXIT
     };
-    public static STATE state = STATE.ENDGAME;
+    public static STATE state = STATE.MENU;
 
     /**
      * Game Constructor
@@ -181,7 +181,7 @@ public class Game implements Runnable {
         rectanguloDos = new Rectangle(500, 620, 10, 10);
         rectanguloTres = new Rectangle(900, 620, 10, 10);
 
-        endGamelvl = new EndGame(this);
+        //endGamelvl = new EndGame(this);
 
         display.getJframe().addKeyListener(keyManager);
 
@@ -324,7 +324,7 @@ public class Game implements Runnable {
             
             if(sec){
 
-                if(counter4 < 40){
+                if(counter4 < 80){
                     counter4++;
                 }else{
                 sec = false;

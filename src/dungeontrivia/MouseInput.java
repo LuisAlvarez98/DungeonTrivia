@@ -115,6 +115,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
             if (me.getX() >= 451 && me.getX() <= 685) {
                 if (me.getY() >= 109 && me.getY() <= 181) {
                     initPlayers(1);
+                    Game.endGamelvl = new EndGame(n);
                     state = Game.STATE.GAME;
                 }
             }
@@ -122,6 +123,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
             if (me.getX() >= 447 && me.getX() <= 690) {
                 if (me.getY() >= 257 && me.getY() <= 337) {
                     initPlayers(2);
+                    Game.endGamelvl = new EndGame(n);
                     state = Game.STATE.GAME;
                 }
             }
@@ -129,6 +131,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
             if (me.getX() >= 452 && me.getX() <= 689) {
                 if (me.getY() >= 453 && me.getY() <= 541) {
                     initPlayers(3);
+                    Game.endGamelvl = new EndGame(n);
                     state = Game.STATE.GAME;
                 }
             }
@@ -136,6 +139,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
             if (me.getX() >= 450 && me.getX() <= 689) {
                 if (me.getY() >= 608 && me.getY() <= 691) {
                     initPlayers(4);
+                    Game.endGamelvl = new EndGame(n);
                     state = Game.STATE.GAME;
                 }
             }

@@ -88,7 +88,7 @@ public class Game implements Runnable {
     private boolean endgame;
     private int counter4 = 0;
 
-    private boolean paused; // paused boolean
+    public static boolean paused; // paused boolean
 
     public static enum STATE {
         MENU,
@@ -657,7 +657,7 @@ public class Game implements Runnable {
                 }
                  if (paused) {
                     pausePanel.render(g, getWidth(), getHeight());
-                    levelSelect.render(g, getWidth(), getHeight());
+                 
                 }
             } else if (state == state.CONTROLS) {
                 g.drawImage(Assets.controls, 0, 0, width, height, null);

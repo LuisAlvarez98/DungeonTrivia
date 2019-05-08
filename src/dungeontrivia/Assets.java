@@ -18,6 +18,7 @@ public class Assets {
     public static BufferedImage player, sprites;
     public static BufferedImage foco;
     public static BufferedImage qmark;
+    public static BufferedImage pause_bg;
     public static BufferedImage back;
     public static BufferedImage P1;
     public static BufferedImage P2;
@@ -54,6 +55,7 @@ public class Assets {
      * Cargar el asset
      */
     public static void init() {
+        pause_bg = ImageLoader.loadImage("/images/paused.png");
         bg_hs = ImageLoader.loadImage("/images/bghs.png");
         back = ImageLoader.loadImage("/images/back.png");
         bg = ImageLoader.loadImage("/images/bg_end.jpg");

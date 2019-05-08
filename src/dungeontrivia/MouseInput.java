@@ -10,6 +10,7 @@ import static dungeontrivia.Game.players;
 import static dungeontrivia.Game.preguntas;
 import static dungeontrivia.Game.state;
 import static dungeontrivia.Game.numeroPreguntas;
+import static dungeontrivia.Game.paused;
 import static dungeontrivia.HighscoresPanel.stats;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -174,6 +175,21 @@ public class MouseInput implements MouseListener, MouseMotionListener {
                 }
             }
 
+        }
+        if (state == Game.STATE.GAME) {
+            if (paused) {
+                if (me.getX() >= 280 && me.getX() <= 494) {
+                    if (me.getY() >= 406 && me.getY() <= 471) {
+                        state = Game.STATE.MENU;
+                        paused = false;
+                    }
+                }
+                if (me.getX() >= 590 && me.getX() <= 802) {
+                    if (me.getY() >= 407 && me.getY() <= 475) {
+                        paused = false;
+                    }
+                }
+            }
         }
         if (state == Game.STATE.PLAYERSELECT) {
             if (me.getX() >= 53 && me.getX() <= 115) {

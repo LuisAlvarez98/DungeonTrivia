@@ -27,12 +27,11 @@ public class HighscoresPanel {
 
         //g2d.draw(backButton);
         g2d.drawImage(Assets.back, 50, 100, 70, 70, null);
-        Font fnt0 = new Font("arial", Font.BOLD, 30);
+        Font fnt0 = new Font("arial", Font.BOLD, 17);
         g.setFont(fnt0);
-        Color c = new Color(1f, 0f, 0f, .5f);
-        g.setColor(c);
-        for (int i = stats.size() - 1; i >=0; i--) {
-            g2d.drawString(stats.get(i).getName() + " : " + stats.get(i).getScore(), width / 2 - 100, height / 2 - 50 * i + 1 );
+        g.setColor(Color.black);
+        for (int i = 0; i < stats.size(); i++) {
+            g2d.drawString(stats.get(i).getName() + " : " + stats.get(i).getScore(), width / 2 - 100, height / 2 - 50 -80 * (-i) );
         }
     }
 }

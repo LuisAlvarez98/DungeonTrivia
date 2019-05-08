@@ -129,11 +129,18 @@ public class Game implements Runnable {
     public int getHeight() {
         return height;
     }
-
+    /**
+     * getPlayers method
+     * @return players
+     */
     public ArrayList<Player> getPlayers() {
         return players;
     }
-
+    
+    /**
+     * setNumPlayers method
+     * @param numPlayers 
+     */
     public void setNumPlayers(int numPlayers) {
         this.numPlayers = numPlayers;
     }
@@ -147,6 +154,10 @@ public class Game implements Runnable {
         return width;
     }
 
+    /**
+     * isFasePregunta method
+     * @return fasePregunta
+     */
     public boolean isFasePregunta() {
         return fasePregunta;
     }
@@ -165,7 +176,6 @@ public class Game implements Runnable {
         display = new Display(title, getWidth(), getHeight());
         display.getCanvas().addMouseListener(mouseManager);
         Assets.init();
-        // readTxt();
 
         Assets.sound.setLooping(true);
         Assets.sound.play();
@@ -180,18 +190,16 @@ public class Game implements Runnable {
         }
         thirdRandomIndex = 3 - (firstRandomIndex + secondRandomIndex);
 
-        //Player player = new Player(200, 620, 1, 10, 10, this, 1);
         rectanguloUno = new Rectangle(200, 620, 10, 10);
         rectanguloDos = new Rectangle(500, 620, 10, 10);
         rectanguloTres = new Rectangle(900, 620, 10, 10);
 
-        //endGamelvl = new EndGame(this);
         display.getJframe().addKeyListener(keyManager);
 
     }
 
     /**
-     *
+     * setIsAvailableForHighscore method
      * @param isAvailableForHighscore
      */
     public static void setIsAvailableForHighscore(boolean isAvailableForHighscore) {
@@ -199,8 +207,8 @@ public class Game implements Runnable {
     }
 
     /**
-     *
-     * @return
+     * isIsAvailableForHighscore method
+     * @return isIsAvailableForHighscore
      */
     public static boolean isIsAvailableForHighscore() {
         return isAvailableForHighscore;
@@ -240,6 +248,10 @@ public class Game implements Runnable {
         return keyManager;
     }
 
+    /**
+     * Metodo que actualiza el tiempo a desplegar en la pantalla
+     * @param time 
+     */
     private void updateTimer(int time) {
 
         if (time < 10) {
@@ -262,7 +274,10 @@ public class Game implements Runnable {
             }
             if (!paused) {
 
+                //se obtiene la respuesta a la pregunta
                 answer = preguntas.get(counter3).getRespuestas().get(0);
+                //Se obtienen las respuestas de las puertas en variables 
+                //posZero, posOne, y posTwo
                 if (firstRandomIndex == 0 && secondRandomIndex == 1) {
                     posZero = preguntas.get(counter3).getRespuestas().get(0);
                     posOne = preguntas.get(counter3).getRespuestas().get(1);
@@ -288,7 +303,8 @@ public class Game implements Runnable {
                     posOne = preguntas.get(counter3).getRespuestas().get(1);
                     posTwo = preguntas.get(counter3).getRespuestas().get(0);
                 }
-
+                
+                //se tickea los players, y si uno muere, se establece como muerto
                 for (int i = 0; i < players.size(); i++) {
                     if (players.get(i).getLives() > 0 || players.get(i).isSec()) {
                         players.get(i).tick();
@@ -299,7 +315,8 @@ public class Game implements Runnable {
                         players.get(i).setIdle(false);
                     }
                 }
-
+                
+                //Contador para la animacion de muerte de un player
                 for (int i = 0; i < players.size(); i++) {
                     if (players.get(i).isSec()) {
 
@@ -311,7 +328,7 @@ public class Game implements Runnable {
                         }
                     }
                 }
-
+                //logica para el reloj de la esquina superior derecha del juego
                 if (counter < 50) {
                     counter++;
                 } else {
@@ -319,11 +336,13 @@ public class Game implements Runnable {
                         timerStart--;
                         updateTimer(timerStart);
                     } else {
-
+                        
+                        //Primera fase del juego, donde se hace la pregunta y corre el tiempo.
                         if (fasePregunta) {
 
                             for (int i = 0; i < numPlayers; i++) {
-
+                                
+                                //por cada jugador, se obtiene su movimiento
                                 switch (players.get(i).getMove()) {
                                     case 'l':
 
@@ -343,7 +362,7 @@ public class Game implements Runnable {
                                                 Assets.deathSound.play();
                                             }
                                         } else {
-                                            //sets score
+                                            //actualizar el score
                                             if (players.get(i).getLives() > 0) {
                                                 int score = players.get(i).getScore() + 10;
                                                 players.get(i).setScore(score);
@@ -367,7 +386,7 @@ public class Game implements Runnable {
                                                 Assets.deathSound.play();
                                             }
                                         } else {
-                                            //sets score
+                                            //actualizar el score
                                             if (players.get(i).getLives() > 0) {
                                                 int score = players.get(i).getScore() + 10;
                                                 players.get(i).setScore(score);
@@ -391,7 +410,7 @@ public class Game implements Runnable {
                                                 Assets.deathSound.play();
                                             }
                                         } else {
-                                            //sets score
+                                            //actualizar el score
                                             if (players.get(i).getLives() > 0) {
                                                 int score = players.get(i).getScore() + 10;
                                                 players.get(i).setScore(score);
@@ -421,7 +440,7 @@ public class Game implements Runnable {
                     counter = 0;
 
                 }
-
+                //fase 2: cuando se mueven los personajes
                 if (faseMovimiento) {
 
                     if (posZero.equals(answer)) {
@@ -462,7 +481,7 @@ public class Game implements Runnable {
                         }
 
                     }
-
+                    //si todos los jugadores ya se movieron, cambia a fase 3.
                     if (check) {
                         Assets.openDoor.setLooping(false);
                         Assets.openDoor.play();
@@ -483,7 +502,8 @@ public class Game implements Runnable {
                     }
 
                 }
-
+                //fase 3: final de pregunta donde se abren las puertas y 
+                //se obtiene la siguiente pregunta
                 if (finalDePregunta) {
 
                     if (counter2 < 250) {
@@ -535,7 +555,12 @@ public class Game implements Runnable {
             System.exit(0);
         }
     }
-
+    
+    /**
+     * Metodo auxiliar que regresa un rectangulo que corresponde a cada puerta
+     * @param c
+     * @return rectanguloUno o rectanguloDos o rectanguloTres
+     */
     public Rectangle getRectangulo(char c) {
         if (c == 'l') {
             return rectanguloUno;
@@ -555,7 +580,7 @@ public class Game implements Runnable {
             display.getCanvas().createBufferStrategy(3);
         } else {
             g = bs.getDrawGraphics();
-            //if game has started load all stuff
+            //Cargar todo lo del juego 
             if (state == STATE.GAME) {
 
                 g.drawImage(Assets.bg, 0, 0, width, height, null);
@@ -589,7 +614,7 @@ public class Game implements Runnable {
                     g.drawImage(Assets.puertaCerrada, 840, 445, 200, 280, null);
                 }
 
-                //render stuff
+                //renderear los players
                 for (int i = 0; i < players.size(); i++) {
                     if (players.get(i).getLives() > 0 || players.get(i).isSec()) {
                         players.get(i).render(g);
@@ -600,13 +625,11 @@ public class Game implements Runnable {
                         heart.render(g);
                     }
                 }
-                //lives
 
-                //player.render(g);
                 myFont = new Font("Courier New", 1, 14);
                 g.setFont(myFont);
                 g.setColor(Color.WHITE);
-                //Draw score
+                //Dibujar el score
                 g.drawString("Scores", 10, 10);
                 for (int i = 0; i < players.size(); i++) {
                     g.drawString("Player " + (i + 1) + ":" + Integer.toString(players.get(i).getScore()), 10, (i * 5) * 3 + 25);

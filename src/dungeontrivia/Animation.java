@@ -58,7 +58,7 @@ public class Animation {
     public BufferedImage getCurrentFrame() {
         return frames[index];
     }
-
+   
     /**
      * Utilizado para actualizar 
      */

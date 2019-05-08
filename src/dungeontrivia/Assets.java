@@ -19,6 +19,11 @@ public class Assets {
     public static BufferedImage foco;
     public static BufferedImage qmark;
     public static BufferedImage back;
+    public static BufferedImage P1;
+    public static BufferedImage P2;
+    public static BufferedImage P3;
+    public static BufferedImage P4;
+    public static BufferedImage bg_hs;
 
     //Player 1
     public static BufferedImage p1Front;
@@ -43,11 +48,13 @@ public class Assets {
     public static BufferedImage p4Back;
     public static BufferedImage p4Right[];
     public static BufferedImage p4Left[];
-
+    
+    public static BufferedImage explosion[];
     /**
      * Cargar el asset
      */
     public static void init() {
+        bg_hs = ImageLoader.loadImage("/images/bghs.png");
         back = ImageLoader.loadImage("/images/back.png");
         bg = ImageLoader.loadImage("/images/bg_end.jpg");
         bg1 = ImageLoader.loadImage("/images/bg.png");
@@ -67,7 +74,13 @@ public class Assets {
         puertaBien = ImageLoader.loadImage("/images/Puerta Bien.png");
         qmark = ImageLoader.loadImage("/images/qmark.png");
 
+        P1 = ImageLoader.loadImage("/images/1P.png");
+        P2 = ImageLoader.loadImage("/images/P2.png");
+        P3 = ImageLoader.loadImage("/images/3P.png");
+        P4 = ImageLoader.loadImage("/images/4P.png");
+
         SpreadSheet spritesheet = new SpreadSheet(sprites);
+        SpreadSheet spritesheet2 = new SpreadSheet(ImageLoader.loadImage("/images/explosion.png"));
 
         // Player 1
         p1Front = spritesheet.crop(50, 0, 50, 71);
@@ -93,7 +106,11 @@ public class Assets {
         p4Right = new BufferedImage[3];
         p4Left = new BufferedImage[3];
         
+
         // Cargar los sprite sheets a un arreglo de imagenes
+
+        explosion = new BufferedImage[15];
+        
         for (int i = 0; i < 3; i++) {
             p1Right[i] = spritesheet.crop(i * 50, 144, 51, 71);
             p1Left[i] = spritesheet.crop(i * 50, 71, 51, 71);
@@ -108,7 +125,10 @@ public class Assets {
             p4Left[i] = spritesheet.crop(455 + (i * 50), 358, 51, 71);
 
         }
-
+        
+        for(int i = 0; i < 15; i++){
+            explosion[i] = spritesheet2.crop(i*52,0,52,62);
+        }
     }
 
 }

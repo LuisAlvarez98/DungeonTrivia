@@ -530,10 +530,9 @@ public class Game implements Runnable {
                         }
                     }
                 }
-
-            } else if (state == STATE.EXIT) {
-                System.exit(0);
             }
+        } else if (state == STATE.EXIT) {
+            System.exit(0);
         }
     }
 
@@ -645,7 +644,7 @@ public class Game implements Runnable {
                 g.drawImage(Assets.level_select, 0, 0, width, height, null);
                 levelSelect.render(g, getWidth(), getHeight());
             } else if (state == state.ENDGAME) {
-               // highScoreDialog.setAvailable(true);
+                // highScoreDialog.setAvailable(true);
                 g.drawImage(Assets.bg1, 0, 0, width, height, null);
                 endGamelvl.render(g, getWidth(), getHeight());
                 //Player select

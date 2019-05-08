@@ -6,6 +6,7 @@
 package dungeontrivia;
 
 import static dungeontrivia.DungeonTrivia.n;
+import static dungeontrivia.Game.highScoreDialog;
 import static dungeontrivia.Game.players;
 import static dungeontrivia.Game.preguntas;
 import static dungeontrivia.Game.state;
@@ -81,6 +82,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
                 if (me.getY() >= 338 && me.getY() <= 435) {
                     //play button
                     System.out.println("Play");
+                    highScoreDialog.setHighscoreUpdated(false);
                     state = Game.STATE.LEVELS;
                 }
             }
@@ -121,7 +123,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
 
         if (state == Game.STATE.LEVELS) {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(500);
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
@@ -180,7 +182,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
                     numeroPreguntas = preguntas.size();
                 }
             }
-            
+
         }
         if (state == Game.STATE.GAME) {
             if (paused) {

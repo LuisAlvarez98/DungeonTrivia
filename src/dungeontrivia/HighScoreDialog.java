@@ -10,6 +10,7 @@ package dungeontrivia;
  * @author luisf
  */
 import static dungeontrivia.DungeonTrivia.con;
+import static dungeontrivia.Game.highScoreDialog;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.*;
@@ -27,9 +28,11 @@ public class HighScoreDialog {
 
     private String name;
     private int score;
+    private boolean highscoreUpdated = false;
 
     HighScoreDialog(boolean available) {
         //submit button
+        f.setTitle("Insert highscore");
         JButton b = new JButton("Submit");
         b.setBounds(100, 100, 140, 40);
         //enter name label
@@ -47,11 +50,11 @@ public class HighScoreDialog {
         f.add(textfield);
         f.add(label);
         f.add(b);
-        f.setSize(300, 300);
+        f.setSize(300, 200);
         f.setLayout(null);
         f.setLocationRelativeTo(null);
         f.setVisible(false);
-
+       
         //action listener
         b.addActionListener(new ActionListener() {
 
@@ -59,11 +62,22 @@ public class HighScoreDialog {
             public void actionPerformed(ActionEvent arg0) {
                 label1.setText("Highscore has been submitted.");
                 String name = textfield.getText();
+                setHighscoreUpdated(true);
                 connect.insertTop(name, score);
                 setAvailable(false);
                 f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
+                textfield.setText("");
+                label1.setText("");
             }
         });
+    }
+
+    public void setHighscoreUpdated(boolean highscoreUpdated) {
+        this.highscoreUpdated = highscoreUpdated;
+    }
+
+    public boolean isHighscoreUpdated() {
+        return highscoreUpdated;
     }
 
     public boolean isAvailable() {

@@ -82,9 +82,11 @@ public class EndGame {
             g2d.drawString("" + players.get(i).getScore(), width / 2 + 200, 300 + 100 * i);
 
         }
-        highScoreDialog.setAvailable(true);
-        highScoreDialog.setName(Integer.toString(players.get(0).getPlayerNum()));
-        highScoreDialog.setScore(players.get(0).getScore());
+        if (!highScoreDialog.isHighscoreUpdated()) {
+            highScoreDialog.setAvailable(true);
+            highScoreDialog.setName(Integer.toString(players.get(0).getPlayerNum()));
+            highScoreDialog.setScore(players.get(0).getScore());
+        }
 
     }
 }

@@ -17,6 +17,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * MouseInput utilizada para checar los eventos con el mouse
@@ -30,6 +32,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
     private boolean derecho;
     private int x;
     private int y;
+    private int contador = 0;
     DbConnect connect = new DbConnect();
 
     /**
@@ -73,7 +76,6 @@ public class MouseInput implements MouseListener, MouseMotionListener {
      */
     @Override
     public void mousePressed(MouseEvent me) {
-        System.out.println(me.getX() + ":" + me.getY());
         // Delimitaciones de posiciones para los botones
         if (state == Game.STATE.MENU) {
             if (me.getX() >= 433 && me.getX() <= 642) {
@@ -86,7 +88,6 @@ public class MouseInput implements MouseListener, MouseMotionListener {
             }
             if (me.getX() >= 435 && me.getX() <= 643) {
                 if (me.getY() >= 616 && me.getY() <= 709) {
-                    System.out.println("Exit");
                     state = Game.STATE.EXIT;
                 }
             }
@@ -99,7 +100,6 @@ public class MouseInput implements MouseListener, MouseMotionListener {
             }
             if (me.getX() >= 992 && me.getX() <= 1067) {
                 if (me.getY() >= 599 && me.getY() <= 750) {
-                    System.out.println("Instructions");
                     state = Game.STATE.CONTROLS;
                 }
             }
@@ -121,6 +121,11 @@ public class MouseInput implements MouseListener, MouseMotionListener {
         }
 
         if (state == Game.STATE.LEVELS) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
             if (me.getX() >= 53 && me.getX() <= 115) {
                 if (me.getY() >= 107 && me.getY() <= 163) {
                     state = Game.STATE.MENU;
